@@ -1,0 +1,3 @@
+<?php defined( 'ABSPATH' ) || exit; get_header(); ?>
+<main id="main-content" class="wishlist-page container"><header class="page-heading"><h1>Wishlist</h1><p>A collection of your favorites, saved for later.</p></header><div id="wishlist-products" class="product-grid" aria-live="polite"><p>Loading your favorites…</p></div><div id="wishlist-empty" class="empty-state" hidden><?php echo auracast_icon( 'heart' ); ?><h2>Make room for your favorites.</h2><p>Tap the heart on any product to save it here.</p><a class="pill-button" href="<?php echo esc_url( auracast_shop_url() ); ?>">Discover the collection</a></div><noscript><p>Enable JavaScript to view favorites saved in this browser.</p></noscript></main>
+<?php get_footer(); ?>

@@ -1,0 +1,14 @@
+import {chromium} from 'playwright';
+import fs from 'node:fs/promises';
+const browser=await chromium.launch({headless:true,executablePath:'C:/Users/sakib/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe'});
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+await page.goto('https://www.yokaiclothingbd.com/',{waitUntil:'domcontentloaded'});
+await page.waitForTimeout(1500);
+await page.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=700){scrollTo(0,y);await new Promise(r=>setTimeout(r,100));}scrollTo(0,0)});
+await page.screenshot({path:'reference/yokai-desktop.png',fullPage:true});
+const info=await page.evaluate(()=>({images:[...document.querySelectorAll('main img')].map(i=>({src:i.currentSrc||i.src,alt:i.alt,w:i.naturalWidth,h:i.naturalHeight})),links:[...document.querySelectorAll('main a')].map(a=>({href:a.href,text:a.textContent.trim()}))}));
+await fs.writeFile('reference/yokai-analysis.json',JSON.stringify(info,null,2));
+const products=await fetch('https://www.yokaiclothingbd.com/products.json?limit=250').then(r=>r.json());
+await fs.writeFile('reference/yokai-products.json',JSON.stringify(products,null,2));
+console.log(JSON.stringify({images:info.images.slice(0,12),products:products.products?.length,examples:products.products?.slice(0,8).map(p=>({title:p.title,type:p.product_type,images:p.images.slice(0,2).map(i=>i.src)}))},null,2));
+await browser.close();

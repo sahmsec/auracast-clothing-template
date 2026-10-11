@@ -1,0 +1,7 @@
+<?php defined( 'ABSPATH' ) || exit; ?>
+<footer class="site-footer"><div><nav aria-label="<?php esc_attr_e( 'Footer navigation', 'auracast' ); ?>"><?php if ( has_nav_menu( 'footer' ) ) { wp_nav_menu( array( 'theme_location' => 'footer', 'container' => false, 'depth' => 1 ) ); } else { ?><ul><li><a href="<?php echo esc_url( home_url() ); ?>">Home</a></li><li><a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">Blog</a></li><li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>">Contact Us</a></li></ul><?php } ?></nav><p>© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( auracast_setting( 'copyright', 'Auracast. All Rights Reserved.' ) ); ?></p></div><?php if ( auracast_setting( 'payment_icons_enabled', false ) ) : ?><div class="payment-icons" aria-label="<?php esc_attr_e( 'Payment methods', 'auracast' ); ?>"><img src="<?php echo esc_url( auracast_image( 'payment_icons_image', 'payments.svg' ) ); ?>" width="320" height="35" alt="Payment methods"></div><?php else : ?><div class="footer-brand"><?php echo auracast_logo( true ); ?></div><?php endif; ?></footer>
+<?php if ( class_exists( 'WooCommerce' ) ) : ?><button class="quick-shop-tab" data-dialog="quick-shop-dialog"><?php esc_html_e( 'Quick Shop', 'auracast' ); ?></button><?php endif; ?>
+<?php get_template_part( 'template-parts/dialogs' ); ?>
+<div class="toast" role="status" aria-live="polite"></div>
+<?php wp_footer(); ?>
+</body></html>

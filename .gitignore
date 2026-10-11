@@ -1,0 +1,14 @@
+node_modules/
+.local/
+reference/*.html
+reference/analysis.json
+reference/*-analysis.json
+reference/*-products.json
+reference/*-desktop.png
+reference/*-mobile.png
+reference/home-top.png
+reference/archive/
+test-results/
+dist/*
+!dist/auracast.zip
+*.log

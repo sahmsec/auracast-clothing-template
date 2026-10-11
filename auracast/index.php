@@ -1,0 +1,3 @@
+<?php defined( 'ABSPATH' ) || exit; get_header(); ?>
+<main id="main-content" class="journal-index container"><header class="page-heading"><h1><?php echo is_home() ? esc_html__( 'Journal', 'auracast' ) : ( is_search() ? esc_html__( 'Search Results', 'auracast' ) : esc_html( get_the_archive_title() ) ); ?></h1><p>Stories, inspiration, and a fresh perspective on the way we dress.</p></header><div class="journal-grid"><?php if ( have_posts() ) { while ( have_posts() ) { the_post(); auracast_post_card( get_the_ID() ); } } else { echo '<p>' . esc_html__( 'No stories found yet.', 'auracast' ) . '</p>'; } ?></div><?php the_posts_pagination(); ?></main>
+<?php get_footer(); ?>

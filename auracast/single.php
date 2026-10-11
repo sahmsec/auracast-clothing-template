@@ -1,0 +1,3 @@
+<?php defined( 'ABSPATH' ) || exit; get_header(); ?>
+<main id="main-content" class="single-story container"><?php while ( have_posts() ) : the_post(); ?><header class="story-heading"><div class="post-meta"><?php echo esc_html( get_the_date( 'F j, Y' ) ); ?> · <?php the_category( ', ' ); ?></div><h1><?php the_title(); ?></h1></header><?php the_post_thumbnail( 'full', array( 'class' => 'story-cover' ) ); ?><article class="entry-content prose"><?php the_content(); ?></article><div class="post-navigation"><?php the_post_navigation(); ?></div><?php if ( comments_open() || get_comments_number() ) { comments_template(); } ?><?php endwhile; ?></main>
+<?php get_footer(); ?>
