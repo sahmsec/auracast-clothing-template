@@ -6,6 +6,7 @@
     "check": "node scripts/check.mjs",
     "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package.ps1",
     "preview": "node scripts/preview.mjs",
+    "share": "node scripts/share-preview.mjs",
     "test:browser": "node scripts/test-store.mjs"
   },
   "keywords": [],
