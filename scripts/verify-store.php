@@ -14,12 +14,12 @@ require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 $manager = new WP_Customize_Manager( array( 'settings_previewed' => false ) );
 do_action( 'customize_register', $manager );
 foreach ( array( 'hero_image', 'hero_secondary_image', 'tees_banner_image', 'sweats_banner_image', 'music_banner_image', 'anime_banner_image', 'essentials_banner_image', 'world_0_image', 'world_5_image', 'look_0_image', 'look_4_image', 'about_0_image', 'popup_image', 'color_hero', 'hero_layout', 'popular_products' ) as $key ) { verify( (bool) $manager->get_control( 'auracast_' . $key ), 'Customizer control: ' . $key ); }
-$changes = array( 'auracast_hero_title' => 'CUSTOMIZER QA HEADING', 'auracast_hero_image' => auracast_asset( 'images/streetwear-essential-tee-forest-0.jpg' ), 'auracast_color_hero' => '#c9dbc4' );
+$changes = array( 'auracast_hero_title' => 'CUSTOMIZER QA HEADING', 'auracast_hero_image' => auracast_asset( 'images/auracast-model-forest-tee-01.webp' ), 'auracast_color_hero' => '#c9dbc4' );
 $saved = get_theme_mods();
 try {
     foreach ( $changes as $key => $value ) { set_theme_mod( $key, $value ); }
     $html = file_get_contents( 'http://127.0.0.1:8088/' );
-    verify( str_contains( $html, 'CUSTOMIZER QA HEADING' ) && str_contains( $html, '--a-hero:#c9dbc4' ) && preg_match( '/class="campaign-image"[^>]+streetwear-essential-tee-forest-0.jpg/', $html ), 'Saved hero image, heading and background color render on the storefront' );
+    verify( str_contains( $html, 'CUSTOMIZER QA HEADING' ) && str_contains( $html, '--a-hero:#c9dbc4' ) && preg_match( '/class="campaign-image"[^>]+auracast-model-forest-tee-01.webp/', $html ), 'Saved hero image, heading and background color render on the storefront' );
 } finally {
     foreach ( $changes as $key => $value ) { if ( array_key_exists( $key, $saved ) ) { set_theme_mod( $key, $saved[$key] ); } else { remove_theme_mod( $key ); } }
 }

@@ -12,7 +12,7 @@ An installable **AURACAST** WordPress theme for WooCommerce. The clothing collec
 4. Open **Appearance → Customize → Auracast** to update imagery, colors, homepage text, collections, service details, contact information, and footer. Use **Site Identity** for a replacement logo and site icon, and **Menus** for navigation.
 5. Configure actual shipping, payments, taxes, policies, and email delivery in WooCommerce/WordPress before opening the store to customers.
 
-The importer adds 30 clothing products with size variations, photographs, five clothing categories, Anime and Music & Culture collections, and the homepage, shop, cart, checkout, account, wishlist, journal, about, contact, and editable size guide. Repeat imports retain existing products, images, and menus. The homepage and cart/checkout changes are controlled by the setup checkboxes. No payment gateway is enabled by the theme.
+The importer adds 30 clothing products with size variations, photographs, five clothing categories, Anime and Music & Culture collections, and the homepage, shop, cart, checkout, account, wishlist, journal, about, contact, and editable size guide. Repeat imports retain existing products and menus, and refresh the original demo model photos with the new Auracast set. Merchant-uploaded photos, prices, variations, and inventory are retained. The homepage and cart/checkout changes are controlled by the setup checkboxes. No payment gateway is enabled by the theme.
 
 Requires WordPress 6.6+, PHP 8.0+, and WooCommerce. No paid reference theme, page builder, or wishlist plugin is required.
 
@@ -64,6 +64,8 @@ npm.cmd run package
 
 Vector wordmarks: `auracast/assets/images/auracast-logo.svg` and `auracast-logo-white.svg`. Black-background A icon: `auracast-icon.svg` and a 512-pixel PNG. Poppins is bundled under its SIL Open Font License. Theme code is GPL-2.0-or-later.
 
-Reference photographs are temporary demo assets for this build. Their source URLs are recorded in `reference/asset-sources.json`; photograph ownership remains with the respective owners. Replace demo photos with your own product and campaign imagery when the catalog is ready. No AI-generated campaign image is used in this version.
+The hero, style gallery, about page, plain tee photos, and grey hoodie model photo use seven original AI-generated portraits of adult male and female models in relaxed streetwear poses. These were created with the built-in image generation tool. The complete prompt set and saved asset filenames are recorded in [model-generation-prompts.json](auracast/assets/data/model-generation-prompts.json). Final WebP files are bundled under `auracast/assets/images/`.
+
+The remaining flat clothing photographs are temporary reference assets. Their source URLs are recorded in `reference/asset-sources.json`; photograph ownership remains with the respective owners. Replace demo clothing and model photos with your actual product photography when the catalog is ready.
 
 WooCommerce integration uses public hooks and native templates, following the [classic theme developer handbook](https://developer.woocommerce.com/docs/theming/theme-development/classic-theme-developer-handbook/).

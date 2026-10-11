@@ -3,9 +3,23 @@ defined( 'ABSPATH' ) || exit;
 
 function auracast_asset( $path ) { return get_template_directory_uri() . '/assets/' . ltrim( $path, '/' ); }
 function auracast_setting( $key, $default = '' ) { return get_theme_mod( 'auracast_' . $key, $default ); }
-function auracast_image( $key, $file ) { return auracast_setting( $key, auracast_asset( 'images/' . $file ) ); }
-function auracast_worlds() { return array( array( 'ANIME', 'anime', 'streetwear-overtime-graphic-tee-0.jpg', true ), array( 'MUSIC & CULTURE', 'music-culture', 'streetwear-afterhours-graphic-tee-0.jpg', true ), array( 'ESSENTIALS', 'essentials', 'streetwear-essential-tee-black-0.jpg', false ), array( 'HOODIES', 'hoodies', 'streetwear-essential-hoodie-white-0.jpg', false ), array( 'SWEATPANTS', 'sweatpants', 'streetwear-everyday-sweatpants-black-0.png', false ), array( 'SHIRTS', 'shirts', 'streetwear-monochrome-graphic-shirt-0.png', false ) ); }
-function auracast_look_images() { return array( 'streetwear-essential-tee-black-0.jpg', 'streetwear-essential-tee-white-0.jpg', 'streetwear-essential-tee-forest-0.jpg', 'streetwear-essential-hoodie-grey-0.jpg', 'streetwear-essential-tee-black-1.jpg' ); }
+function auracast_demo_model_replacements() {
+    static $replacements;
+    if ( $replacements === null ) { $replacements = json_decode( file_get_contents( get_template_directory() . '/assets/data/model-replacements.json' ), true ) ?: array(); }
+    return $replacements;
+}
+function auracast_image( $key, $file ) {
+    $url = auracast_setting( $key, auracast_asset( 'images/' . $file ) );
+    // Refresh a saved bundled demo image while retaining merchant-uploaded images.
+    if ( is_string( $url ) && str_starts_with( $url, auracast_asset( 'images/' ) ) ) {
+        $replacements = auracast_demo_model_replacements();
+        $original = basename( wp_parse_url( $url, PHP_URL_PATH ) ?: '' );
+        if ( isset( $replacements[ $original ] ) ) { return auracast_asset( 'images/' . $replacements[ $original ] ); }
+    }
+    return $url;
+}
+function auracast_worlds() { return array( array( 'ANIME', 'anime', 'streetwear-overtime-graphic-tee-0.jpg', true ), array( 'MUSIC & CULTURE', 'music-culture', 'streetwear-afterhours-graphic-tee-0.jpg', true ), array( 'ESSENTIALS', 'essentials', 'auracast-model-black-tee-01.webp', false ), array( 'HOODIES', 'hoodies', 'streetwear-essential-hoodie-white-0.jpg', false ), array( 'SWEATPANTS', 'sweatpants', 'streetwear-everyday-sweatpants-black-0.png', false ), array( 'SHIRTS', 'shirts', 'streetwear-monochrome-graphic-shirt-0.png', false ) ); }
+function auracast_look_images() { return array( 'auracast-model-black-tee-01.webp', 'auracast-model-white-tee-01.webp', 'auracast-model-forest-tee-01.webp', 'auracast-model-grey-hoodie-01.webp', 'auracast-model-black-tee-02.webp' ); }
 function auracast_shop_url() { return function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' ); }
 function auracast_collection_url( $slug ) {
     $term = get_term_by( 'slug', $slug, 'product_tag' );

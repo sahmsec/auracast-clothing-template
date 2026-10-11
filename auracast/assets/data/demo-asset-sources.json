@@ -1,35 +1,5 @@
 [
     {
-        "file":  "streetwear-essential-tee-black-0.jpg",
-        "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/DSC00352-Black.jpg?v=1769967101",
-        "reference":  "Yokai clothing direction"
-    },
-    {
-        "file":  "streetwear-essential-tee-black-1.jpg",
-        "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/DSC00354-Black.jpg?v=1769967101",
-        "reference":  "Yokai clothing direction"
-    },
-    {
-        "file":  "streetwear-essential-tee-white-0.jpg",
-        "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/DSC00572.jpg?v=1769967028",
-        "reference":  "Yokai clothing direction"
-    },
-    {
-        "file":  "streetwear-essential-tee-white-1.jpg",
-        "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/DSC00573.jpg?v=1769967028",
-        "reference":  "Yokai clothing direction"
-    },
-    {
-        "file":  "streetwear-essential-tee-forest-0.jpg",
-        "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/DSC00307.jpg?v=1769967059",
-        "reference":  "Yokai clothing direction"
-    },
-    {
-        "file":  "streetwear-essential-tee-forest-1.jpg",
-        "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/DSC00309.jpg?v=1769967059",
-        "reference":  "Yokai clothing direction"
-    },
-    {
         "file":  "streetwear-overtime-graphic-tee-0.jpg",
         "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/JJK-12-BACK.jpg?v=1772211859",
         "reference":  "Yokai clothing direction"
@@ -132,11 +102,6 @@
     {
         "file":  "streetwear-essential-hoodie-white-1.jpg",
         "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/4b5ab85c-4e8f-4594-9cd3-194d71430409.jpg?v=1764091409",
-        "reference":  "Yokai clothing direction"
-    },
-    {
-        "file":  "streetwear-essential-hoodie-grey-0.jpg",
-        "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/Yokai_day_1_p2-02581-2.jpg?v=1769181605",
         "reference":  "Yokai clothing direction"
     },
     {
@@ -278,5 +243,40 @@
         "file":  "streetwear-blade-graphic-shirt-1.png",
         "source":  "https://cdn.shopify.com/s/files/1/0608/9759/1392/files/26B.png?v=1787934099",
         "reference":  "Yokai clothing direction"
+    },
+    {
+        "file":  "auracast-model-black-tee-01.webp",
+        "source":  "Original AI-generated Auracast model portrait",
+        "reference":  "Built-in image_gen; assets/data/model-generation-prompts.json"
+    },
+    {
+        "file":  "auracast-model-black-tee-02.webp",
+        "source":  "Original AI-generated Auracast model portrait",
+        "reference":  "Built-in image_gen; assets/data/model-generation-prompts.json"
+    },
+    {
+        "file":  "auracast-model-white-tee-01.webp",
+        "source":  "Original AI-generated Auracast model portrait",
+        "reference":  "Built-in image_gen; assets/data/model-generation-prompts.json"
+    },
+    {
+        "file":  "auracast-model-white-tee-02.webp",
+        "source":  "Original AI-generated Auracast model portrait",
+        "reference":  "Built-in image_gen; assets/data/model-generation-prompts.json"
+    },
+    {
+        "file":  "auracast-model-forest-tee-01.webp",
+        "source":  "Original AI-generated Auracast model portrait",
+        "reference":  "Built-in image_gen; assets/data/model-generation-prompts.json"
+    },
+    {
+        "file":  "auracast-model-forest-tee-02.webp",
+        "source":  "Original AI-generated Auracast model portrait",
+        "reference":  "Built-in image_gen; assets/data/model-generation-prompts.json"
+    },
+    {
+        "file":  "auracast-model-grey-hoodie-01.webp",
+        "source":  "Original AI-generated Auracast model portrait",
+        "reference":  "Built-in image_gen; assets/data/model-generation-prompts.json"
     }
 ]

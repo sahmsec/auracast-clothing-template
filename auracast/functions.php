@@ -2,7 +2,7 @@
 /** Auracast theme bootstrap. */
 defined( 'ABSPATH' ) || exit;
 
-define( 'AURACAST_VERSION', '1.0.0' );
+define( 'AURACAST_VERSION', '1.0.1' );
 require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/woocommerce.php';
@@ -22,7 +22,7 @@ add_action( 'after_setup_theme', function () {
     add_theme_support( 'wc-product-gallery-slider' );
     register_nav_menus( array( 'primary' => __( 'Main navigation', 'auracast' ), 'footer' => __( 'Footer navigation', 'auracast' ) ) );
     add_image_size( 'auracast-card', 600, 800, false );
-    add_image_size( 'auracast-journal', 860, 529, true );
+    add_image_size( 'auracast-journal', 860, 529, array( 'center', 'top' ) );
     $GLOBALS['content_width'] = 1340;
 } );
 

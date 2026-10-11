@@ -1,4 +1,4 @@
-Auracast 1.0.0
+Auracast 1.0.1
 
 Install and activate WooCommerce, then activate this theme.
 Open Appearance > Auracast Setup and import the demo store.
@@ -17,8 +17,10 @@ sending marketing campaigns requires your email provider.
 Theme code: GPL-2.0-or-later. See LICENSE.txt.
 Poppins font: SIL Open Font License. See assets/fonts/OFL.txt.
 Brand vectors: recreated from the supplied Auracast brand reference.
-Reference photographs: temporary demo assets, with ownership retained by their
-respective owners. Original URLs: assets/data/demo-asset-sources.json.
+Model portraits: original AI-generated adult streetwear models. Prompts and
+asset filenames: assets/data/model-generation-prompts.json.
+Flat clothing photographs: temporary reference assets, with ownership retained
+by their respective owners. Original URLs: assets/data/demo-asset-sources.json.
 Replace demo photographs with your own product and campaign photography.
 
 Full source and setup guide:

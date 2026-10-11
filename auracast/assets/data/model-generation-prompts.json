@@ -1,0 +1,46 @@
+{
+  "mode": "Built-in image_gen",
+  "date": "2026-10-11",
+  "purpose": "Original adult male and female Auracast demo streetwear models",
+  "assets": [
+    {
+      "file": "auracast-model-black-tee-01.webp",
+      "intent": "generate",
+      "prompt": "Use case: photorealistic-natural. Asset type: original Auracast streetwear e-commerce campaign portrait, usable in a website hero and clothing product gallery. Photorealistic editorial fashion photograph, vertical 2:3 composition, 1024x1536. An adult South Asian fashion model in their mid twenties, natural skin texture, believable anatomy and fabric folds. Minimal pale sage-grey plaster studio wall and matching floor, soft directional daylight, muted editorial color grading, tasteful contemporary streetwear. Show the entire head, both hands and the body down to below the knees, with generous margin above the head and at both sides. Camera at chest level, 50mm look. Plain clothing with no prints, no brand logos, no text, no watermark. Garment front remains clearly visible. Subject: one adult man, medium brown skin, dark curly hair, subtle stubble. Outfit: solid jet black heavyweight oversized drop-shoulder T-shirt, loose charcoal trousers, small silver chain. Pose: relaxed three-quarter stance, one hand in his trouser pocket and the other hanging naturally, a slight head tilt, looking confidently just past the camera. Stylish and unforced, a candid fashion pose with shoulders relaxed. The black T-shirt is the focus; front and sleeves unobstructed."
+    },
+    {
+      "file": "auracast-model-white-tee-01.webp",
+      "intent": "generate",
+      "prompt": "Use case: photorealistic-natural. Asset type: original Auracast streetwear e-commerce campaign portrait, usable in a website hero and clothing product gallery. Photorealistic editorial fashion photograph, vertical 2:3 composition, 1024x1536. An adult South Asian fashion model in their mid twenties, natural skin texture, believable anatomy and fabric folds. Minimal pale sage-grey plaster studio wall and matching floor, soft directional daylight, muted editorial color grading, tasteful contemporary streetwear. Show the entire head, both hands and the body down to below the knees, with generous margin above the head and at both sides. Camera at chest level, 50mm look. Plain clothing with no prints, no brand logos, no text, no watermark. Garment front remains clearly visible. Subject: one adult woman, medium warm brown skin, long wavy dark hair, minimal makeup. Outfit: plain opaque white heavyweight oversized drop-shoulder T-shirt and wide black cargo trousers, small silver hoop earrings. Pose: angled hips and shoulders, one hand lightly brushing her hair beside her ear and the other resting in her trouser pocket, looking naturally toward the camera. Relaxed fashion editorial attitude, soft confident expression. The white T-shirt front and sleeve proportions are fully visible."
+    },
+    {
+      "file": "auracast-model-forest-tee-01.webp",
+      "intent": "generate",
+      "prompt": "Use case: photorealistic-natural. Asset type: original Auracast streetwear e-commerce campaign portrait, usable in a website hero and clothing product gallery. Photorealistic editorial fashion photograph, vertical 2:3 composition, 1024x1536. An adult South Asian fashion model in their mid twenties, natural skin texture, believable anatomy and fabric folds. Minimal pale sage-grey plaster studio wall and matching floor, soft directional daylight, muted editorial color grading, tasteful contemporary streetwear. Show the entire head, both hands and the body down to below the knees, with generous margin above the head and at both sides. Camera at chest level, 50mm look. Plain clothing with no prints, no brand logos, no text, no watermark. Garment front remains clearly visible. Subject: one adult woman, medium brown skin, chin-length dark bob haircut, subtle makeup. Outfit: solid deep forest green heavyweight oversized drop-shoulder T-shirt and loose charcoal trousers, small understated silver earrings. Pose: perched casually on the edge of a low simple concrete plinth, knees apart in a natural relaxed seated position, hands resting separately on the plinth beside her hips, shoulders tilted slightly, looking thoughtfully to the side. Cool expressive streetwear attitude. Front of green T-shirt fully visible and not covered by arms."
+    },
+    {
+      "file": "auracast-model-grey-hoodie-01.webp",
+      "intent": "generate",
+      "prompt": "Use case: photorealistic-natural. Asset type: original Auracast streetwear e-commerce campaign portrait, usable in a website hero and clothing product gallery. Photorealistic editorial fashion photograph, vertical 2:3 composition, 1024x1536. An adult South Asian fashion model in their mid twenties, natural skin texture, believable anatomy and fabric folds. Minimal pale sage-grey plaster studio wall and matching floor, soft directional daylight, muted editorial color grading, tasteful contemporary streetwear. Show the entire head, both hands and the body down to below the knees, with generous margin above the head and at both sides. Camera at chest level, 50mm look. Plain clothing with no prints, no brand logos, no text, no watermark. Garment front remains clearly visible. Subject: one adult man, warm brown skin, medium-length dark textured hair, clean-shaven, no glasses. Outfit: plain medium charcoal-grey oversized pullover hoodie with drop shoulders, kangaroo pocket, no drawstrings, and loose dark charcoal trousers. Pose: standing casually with one foot supported on a low concrete step, slight forward lean, one hand in the kangaroo pocket and the other resting on the raised knee, looking toward the camera with calm confidence. The hoodie body and its roomy shape are the focus, hood down."
+    },
+    {
+      "file": "auracast-model-black-tee-02.webp",
+      "intent": "edit",
+      "input": "auracast-model-black-tee-01.webp",
+      "prompt": "Use case: identity-preserve. Asset type: second clothing product photo for Auracast. Input image 1 is the edit target and identity/outfit reference. Produce another photorealistic editorial photograph from the same shoot of this exact adult male model. Change his pose only: turn his torso about thirty degrees to show the side and front of the plain oversized black T-shirt, place both hands naturally in trouser pockets, shift weight to one leg and look slightly down with relaxed attitude. Keep the same face, curly haircut, skin tone, subtle stubble, silver chain, black oversized drop-shoulder T-shirt, charcoal wide trousers, white shoes, pale sage-grey plaster studio and natural daylight. Keep realistic hands and fabric texture, no text or logos. Vertical 2:3 image, entire head and body visible with comfortable margins."
+    },
+    {
+      "file": "auracast-model-white-tee-02.webp",
+      "intent": "edit",
+      "input": "auracast-model-white-tee-01.webp",
+      "prompt": "Use case: identity-preserve. Asset type: second clothing product photo for Auracast. Input image 1 is the edit target and identity/outfit reference. Produce another photorealistic editorial photograph from the same shoot of this exact adult female model. Change her pose only: lean her shoulder lightly against the wall, three-quarter body angle, both hands naturally in cargo pockets, one knee slightly bent, look past the camera with a relaxed confident expression. Keep the same face, long wavy dark hair, brown skin, silver earrings, plain white oversized heavyweight drop-shoulder T-shirt, black wide cargo trousers, white shoes, pale sage-grey plaster studio and soft daylight. Garment front clearly visible, realistic anatomy and fabric texture. No text or logos. Vertical 2:3 image, entire head and body visible with comfortable margins."
+    },
+    {
+      "file": "auracast-model-forest-tee-02.webp",
+      "intent": "edit",
+      "input": "auracast-model-forest-tee-01.webp",
+      "prompt": "Use case: identity-preserve. Asset type: second clothing product photo for Auracast. Input image 1 is the edit target and identity/outfit reference. Produce another photorealistic editorial photograph from the same shoot of this exact adult female model. Change her pose only: now stand beside the same low concrete plinth, relaxed three-quarter stance with one hand resting on the plinth and the other naturally in her trouser pocket, tilt her shoulders slightly and look toward the camera. Keep the same face, chin-length dark bob, brown skin, silver earrings, plain deep forest green oversized heavyweight drop-shoulder T-shirt, loose charcoal trousers, cream trainers, pale sage-grey plaster studio and natural daylight. Show the whole T-shirt front and sleeve shape clearly, realistic hands and fabric folds. No text or logos. Vertical 2:3 image, entire head and body visible with comfortable margins."
+    }
+  ],
+  "output_directory": "auracast/assets/images/"
+}

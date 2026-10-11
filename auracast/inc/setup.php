@@ -89,11 +89,31 @@ function auracast_import_attribute( $slug, $label, $options ) {
     return $attribute;
 }
 
+function auracast_refresh_demo_product_images( $id ) {
+    if ( get_post_meta( $id, '_auracast_demo', true ) !== '1' ) { return; }
+    $product = wc_get_product( $id );
+    if ( ! $product ) { return; }
+    $replacements = auracast_demo_model_replacements();
+    $replace = function ( $image_id ) use ( $replacements, $product ) {
+        $file = get_post_meta( $image_id, '_auracast_source_file', true );
+        return isset( $replacements[ $file ] ) ? auracast_import_image( $replacements[ $file ], $product->get_name() ) : $image_id;
+    };
+    $original_image = $product->get_image_id();
+    $original_gallery = $product->get_gallery_image_ids();
+    $image = $replace( $original_image );
+    $gallery = array_map( $replace, $original_gallery );
+    if ( $image !== $original_image || $gallery !== $original_gallery ) {
+        $product->set_image_id( $image );
+        $product->set_gallery_image_ids( $gallery );
+        $product->save();
+    }
+}
+
 function auracast_import_product( $item ) {
     $sku = 'AURA-' . strtoupper( substr( md5( $item['slug'] ), 0, 8 ) );
     $existing = wc_get_product_id_by_sku( $sku );
     if ( ! $existing ) { $post = get_page_by_path( $item['slug'], OBJECT, 'product' ); $existing = $post ? $post->ID : 0; }
-    if ( $existing ) { return $existing; }
+    if ( $existing ) { auracast_refresh_demo_product_images( $existing ); return $existing; }
     $term = term_exists( $item['category'], 'product_cat' );
     if ( ! $term ) { $term = wp_insert_term( $item['category'], 'product_cat', array( 'slug' => sanitize_title( $item['category'] ) ) ); }
     if ( is_wp_error( $term ) ) { throw new RuntimeException( $term->get_error_message() ); }
@@ -137,11 +157,17 @@ function auracast_import_product( $item ) {
 function auracast_import_posts() {
     $stories = array(
         array( 'a-graphic-tee-your-own-way', 'A Graphic Tee, Your Own Way', 'streetwear-overtime-graphic-tee-0.jpg', 'A bold graphic, a relaxed fit, and the everyday pieces that make the look yours.', 'Style', '2026-10-03 12:00:00' ),
-        array( 'the-everyday-uniform', 'The Everyday Uniform', 'streetwear-essential-tee-forest-0.jpg', 'Build your rotation around easy fits, clean colors, and pieces you enjoy wearing.', 'Inspiration', '2026-10-02 12:00:00' ),
-        array( 'made-for-your-world', 'Made for Your World', 'streetwear-essential-hoodie-grey-0.jpg', 'Music, art, and the stories we carry with us. Find inspiration for your next look.', 'Journal', '2026-10-01 12:00:00' ),
+        array( 'the-everyday-uniform', 'The Everyday Uniform', 'auracast-model-forest-tee-01.webp', 'Build your rotation around easy fits, clean colors, and pieces you enjoy wearing.', 'Inspiration', '2026-10-02 12:00:00' ),
+        array( 'made-for-your-world', 'Made for Your World', 'auracast-model-grey-hoodie-01.webp', 'Music, art, and the stories we carry with us. Find inspiration for your next look.', 'Journal', '2026-10-01 12:00:00' ),
     );
     foreach ( $stories as $story ) {
-        if ( get_page_by_path( $story[0], OBJECT, 'post' ) ) { continue; }
+        $existing = get_page_by_path( $story[0], OBJECT, 'post' );
+        if ( $existing ) {
+            $file = get_post_meta( get_post_thumbnail_id( $existing->ID ), '_auracast_source_file', true );
+            $replacements = auracast_demo_model_replacements();
+            if ( isset( $replacements[ $file ] ) ) { set_post_thumbnail( $existing->ID, auracast_import_image( $replacements[ $file ], $story[1] ) ); }
+            continue;
+        }
         $category = get_cat_ID( $story[4] ) ?: wp_insert_term( $story[4], 'category' ); if ( is_array( $category ) ) { $category = $category['term_id']; }
         $content = '<p>' . esc_html( $story[3] ) . '</p><h2>A fresh perspective on everyday style</h2><p>The pieces we reach for most often have a way of becoming part of our story. A familiar silhouette, a beautiful texture, a detail that feels distinctly our own — the best wardrobes are built from these small discoveries.</p><p>At Auracast, we look for the balance between expression and ease. Start with a thoughtful foundation, add an unexpected accessory, and make room for the pieces that make you feel like yourself.</p><blockquote>Style is personal. Wear the pieces that feel like you.</blockquote><h2>Make it your own</h2><p>Explore our collections for considered essentials and new favorites. Look for shapes that work together, textures you enjoy wearing, and colors that make getting dressed feel effortless.</p>';
         $id = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_name' => $story[0], 'post_title' => $story[1], 'post_excerpt' => $story[3], 'post_content' => $content, 'post_category' => array( (int) $category ), 'post_date' => $story[5] ) );

@@ -8,11 +8,11 @@
     "isNew": true,
     "price": 499,
     "regularPrice": 499,
-    "image": "streetwear-essential-tee-black-0.jpg",
-    "hover": "streetwear-essential-tee-black-1.jpg",
+    "image": "auracast-model-black-tee-01.webp",
+    "hover": "auracast-model-black-tee-02.webp",
     "gallery": [
-      "streetwear-essential-tee-black-0.jpg",
-      "streetwear-essential-tee-black-1.jpg"
+      "auracast-model-black-tee-01.webp",
+      "auracast-model-black-tee-02.webp"
     ],
     "type": "variable",
     "sizes": [
@@ -33,11 +33,11 @@
     "isNew": true,
     "price": 499,
     "regularPrice": 499,
-    "image": "streetwear-essential-tee-white-0.jpg",
-    "hover": "streetwear-essential-tee-white-1.jpg",
+    "image": "auracast-model-white-tee-01.webp",
+    "hover": "auracast-model-white-tee-02.webp",
     "gallery": [
-      "streetwear-essential-tee-white-0.jpg",
-      "streetwear-essential-tee-white-1.jpg"
+      "auracast-model-white-tee-01.webp",
+      "auracast-model-white-tee-02.webp"
     ],
     "type": "variable",
     "sizes": [
@@ -58,11 +58,11 @@
     "isNew": true,
     "price": 499,
     "regularPrice": 499,
-    "image": "streetwear-essential-tee-forest-0.jpg",
-    "hover": "streetwear-essential-tee-forest-1.jpg",
+    "image": "auracast-model-forest-tee-01.webp",
+    "hover": "auracast-model-forest-tee-02.webp",
     "gallery": [
-      "streetwear-essential-tee-forest-0.jpg",
-      "streetwear-essential-tee-forest-1.jpg"
+      "auracast-model-forest-tee-01.webp",
+      "auracast-model-forest-tee-02.webp"
     ],
     "type": "variable",
     "sizes": [
@@ -354,10 +354,10 @@
     "isNew": false,
     "price": 839,
     "regularPrice": 1199,
-    "image": "streetwear-essential-hoodie-grey-0.jpg",
+    "image": "auracast-model-grey-hoodie-01.webp",
     "hover": "streetwear-essential-hoodie-grey-1.jpg",
     "gallery": [
-      "streetwear-essential-hoodie-grey-0.jpg",
+      "auracast-model-grey-hoodie-01.webp",
       "streetwear-essential-hoodie-grey-1.jpg"
     ],
     "type": "variable",
