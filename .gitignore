@@ -8,6 +8,9 @@ reference/*-desktop.png
 reference/*-mobile.png
 reference/home-top.png
 reference/archive/
+reference/yokai-refresh/
+reference/yokai-product-cart/
+reference/yokai-instagram/
 test-results/
 dist/*
 !dist/auracast.zip

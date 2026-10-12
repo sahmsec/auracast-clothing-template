@@ -1,0 +1,175 @@
+/* Checkout follows the reference's standalone, single-page layout. */
+body.auracast-checkout-page{--checkout-ink:#181c19;--checkout-accent:#305640;--checkout-border:#dedede;--checkout-muted:#737373;background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.35;letter-spacing:0;min-width:0}
+.auracast-checkout-page *, .auracast-checkout-page *::before,.auracast-checkout-page *::after{box-sizing:border-box}
+.auracast-checkout-page h1,.auracast-checkout-page h2,.auracast-checkout-page h3,.auracast-checkout-page p{font-family:inherit;letter-spacing:0;text-transform:none}
+.auracast-checkout-page button,.auracast-checkout-page input,.auracast-checkout-page select,.auracast-checkout-page textarea{font:inherit;letter-spacing:0}
+.auracast-checkout-page a{color:var(--checkout-ink)}
+.checkout-header{height:140px;border-bottom:1px solid var(--checkout-border);background:#fff}
+.checkout-header-inner{max-width:980px;height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}
+.checkout-brand{display:flex;align-items:center;justify-content:center;width:100px;height:100px}
+.checkout-brand img{width:62px;height:62px;object-fit:contain}
+.checkout-cart-link{display:flex;width:28px;height:36px;align-items:center;justify-content:center}
+.checkout-cart-link .icon{width:24px;height:24px;stroke-width:1.65}
+.checkout-page-main{width:100%;margin:0;padding:0;min-height:calc(100vh - 140px)}
+.checkout-page-main>.woocommerce{width:100%;margin:0;padding:0}
+.auracast-checkout-page .woocommerce-notices-wrapper,.checkout-page-main>.woocommerce>.woocommerce-info,.checkout-page-main>.woocommerce>.woocommerce-error{max-width:980px;margin:20px auto}
+.auracast-checkout-page .woocommerce-notices-wrapper:empty{display:none}
+.auracast-checkout-page .woocommerce-error,.auracast-checkout-page .woocommerce-message,.auracast-checkout-page .woocommerce-info{padding:14px 16px;list-style:none;border-radius:8px;background:#f5f5f5;font-size:14px;border:1px solid var(--checkout-border)}
+.auracast-checkout-page .woocommerce-error{background:#fff4f4;color:#b42318;border-color:#eab8b4}
+.auracast-checkout-page .woocommerce-error li{margin:3px 0}
+.auracast-checkout-page form.auracast-checkout-form{display:block;margin:0;padding:0;width:100%}
+.auracast-checkout-page wc-order-attribution-inputs{display:none}
+.checkout-layout{max-width:980px;margin:auto;display:grid;grid-template-columns:55% 45%;align-items:stretch}
+.checkout-customer-column{padding:40px 40px 38px 0;min-width:0}
+.checkout-section{margin:0 0 32px;padding:0}
+.checkout-section h2{font-size:20px;font-weight:600;line-height:24px;margin:0 0 14px;color:#000}
+.checkout-section h3{font-size:16px;font-weight:600;line-height:19.2px;margin:0 0 14px;color:#000}
+.checkout-section-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.checkout-section-heading h2{margin:0}
+.checkout-section-heading>a{font-size:14px;text-decoration:underline}
+.auracast-checkout-page .form-row{margin:0 0 10px!important;padding:0!important;position:relative;float:none;line-height:1.35}
+.auracast-checkout-page .form-row>label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+.auracast-checkout-page .form-row .optional,.auracast-checkout-page .form-row abbr,.auracast-checkout-page .form-row .required{display:none}
+.auracast-checkout-page .woocommerce-input-wrapper{display:block;width:100%}
+body.auracast-checkout-page .auracast-checkout-form input.input-text,.auracast-checkout-page select,.auracast-checkout-page textarea{width:100%;height:49px;min-height:49px;padding:13px 10px;border:1px solid var(--checkout-border);border-radius:12px;background:#fff;color:#000;outline:none;box-shadow:none;appearance:none;max-width:100%}
+.auracast-checkout-page input::placeholder,.auracast-checkout-page textarea::placeholder{color:#737373;opacity:1}
+body.auracast-checkout-page .auracast-checkout-form input.input-text:focus,.auracast-checkout-page select:focus,.auracast-checkout-page textarea:focus{border:1px solid var(--checkout-accent);box-shadow:0 0 0 1px var(--checkout-accent)}
+body.auracast-checkout-page .woocommerce-invalid input.input-text,.auracast-checkout-page .woocommerce-invalid select{border-color:#b42318}
+.auracast-checkout-page #billing_email,.auracast-checkout-page #billing_phone{padding-right:40px}
+body.auracast-checkout-page .checkout-field-help{position:absolute;right:12px;top:17px;border:2px solid #888;border-radius:50%;background:transparent;color:#888;width:15px;height:15px;padding:0;line-height:11px;font-size:10px!important;font-weight:700;cursor:pointer}
+.checkout-help-popup{position:absolute;right:0;bottom:calc(100% + 8px);width:240px;padding:10px;border-radius:6px;background:#333;color:#fff;z-index:5;font-size:12px}
+.checkout-help-popup[hidden]{display:none}
+.woocommerce-billing-fields__field-wrapper,.checkout-different-billing{display:grid;grid-template-columns:1fr 1fr;column-gap:10px}
+.auracast-checkout-page .form-row-wide{grid-column:1/-1;width:100%}
+.auracast-checkout-page .form-row-first,.auracast-checkout-page .form-row-last{width:auto}
+.auracast-checkout-page .checkout-country-field>label{position:absolute;clip:auto;width:auto;height:auto;overflow:visible;top:8px;left:11px;font-size:12px;color:var(--checkout-muted);z-index:1}
+.auracast-checkout-page .checkout-has-value:not(.checkout-country-field)>label{position:absolute;clip:auto;width:auto;height:auto;overflow:visible;top:8px;left:11px;font-size:12px;color:var(--checkout-muted);z-index:1;pointer-events:none}
+.auracast-checkout-page .checkout-has-value:not(.checkout-country-field) input.input-text{padding-top:21px;padding-bottom:6px}
+.auracast-checkout-page .checkout-has-value:not(.checkout-country-field) input.input-text::placeholder{opacity:0}
+.auracast-checkout-page .checkout-country-field select{padding:20px 32px 6px 10px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23737373' stroke-width='1.5'/%3E%3C/svg%3E");background-position:right 12px center;background-repeat:no-repeat;background-size:14px}
+.auracast-checkout-page .checkout-checkbox{display:flex;align-items:center;gap:8px;margin:0;cursor:pointer;min-height:18px;font-size:14px;line-height:19px;font-weight:400}
+.auracast-checkout-page input[type=checkbox],.auracast-checkout-page input[type=radio]{appearance:none;-webkit-appearance:none;flex:0 0 18px;width:18px;height:18px;margin:0;padding:0;border:1px solid var(--checkout-border);background:#fff;border-radius:6px;vertical-align:middle;cursor:pointer;box-shadow:none}
+.auracast-checkout-page input[type=radio]{border-radius:50%}
+.auracast-checkout-page input[type=checkbox]:checked{border-color:var(--checkout-ink);background-color:var(--checkout-ink);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='m4 9 3 3 7-7' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.auracast-checkout-page input[type=radio]:checked{border:6px solid var(--checkout-ink)}
+.auracast-checkout-page input[type=radio]:focus-visible,.auracast-checkout-page input[type=checkbox]:focus-visible{outline:2px solid var(--checkout-accent);outline-offset:2px}
+.checkout-delivery{margin-bottom:26px}
+.checkout-choice-list{border:1px solid var(--checkout-border);border-radius:12px;overflow:hidden}
+.checkout-choice{display:flex;align-items:center;gap:10px;padding:14px;min-height:49px;cursor:pointer;font-weight:400;color:#000;line-height:19px;position:relative;margin:0;border-bottom:1px solid var(--checkout-border)}
+.checkout-choice:last-child{border-bottom:0}
+.checkout-choice.is-selected,.checkout-choice:has(input:checked){background:#f6f6f6;outline:1px solid var(--checkout-ink);outline-offset:-1px}
+.checkout-choice>span:not(.shipping-rate){flex:1;min-width:0}
+.checkout-choice strong{display:block;font-weight:500}
+.checkout-choice small{display:block;font-size:14px;font-weight:400;line-height:19px}
+.checkout-choice .shipping-rate{align-self:flex-start;font-size:14px;white-space:nowrap}
+.auracast-shipping-methods .checkout-choice{min-height:67px;align-items:flex-start}
+.auracast-shipping-methods .checkout-choice input{margin-top:0}
+.checkout-payment-assurance{color:var(--checkout-muted);margin:-9px 0 14px;font-size:14px}
+body.auracast-checkout-page #payment{padding:0;background:transparent}
+.auracast-checkout-page #payment ul.payment_methods{padding:0;margin:0;list-style:none;border:1px solid var(--checkout-border);border-radius:12px;overflow:hidden;background:#fff}
+.auracast-checkout-page #payment ul.payment_methods>li{margin:0;padding:0;position:relative;border-bottom:1px solid var(--checkout-border);list-style:none}
+.auracast-checkout-page #payment ul.payment_methods>li:last-child{border-bottom:0}
+.auracast-checkout-page #payment ul.payment_methods input[name=payment_method]{position:absolute;top:16px;left:14px}
+.auracast-checkout-page #payment ul.payment_methods>li>label{display:flex;align-items:center;min-height:49px;padding:14px 14px 14px 42px;margin:0;line-height:19px;font-weight:500;background:#f6f6f6;border:1px solid var(--checkout-ink);border-radius:11px 11px 0 0;cursor:pointer}
+.auracast-checkout-page #payment ul.payment_methods:has(>li:only-child)>li>label{padding-left:14px}
+.auracast-checkout-page #payment ul.payment_methods:has(>li:only-child) input[name=payment_method]{opacity:0;pointer-events:none}
+.auracast-checkout-page #payment div.payment_box{background:#f4f4f4;color:#000;padding:14px;text-align:center;margin:0;border-radius:0;line-height:19px;font-size:14px}
+.auracast-checkout-page #payment div.payment_box p{margin:0}
+.auracast-checkout-page #payment div.payment_box::before{display:none}
+.checkout-different-billing{padding:14px;background:#f5f5f5;border-top:1px solid var(--checkout-border)}
+.checkout-different-billing[hidden]{display:none}
+.checkout-tip-panel{border:1px solid var(--checkout-border);border-radius:12px;overflow:hidden;background:#f4f4f4}
+.checkout-tip-support{padding:14px;background:#fff;border-bottom:1px solid var(--checkout-border)}
+.checkout-tip-content{padding:14px}
+.checkout-tip-options{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--checkout-border);border-radius:17px;background:#fff;overflow:hidden}
+.checkout-tip-option{position:relative;margin:0;border-right:1px solid var(--checkout-border);min-height:51px;display:flex;align-items:center;justify-content:center;cursor:pointer;text-align:center}
+.checkout-tip-option:last-child{border-right:0}
+.checkout-tip-option input{position:absolute!important;opacity:0;inset:0;width:100%!important;height:100%!important;border:0!important;cursor:pointer}
+.checkout-tip-option>span{display:block;line-height:19px}
+.checkout-tip-option small{display:block;font-size:12px;color:var(--checkout-muted);line-height:16px}
+.checkout-tip-option:has(input:checked){outline:1px solid var(--checkout-ink);outline-offset:-1px;background:#f6f6f6}
+.checkout-tip-custom{display:flex;gap:10px;margin-top:10px;position:relative}
+.checkout-tip-input{flex:1;position:relative;min-width:0}
+body.auracast-checkout-page .auracast-checkout-form .checkout-tip-custom input[type=number]{width:100%;min-width:0;height:49px;padding:13px 70px 13px 10px;border:1px solid var(--checkout-border);border-radius:12px;background:#fff;outline:none;appearance:textfield}
+.checkout-tip-input input::-webkit-inner-spin-button,.checkout-tip-input input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+body.auracast-checkout-page .checkout-tip-input button{position:absolute;top:0;right:6px;width:30px;height:49px;padding:0;border:0;background:none;color:#888;font-size:21px;font-weight:300;line-height:49px}
+.checkout-tip-input button[data-tip-step="-1"]{right:36px!important}
+body.auracast-checkout-page .checkout-add-tip{white-space:nowrap;min-height:49px;padding:10px 14px;border:1px solid var(--checkout-border);border-radius:12px;background:#f7f7f7;color:var(--checkout-muted);cursor:pointer}
+.checkout-tip-content>p{font-size:14px;margin:14px 0 0}
+.checkout-tip-content[hidden]{display:none}
+.checkout-order-notes{font-size:14px;margin:0 0 20px}
+.checkout-order-notes summary{cursor:pointer}
+.checkout-order-notes textarea{margin-top:12px}
+.checkout-submit{margin-top:52px!important}
+.auracast-checkout-page .checkout-submit #place_order{width:100%;height:50px;min-height:50px;border:0;border-radius:12px;background:var(--checkout-ink);color:#fff;font-size:14px;font-weight:600;padding:14px;box-shadow:none;letter-spacing:0;cursor:pointer;text-transform:none;margin:0}
+.auracast-checkout-page .checkout-submit #place_order:hover{background:var(--checkout-accent)}
+.auracast-checkout-page .checkout-submit #place_order:disabled{opacity:.6;cursor:wait}
+.checkout-policy-links{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:62px;font-size:14px;line-height:20px}
+.checkout-policy-links a{text-decoration:underline;white-space:nowrap}
+.checkout-policy-modal{width:480px;max-width:calc(100vw - 30px);max-height:80vh;margin:auto;padding:20px;border:0;border-radius:14px;color:#000;background:#fff;font-size:14px;line-height:19px;box-shadow:0 10px 30px #0003;overflow:auto}
+.checkout-policy-modal::backdrop{background:#0009;backdrop-filter:blur(3px)}
+.checkout-policy-modal-heading{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px}
+.checkout-policy-modal-heading h2{font-size:20px;line-height:24px;font-weight:600;margin:0}
+body.auracast-checkout-page .checkout-policy-modal-heading button{display:flex;width:24px;height:24px;background:transparent;border:0;padding:0;color:#888}
+.checkout-policy-content{font:inherit!important;text-align:left!important}
+.checkout-policy-content p{margin:0 0 14px;font-size:14px;line-height:19px}
+.checkout-policy-content h2,.checkout-policy-content h3{font-size:14px;line-height:19px;font-weight:600;margin:16px 0}
+.checkout-policy-content ul,.checkout-policy-content ol{padding-left:16px;margin:14px 0}
+.checkout-policy-content li{margin:0 0 14px}
+.checkout-policy-content a{text-decoration:underline}
+.checkout-summary{position:relative;isolation:isolate;padding:40px 0 40px 40px;border-left:1px solid var(--checkout-border);min-width:0;background:#f5f5f5}
+.checkout-summary::after{content:"";position:absolute;inset:0 auto 0 100%;width:max(0px,calc((100vw - 980px)/2));background:#f5f5f5;z-index:-1}
+.checkout-summary-products{display:grid;gap:16px}
+.checkout-summary-product{display:flex;gap:16px;align-items:center;font-size:14px;min-width:0}
+.checkout-summary-image{width:64px;height:64px;flex:0 0 64px;position:relative;background:#fff;border:1px solid var(--checkout-border);border-radius:14px}
+.checkout-summary-image img{width:100%;height:100%;object-fit:contain;border-radius:14px}
+.checkout-quantity-badge{position:absolute;right:-7px;top:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:20px;background:var(--checkout-ink);color:#fff;text-align:center;font-size:12px;line-height:20px;font-weight:600}
+.checkout-summary-description{flex:1;min-width:0}
+.checkout-summary-description>p{font-size:14px;line-height:19px;margin:0}
+.checkout-summary-description .variation{display:flex;gap:4px;margin:2px 0 0;color:var(--checkout-muted);font-size:12px;line-height:16px;flex-wrap:wrap}
+.checkout-summary-description .variation dt{display:none}
+.checkout-summary-description .variation dd,.checkout-summary-description .variation p{margin:0}
+.checkout-summary-price{white-space:nowrap;font-size:14px;align-self:center}
+.checkout-discount{position:relative;display:flex;gap:8px;background:#fff;border:1px solid var(--checkout-border);border-radius:12px;margin:20px 0 30px;padding:6px}
+body.auracast-checkout-page .auracast-checkout-form .checkout-discount input{width:100%;min-width:0;height:35px;min-height:35px;padding:6px 4px;border:0;background:transparent;outline:none;font-size:14px}
+body.auracast-checkout-page .checkout-discount button{height:35px;padding:6px 10px;background:#f9f9f9;color:var(--checkout-muted);border:1px solid var(--checkout-border);border-radius:12px;font-size:14px;font-weight:600;cursor:pointer}
+.checkout-discount button:disabled{opacity:.6;cursor:wait}
+.checkout-coupon-status{position:absolute;top:100%;left:0;width:100%;font-size:12px}
+.checkout-coupon-status:empty{display:none}
+.checkout-coupon-status .woocommerce-error,.checkout-coupon-status .woocommerce-message{font-size:12px;padding:8px;margin:4px 0;position:relative;z-index:2}
+.checkout-cost-summary{border:0!important;border-collapse:collapse;width:100%;margin:0;font-size:14px;background:transparent}
+.auracast-checkout-page .checkout-cost-summary th,.auracast-checkout-page .checkout-cost-summary td{border:0;padding:4px 0;font-weight:400;vertical-align:top;line-height:20px}
+.checkout-cost-summary th{text-align:left}
+.checkout-cost-summary td{text-align:right}
+.checkout-cost-summary tr.order-total th,.checkout-cost-summary tr.order-total td{font-size:20px;font-weight:600;padding-top:16px;line-height:24px}
+.checkout-cost-summary .order-total strong{font-weight:600}
+.checkout-currency-code{font-size:12px;font-weight:400;color:var(--checkout-muted);margin-right:7px}
+.checkout-summary-toggle,.checkout-final-total,.checkout-mobile-bottom-summary{display:none}
+.auracast-checkout-page .woocommerce-terms-and-conditions-wrapper{font-size:12px;line-height:18px;margin-bottom:16px;color:var(--checkout-muted)}
+.auracast-checkout-page .woocommerce-terms-and-conditions-wrapper:empty{display:none}
+.auracast-checkout-page .woocommerce-terms-and-conditions-wrapper .woocommerce-privacy-policy-text:only-child{display:none}
+.auracast-checkout-page .woocommerce-terms-and-conditions-wrapper .form-row>label{position:static;clip:auto;width:auto;height:auto;overflow:visible;white-space:normal}
+.auracast-checkout-page .woocommerce-order{max-width:980px;margin:40px auto;padding:0 0 40px}
+.auracast-checkout-page .woocommerce-order h2{font-size:24px;line-height:30px;margin:28px 0 16px}
+.auracast-checkout-page .woocommerce-order ul.order_details{display:flex;flex-wrap:wrap;gap:24px;margin:30px 0;padding:0;list-style:none}
+.auracast-checkout-page .woocommerce-order ul.order_details li{padding:0;border:0;font-size:12px}
+.auracast-checkout-page .woocommerce-order ul.order_details strong{display:block;font-size:16px;margin-top:5px}
+.auracast-checkout-page .woocommerce-order table{width:100%;border-collapse:collapse}
+.auracast-checkout-page .woocommerce-order th,.auracast-checkout-page .woocommerce-order td{padding:12px;border-bottom:1px solid var(--checkout-border);text-align:left}
+.auracast-checkout-page .woocommerce-order .col2-set{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+@media(max-width:1059px){.checkout-header-inner,.checkout-layout{max-width:900px;padding-left:30px;padding-right:30px}.checkout-layout{grid-template-columns:55% 45%}.checkout-summary::after{width:30px}.checkout-customer-column{padding-right:30px}.checkout-summary{padding-left:30px}.auracast-checkout-page .woocommerce-order{padding-left:30px;padding-right:30px}}
+@media(max-width:999px){
+ .checkout-header-inner{padding:0 15px;max-width:600px}.checkout-brand{width:100px;justify-content:center}.checkout-brand img{width:50px;height:62px}.checkout-cart-link{margin-right:0}
+ .checkout-layout{display:flex;flex-direction:column;padding:0;max-width:600px}.checkout-customer-column{padding:22px 15px 38px;order:2}
+ .checkout-summary-toggle{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:600px;margin:auto;min-height:64px;padding:16px 15px;border:0;border-bottom:1px solid var(--checkout-border);background:#f5f5f5;color:#000;cursor:pointer;font-size:14px}
+ .checkout-summary-toggle>span:first-child{display:flex;align-items:center;gap:4px}.checkout-summary-toggle .icon{width:14px;height:14px}.checkout-summary-toggle .checkout-total-value{font-size:18px;font-weight:600}.checkout-summary-toggle[aria-expanded=true] .icon{transform:rotate(180deg)}
+ .checkout-summary{order:1;border:0;border-bottom:1px solid var(--checkout-border);padding:20px 15px;display:none}.checkout-summary.is-open{display:block}.checkout-summary::after{display:none}
+ .woocommerce-billing-fields__field-wrapper,.checkout-different-billing{grid-template-columns:1fr}.auracast-checkout-page .form-row-first,.auracast-checkout-page .form-row-last{grid-column:1/-1}
+ .checkout-section{margin-bottom:32px}.checkout-delivery{margin-bottom:26px}.checkout-tip-custom{flex-wrap:wrap}.checkout-tip-input{flex-basis:100%}.checkout-tip-custom .checkout-add-tip{width:100%;min-height:47px}
+ .checkout-mobile-bottom-summary{display:block;margin-top:48px}.checkout-mobile-summary-expanded[hidden]{display:none}.checkout-mobile-summary-heading{width:100%;display:flex;justify-content:space-between;align-items:center;padding:0;margin:0 0 16px;font-size:20px;font-weight:600}.checkout-mobile-summary-heading .icon{width:14px;height:14px;transform:rotate(180deg)}
+ body.auracast-checkout-page .checkout-add-discount{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--checkout-border);border-radius:12px;background:#fff;padding:8px;font-size:14px;font-weight:600;line-height:20px;margin:0 0 14px}.checkout-add-discount[hidden]{display:none!important}
+ .checkout-add-discount .icon{width:16px;height:16px}
+ .checkout-final-total{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 14px;padding:0;font-size:18px}.checkout-final-total strong{font-weight:600}.checkout-final-total small{display:block;font-size:14px;color:var(--checkout-muted);font-weight:400}.checkout-final-total .checkout-total-value{font-weight:600;margin-left:auto}.checkout-final-total>.icon{width:12px;height:12px;margin-left:-8px}.checkout-total-image{width:42px;height:42px;border:1px solid #fff;border-radius:12px;background:#f6f6f6;box-shadow:0 1px 5px #00000010}
+ .checkout-mobile-review-order-table .checkout-discount{margin:20px 0 14px}.checkout-mobile-review-order-table .checkout-cost-summary .order-total th,.checkout-mobile-review-order-table .checkout-cost-summary .order-total td{font-size:18px;padding-top:12px}.checkout-mobile-review-order-table{margin-bottom:14px}
+ .checkout-submit{margin-top:0!important}.checkout-policy-links{margin-top:34px;gap:6px 14px}.auracast-checkout-page .woocommerce-notices-wrapper{margin:16px 15px}.auracast-checkout-page .woocommerce-order{margin:28px 0;padding:0 15px 30px}.auracast-checkout-page .woocommerce-order .col2-set{grid-template-columns:1fr}
+}

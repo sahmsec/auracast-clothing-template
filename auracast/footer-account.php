@@ -1,0 +1,1 @@
+<?php defined( 'ABSPATH' ) || exit; ?><footer class="account-auth-footer"><a href="<?php echo esc_url( get_privacy_policy_url() ?: home_url( '/privacy-policy/' ) ); ?>">Privacy policy</a></footer><?php wp_footer(); ?></body></html>

@@ -13,22 +13,25 @@ $hoodie = auracast_product_by_slug( 'essential-hoodie-grey' ); verify( $hoodie &
 require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 $manager = new WP_Customize_Manager( array( 'settings_previewed' => false ) );
 do_action( 'customize_register', $manager );
-foreach ( array( 'hero_image', 'hero_secondary_image', 'tees_banner_image', 'sweats_banner_image', 'music_banner_image', 'anime_banner_image', 'essentials_banner_image', 'world_0_image', 'world_5_image', 'look_0_image', 'look_4_image', 'about_0_image', 'popup_image', 'color_hero', 'hero_layout', 'popular_products' ) as $key ) { verify( (bool) $manager->get_control( 'auracast_' . $key ), 'Customizer control: ' . $key ); }
-$changes = array( 'auracast_hero_title' => 'CUSTOMIZER QA HEADING', 'auracast_hero_image' => auracast_asset( 'images/auracast-model-forest-tee-01.webp' ), 'auracast_color_hero' => '#c9dbc4' );
+foreach ( array( 'hero_image', 'hero_mobile_image', 'hero_secondary_image', 'tees_banner_image', 'sweats_banner_image', 'music_banner_image', 'anime_banner_image', 'essentials_banner_image', 'world_0_image', 'world_5_image', 'look_0_image', 'look_4_image', 'about_0_image', 'popup_image', 'color_hero', 'color_accent', 'color_header', 'campaign_hue', 'hero_layout', 'popular_products' ) as $key ) { verify( (bool) $manager->get_control( 'auracast_' . $key ), 'Customizer control: ' . $key ); }
+$changes = array( 'auracast_hero_title' => 'CUSTOMIZER QA HEADING', 'auracast_hero_image' => auracast_asset( 'images/auracast-model-forest-tee-01.webp' ), 'auracast_color_accent' => '#c9dbc4' );
 $saved = get_theme_mods();
 try {
     foreach ( $changes as $key => $value ) { set_theme_mod( $key, $value ); }
     $html = file_get_contents( 'http://127.0.0.1:8088/' );
-    verify( str_contains( $html, 'CUSTOMIZER QA HEADING' ) && str_contains( $html, '--a-hero:#c9dbc4' ) && preg_match( '/class="campaign-image"[^>]+auracast-model-forest-tee-01.webp/', $html ), 'Saved hero image, heading and background color render on the storefront' );
+    verify( str_contains( $html, 'CUSTOMIZER QA HEADING' ) && str_contains( $html, '--a-accent:#c9dbc4' ) && preg_match( '/class="campaign-image"[^>]+auracast-model-forest-tee-01.webp/', $html ), 'Saved campaign image, heading and brand color render on the storefront' );
 } finally {
     foreach ( $changes as $key => $value ) { if ( array_key_exists( $key, $saved ) ) { set_theme_mod( $key, $saved[$key] ); } else { remove_theme_mod( $key ); } }
 }
-global $wpdb;
-verify( (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}auracast_subscribers WHERE consent = 'newsletter-form-v1'" ) > 0, 'Newsletter signup is persisted with consent' );
-$orders = wc_get_orders( array( 'limit' => -1, 'billing_email' => 'auracast-qa@example.test', 'status' => 'processing' ) );
-verify( count( $orders ) > 0, 'Guest checkout order exists in WooCommerce' );
-$product = auracast_product_by_slug( 'essential-tee-black' );
-$size_m = array_filter( $product->get_children(), function ( $id ) { return wc_get_product( $id )->get_attribute( 'pa_size' ) === 'M'; } );
-$variation = wc_get_product( reset( $size_m ) ); $ordered = 0;
-foreach ( $orders as $order ) { foreach ( $order->get_items() as $item ) { if ( $item->get_variation_id() === $variation->get_id() ) { $ordered += $item->get_quantity(); } } }
-verify( (int) $variation->get_stock_quantity() === 15 - $ordered, 'Guest order reduces the selected size inventory' );
+verify( (int) get_option( 'page_for_posts' ) === 0, 'Blog is not configured as a storefront section' );
+foreach ( array( 'privacy-policy', 'shipping-policy', 'refund-policy', 'terms-of-service' ) as $slug ) { $page = get_page_by_path( $slug ); verify( $page && $page->post_status === 'publish', 'Published store policy: ' . $slug ); }
+$orders = wc_get_orders( array( 'limit' => 100, 'status' => 'processing', 'orderby' => 'date', 'order' => 'DESC' ) );
+$qa_orders = array_filter( $orders, function ( $order ) { return str_starts_with( $order->get_billing_email(), 'auracast-yokai-qa-' ); } );
+verify( count( $qa_orders ) > 0, 'Matching storefront guest COD order exists in WooCommerce' );
+$order = reset( $qa_orders );
+verify( $order->get_payment_method() === 'cod' && abs( (float) $order->get_total() - 569 ) < .01, 'Native COD order stores the expected 499 BDT product and 70 BDT delivery' );
+foreach ( $order->get_items() as $item ) { $variation = wc_get_product( $item->get_variation_id() ); verify( $variation && (int) $variation->get_stock_quantity() < 15, 'Guest order reduces the selected size inventory' ); }
+$mobile_orders = array_filter( $orders, function ( $order ) { return $order->get_meta( '_auracast_contact' ) === '01701111111'; } );
+verify( count( $mobile_orders ) > 0, 'Mobile contact checkout creates a real WooCommerce order' );
+$mobile = reset( $mobile_orders );
+verify( $mobile->get_billing_address_1() !== $mobile->get_shipping_address_1() && abs( (float) $mobile->get_total() - 679 ) < .01, 'Separate billing, outside Dhaka delivery and 30 BDT tip are persisted' );

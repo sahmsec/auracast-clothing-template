@@ -1,0 +1,53 @@
+.instagram-feed{grid-column:1/-1;position:relative;width:100%;padding:96px 0;color:#101010;background:#fff;overflow:hidden}
+.instagram-feed h2{margin:0 20px 20px;text-align:center;font-size:28px;line-height:1.3;font-weight:700;letter-spacing:0}
+.instagram-marquee{--reel-width:485px;--reel-height:606px;--reel-stride:401px;position:relative;width:min(1100px,calc(100% - 40px));height:var(--reel-height);margin:0 auto;overflow:hidden;touch-action:pan-y;cursor:grab;outline-offset:6px}
+.instagram-marquee.is-dragging{cursor:grabbing}
+.instagram-marquee-track{position:relative;height:100%;will-change:transform}
+.instagram-reel-card{position:absolute;top:0;left:calc(var(--reel-position) * var(--reel-stride));display:block;width:var(--reel-width);height:var(--reel-height);border:0;border-radius:20px;padding:0;overflow:hidden;background:#ededeb;transform-origin:center;cursor:inherit;box-shadow:none;isolation:isolate}
+.instagram-reel-card>img,.instagram-reel-card>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+.instagram-reel-card>video{opacity:0;transition:opacity .2s}
+.instagram-reel-card.is-playing>video{opacity:1}
+.instagram-card-placeholder{display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;width:100%;height:100%;background:#e5ece7;color:#244b38;font-size:14px;font-weight:600}
+.instagram-card-placeholder svg{width:36px;height:36px}
+.instagram-reel-type{position:absolute;right:24px;top:24px;color:#fff;filter:drop-shadow(0 1px 3px #0003);pointer-events:none}
+.instagram-reel-type svg{width:20px;height:20px}
+.instagram-card-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;background:#0002;opacity:0;transition:opacity .2s;pointer-events:none}
+.instagram-card-play svg{width:48px;height:48px;filter:drop-shadow(0 2px 10px #0005)}
+.instagram-reel-card:hover .instagram-card-play,.instagram-reel-card:focus-visible .instagram-card-play{opacity:1}
+.instagram-reel-card:focus-visible{outline:3px solid #28573f;outline-offset:-4px}
+.instagram-feed-controls{position:relative;display:flex;align-items:center;justify-content:center;gap:16px;width:max-content;max-width:100%;margin:44px auto 0}
+.instagram-visit{display:flex;align-items:center;justify-content:center;width:200px;height:62px;border-radius:999px;background:#101713;color:#fff!important;font-size:14px;font-weight:600;text-decoration:none!important;transition:background .2s}
+.instagram-visit:hover{background:#28573f}
+.instagram-feed-controls>button{display:grid;place-items:center;width:36px;height:36px;border:1px solid #dededb;border-radius:50%;padding:7px;background:white;color:#151a16;opacity:0;transition:opacity .2s}
+.instagram-feed-controls>button svg{width:20px;height:20px}
+.instagram-previous svg{transform:rotate(90deg)}
+.instagram-next svg{transform:rotate(-90deg)}
+.instagram-pause{position:absolute;left:calc(100% + 6px)}
+.instagram-feed:hover .instagram-feed-controls>button,.instagram-feed:focus-within .instagram-feed-controls>button{opacity:1}
+.instagram-reel-dialog{width:min(900px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:0;border:0;border-radius:14px;background:#fff;color:#111;overflow:auto}
+.instagram-reel-dialog::backdrop{background:#000b}
+.instagram-reel-dialog-content{display:grid;grid-template-columns:minmax(0,1fr) 280px;min-height:280px}
+.instagram-reel-player{display:flex;align-items:center;justify-content:center;min-height:280px;background:#101010}
+.instagram-reel-player video,.instagram-reel-player img{display:block;width:100%;max-height:calc(100dvh - 40px);object-fit:contain}
+.instagram-reel-player iframe{width:100%;height:min(760px,calc(100dvh - 40px));border:0;background:white}
+.instagram-reel-details{display:flex;flex-direction:column;align-items:flex-start;gap:20px;padding:60px 24px 24px}
+.instagram-reel-details p{font-size:14px;line-height:1.7;white-space:pre-line;margin:0}
+.instagram-reel-details a{font-size:14px;font-weight:600;text-underline-offset:4px}
+.instagram-reel-dialog-close{position:absolute;right:12px;top:12px;z-index:2;display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:#fff;color:#111;box-shadow:0 1px 8px #0002;font-size:26px;line-height:1;cursor:pointer}
+@media(max-width:767px){
+ .instagram-feed{padding:48px 0}
+ .instagram-feed h2{font-size:24px;margin-bottom:24px}
+ .instagram-marquee{width:calc(100% - 30px);--reel-width:134px;--reel-height:240px;--reel-stride:112px}
+ .instagram-reel-card{border-radius:11px}
+ .instagram-reel-type{right:10px;top:10px}
+ .instagram-reel-type svg{width:15px;height:15px}
+ .instagram-card-play svg{width:32px;height:32px}
+ .instagram-feed-controls{margin-top:40px;gap:10px}
+ .instagram-visit{width:160px;height:56px}
+ .instagram-feed-controls>button{width:30px;height:30px;padding:5px}
+ .instagram-reel-dialog-content{display:flex;flex-direction:column}
+ .instagram-reel-player video,.instagram-reel-player img{max-height:70dvh}
+ .instagram-reel-player iframe{height:70dvh}
+ .instagram-reel-details{padding:20px;gap:12px}
+}
+@media(prefers-reduced-motion:reduce){.instagram-reel-card>video,.instagram-card-play,.instagram-feed-controls>button{transition:none}.instagram-feed-controls>button{opacity:1}}

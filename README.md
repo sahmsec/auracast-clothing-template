@@ -1,6 +1,6 @@
 # auracast-clothing-template
 
-An installable **AURACAST** WordPress theme for WooCommerce. The clothing collections and merchandising follow [Yokai](https://www.yokaiclothingbd.com/), with the centered navigation, dropdowns, quick view, and drawers inspired by [North](https://newnorth.wpthemestudios.com/). Auracast uses its own charcoal, sage, cream, and forest palette, new banner compositions, and the supplied brand wordmark.
+An installable **AURACAST** WordPress theme for WooCommerce. Home, category, product, cart, checkout, service benefits, and footer layouts follow [Yokai](https://www.yokaiclothingbd.com/), including mobile product rails, filters, size chips, bundles, cart drawers, and checkout summaries. Auracast changes the branding and colors to forest and charcoal.
 
 ![Auracast storefront](auracast/screenshot.png)
 
@@ -12,7 +12,7 @@ An installable **AURACAST** WordPress theme for WooCommerce. The clothing collec
 4. Open **Appearance → Customize → Auracast** to update imagery, colors, homepage text, collections, service details, contact information, and footer. Use **Site Identity** for a replacement logo and site icon, and **Menus** for navigation.
 5. Configure actual shipping, payments, taxes, policies, and email delivery in WooCommerce/WordPress before opening the store to customers.
 
-The importer adds 30 clothing products with size variations, photographs, five clothing categories, Anime and Music & Culture collections, and the homepage, shop, cart, checkout, account, wishlist, journal, about, contact, and editable size guide. Repeat imports retain existing products and menus, and refresh the original demo model photos with the new Auracast set. Merchant-uploaded photos, prices, variations, and inventory are retained. The homepage and cart/checkout changes are controlled by the setup checkboxes. No payment gateway is enabled by the theme.
+The importer adds 30 clothing products with size variations, photographs, five clothing categories, Anime and Music & Culture collections, and the homepage, shop, cart, checkout, account, wishlist, about, contact, privacy, shipping, refund, and terms policies, and editable size guide. Repeat imports retain existing products and menus, and refresh the original demo model photos with the new Auracast set. Merchant-uploaded photos, prices, variations, and inventory are retained. The homepage and cart/checkout changes are controlled by the setup checkboxes. The importer also adds six Yokai reels as temporary content. No payment gateway is enabled by the theme.
 
 Requires WordPress 6.6+, PHP 8.0+, and WooCommerce. No paid reference theme, page builder, or wishlist plugin is required.
 
@@ -29,9 +29,12 @@ Every campaign image can be changed from the WordPress Media Library without edi
 | Homepage product selections | Customize → Auracast → Homepage product sections. Automatic collections, or choose specific WooCommerce product IDs. |
 | Product photos, price, inventory, sizes, colors | Products → Edit product. Use the product image, gallery, attributes, and variations controls. |
 | About and newsletter popup images | Customize → Auracast → Contact & store details / Newsletter & popup. |
+| Instagram posts and reels | Instagram & reels in the WordPress sidebar. Add a title, paste an Instagram URL, choose/upload a video and cover from Media Library, set the Order number, then Publish. Feed settings control the heading, profile link, speed, and visibility. |
 | Size guide | Pages → Size Guide. Its content also appears in the product size guide dialog. |
 
 Use approximately **1600 × 700** or larger for a full hero banner, **1200 × 1500** for portrait product/style photos, and **800 × 800** for collection tiles. Landscape and portrait crops adapt to mobile. All demo photos are bundled locally; no reference site connection is required when the storefront runs.
+
+Published Instagram cards appear automatically in the moving feed. Uploaded videos autoplay muted and open with sound and playback controls when clicked. Link-only cards open the official Instagram embed; adding a video and cover lets the card play directly in the marquee. Edit, draft, trash, or reorder the cards from WordPress. This is an editable feed; new Instagram uploads are added by the store owner.
 
 Wishlist favorites persist in the shopper's browser. Product sizes, inventory, cart, checkout, accounts, and orders use native WooCommerce. Newsletter subscriptions are saved with consent and can be exported as CSV from Auracast Setup. Newsletter campaigns require your chosen email provider. The contact form uses WordPress mail; configure your host's mail service or SMTP.
 
@@ -43,7 +46,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup-local.ps1
 npm.cmd run preview
 ```
 
-Open **http://127.0.0.1:8088**. The setup downloads an isolated PHP, WordPress, WooCommerce, and SQLite runtime to `.local/`. It uses a separate local database and enables demo cash on delivery and an 80 BDT shipping rate for checkout verification. Local administrator credentials are saved in `.local/admin-credentials.json`; they are excluded from Git and the theme package.
+Open **http://127.0.0.1:8088**. The setup downloads an isolated PHP, WordPress, WooCommerce, and SQLite runtime to `.local/`. It uses a separate local database and enables demo cash on delivery, 70 BDT inside-Dhaka delivery, 150 BDT outside-Dhaka delivery, and free delivery above 2,000 BDT or for four-piece bundles. Run `& .local/php/php.exe -c .local/php/php.ini scripts/apply-yokai-local.php` to update an existing local demo. Local administrator credentials are saved in `.local/admin-credentials.json`; they are excluded from Git and the theme package.
 
 The local QA plugin suppresses outgoing mail and temporary stock reservation, whose MySQL row locks are unsupported by the SQLite adapter. Inventory validation and final stock reduction remain enabled. This plugin is excluded from the installable theme. Use standard WordPress MySQL/MariaDB hosting for the production store; live gateways, SMTP delivery, and concurrent inventory reservations require verification there.
 
@@ -53,12 +56,13 @@ In another terminal:
 npm.cmd run check
 npx.cmd playwright install chromium
 npm.cmd run test:browser
+npm.cmd run test:instagram
 & .local/php/php.exe -c .local/php/php.ini scripts/verify-store.php
 node scripts/capture-store.mjs
 npm.cmd run package
 ```
 
-`BROWSER_EXECUTABLE` can point to an existing Chromium installation. Browser checks cover homepage assets, collections, quick view, wishlist persistence, search, filters, size selection, cart quantity updates, a guest COD order, newsletter signup, nonce validation, and viewport widths from 320 to 1440 pixels. Test output remains under `test-results/`.
+`BROWSER_EXECUTABLE` can point to an existing Chromium installation. Instagram checks cover moving cards, desktop/mobile proportions, playback, reduced motion, native Media Library uploads, publishing, updates, ordering, draft visibility, and feed settings. Browser checks cover homepage assets, collections, quick view, wishlist persistence, search, filters, size selection, cart quantity updates, guest COD orders, native shipping/tip totals, separate billing, policy disclosures, and viewport widths from 320 to 1440 pixels. Test output remains under `test-results/`.
 
 ## Share a temporary preview
 
@@ -92,6 +96,16 @@ Vector wordmarks: `auracast/assets/images/auracast-logo.svg` and `auracast-logo-
 
 The hero, style gallery, about page, plain tee photos, and grey hoodie model photo use seven original AI-generated portraits of adult male and female models in relaxed streetwear poses. These were created with the built-in image generation tool. The complete prompt set and saved asset filenames are recorded in [model-generation-prompts.json](auracast/assets/data/model-generation-prompts.json). Final WebP files are bundled under `auracast/assets/images/`.
 
+The six temporary reels and their cover images come from Yokai Clothing BD, as requested for the preview. Their original Instagram links are recorded in [instagram-demo.json](auracast/assets/data/instagram-demo.json). Replace them through Instagram & reels whenever your own content is ready.
+
 The remaining flat clothing photographs are temporary reference assets. Their source URLs are recorded in `reference/asset-sources.json`; photograph ownership remains with the respective owners. Replace demo clothing and model photos with your actual product photography when the catalog is ready.
 
 WooCommerce integration uses public hooks and native templates, following the [classic theme developer handbook](https://developer.woocommerce.com/docs/theming/theme-development/classic-theme-developer-handbook/).
+
+## Yokai layout update (1.1.0)
+
+Blog links and demo posts are removed from the storefront. Policy and contact pages use the reference layout. WordPress/WooCommerce continue to process cart, accounts, payment methods, inventory, and orders. Checkout accepts email or mobile contact, optional tips, separate billing, discount codes, and optional browser-saved delivery details. Marketing consent is stored on the order; connect your email provider for campaigns.
+
+Bundle prices are calculated from native product prices on every cart update: two pieces 5%, three 10%, four 12%, and five or more 15%. Configure actual delivery and payment methods in WooCommerce; the theme gives configured free-shipping methods precedence and permits four-piece bundles to qualify.
+
+Campaign artwork and service icons are bundled and listed in `auracast/assets/data/campaign-sources.json`; original ownership remains with Yokai and the respective artists. Banner colors shift through CSS; all campaign images remain replaceable in the Customizer. Configure the footer social links and store contact information for your own brand. Poppins weight 800 is bundled under the existing OFL.

@@ -1,0 +1,49 @@
+{
+  "reference": "https://www.yokaiclothingbd.com/",
+  "assets": [
+    {
+      "file": "yokai-sweats.webp",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/WEB-POST-SWEATPANTS.webp?v=1778000875"
+    },
+    {
+      "file": "yokai-essentials.webp",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/essentials.webp?v=1778000873"
+    },
+    {
+      "file": "yokai-anime.webp",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/jjk.webp?v=1778000875"
+    },
+    {
+      "file": "yokai-shirts-compact.webp",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/Home_Page_Banner_f46b4431-81da-40c3-a7ed-b6b335439c90.png?v=1787943484"
+    },
+    {
+      "file": "yokai-tees.webp",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/tshirt.png?v=1778000881"
+    },
+    {
+      "file": "yokai-shirts-desktop.webp",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/Home_Page_Banner_1.png?v=1787943338"
+    },
+    {
+      "file": "yokai-music.webp",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/web-collection_1.png?v=1776437315"
+    },
+    {
+      "file": "yokai-shirts-mobile.webp",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/Home-Page-Banner-Phone-2_ac533515-945b-4a6f-8ffd-8b826e9e1a43.png?v=1787943363"
+    },
+    {
+      "file": "yokai-clock.png",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/Clock.png?v=1777322795&width=80"
+    },
+    {
+      "file": "yokai-account.png",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/Account.png?v=1777323172&width=80"
+    },
+    {
+      "file": "yokai-delivery.png",
+      "source": "https://www.yokaiclothingbd.com/cdn/shop/files/Delivery_2.png?v=1777323216&width=80"
+    }
+  ]
+}

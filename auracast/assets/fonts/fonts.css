@@ -26,3 +26,5 @@
   font-display: swap;
   src: url(poppins-3.ttf) format('truetype');
 }
+
+@font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url(poppins-800.ttf) format('truetype')}

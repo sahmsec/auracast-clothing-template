@@ -32,10 +32,11 @@ function auracast_home_product_section( $key, $title, $description, $query ) {
     $products = function_exists( 'wc_get_products' ) ? wc_get_products( array_merge( array( 'status' => 'publish', 'visibility' => 'visible' ), $query ) ) : array();
     $link = auracast_shop_url();
     if ( ! empty( $query['tag'] ) ) { $link = auracast_collection_url( $query['tag'][0] ); }
+    if ( $key === 'popular' ) { $link = auracast_category_url( 'sweatpants' ); }
     if ( $key === 'essentials' ) { $link = auracast_category_url( 'essentials' ); }
-    echo '<section class="streetwear-product-section container" aria-labelledby="' . esc_attr( $key ) . '-title"><div class="streetwear-section-heading"><div><h2 id="' . esc_attr( $key ) . '-title">' . esc_html( auracast_setting( $key . '_title', $title ) ) . '</h2><p>' . esc_html( auracast_setting( $key . '_description', $description ) ) . '</p></div><a class="section-view-all" href="' . esc_url( $link ) . '">' . esc_html__( 'View all', 'auracast' ) . ' →</a></div><div class="product-grid">';
+    echo '<section class="streetwear-product-section yokai-product-section" aria-labelledby="' . esc_attr( $key ) . '-title"><div class="streetwear-section-heading container"><h2 id="' . esc_attr( $key ) . '-title">' . esc_html( auracast_setting( $key . '_title', $title ) ) . '</h2><p>' . esc_html( auracast_setting( $key . '_description', $description ) ) . '</p></div><div id="' . esc_attr( $key ) . '-rail" class="product-grid" data-product-rail tabindex="0" aria-label="' . esc_attr( $title ) . ' products">';
     foreach ( $products as $product ) { auracast_product_card( $product ); }
-    echo '</div><div class="section-cta"><a class="pill-button" href="' . esc_url( $link ) . '">' . esc_html__( 'View All', 'auracast' ) . '</a></div></section>';
+    echo '</div><p class="swipe-cue">Swipe for more <span aria-hidden="true">☝ →</span></p><div class="rail-page-dots" data-rail-dots="' . esc_attr( $key ) . '-rail"></div><div class="section-cta"><a class="yokai-view-all" href="' . esc_url( $link ) . '">' . esc_html__( 'View all', 'auracast' ) . '</a></div></section>';
 }
 function auracast_category_url( $slug ) {
     $term = get_term_by( 'slug', $slug, 'product_cat' );
@@ -56,6 +57,11 @@ function auracast_icon( $name, $class = '' ) {
         'exchange' => '<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',
         'support' => '<circle cx="12" cy="7" r="4"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/>',
         'delivery' => '<path d="M1 5h13v13H1zm13 4h5l4 5v4h-9"/><circle cx="5" cy="19" r="2"/><circle cx="18" cy="19" r="2"/>',
+        'account' => '<circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3Z"/>',
+        'instagram' => '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>',
+        'reel' => '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 9h18M8 3l4 6m3-6 4 6m-9 4 5 3-5 3Z"/>',
+        'play' => '<path d="m9 5 11 7-11 7Z"/>',
+        'pause' => '<path d="M8 5v14M16 5v14"/>',
     );
     return '<svg class="icon ' . esc_attr( $class ) . '" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . ( $paths[ $name ] ?? $paths['arrow'] ) . '</svg>';
 }
@@ -64,8 +70,27 @@ function auracast_logo( $white = false ) {
     return '<a class="brand" href="' . esc_url( home_url( '/' ) ) . '" aria-label="' . esc_attr__( 'Auracast home', 'auracast' ) . '"><img src="' . esc_url( auracast_asset( 'images/auracast-logo' . ( $white ? '-white' : '' ) . '.svg' ) ) . '" width="220" height="28" alt="AURACAST"></a>';
 }
 function auracast_fallback_menu() {
-    $shop = auracast_shop_url();
-    echo '<ul class="primary-menu"><li><a href="' . esc_url( home_url() ) . '">Home</a></li><li><a href="' . esc_url( home_url( '/blog/' ) ) . '">Blog</a></li><li><a href="' . esc_url( $shop ) . '">Shop</a></li><li><a href="' . esc_url( $shop ) . '">Products</a></li><li><a href="' . esc_url( home_url( '/about-us/' ) ) . '">About Us</a></li><li><a href="' . esc_url( home_url( '/contact-us/' ) ) . '">Contact Us</a></li></ul>';
+    echo '<ul class="primary-menu mobile-nav">';
+    foreach ( auracast_navigation_items() as $item ) {
+        echo '<li' . ( ! empty( $item[2] ) ? ' class="menu-item-has-children"' : '' ) . '><a href="' . esc_url( $item[1] ) . '">' . esc_html( $item[0] ) . '</a>';
+        if ( ! empty( $item[2] ) ) { echo '<ul class="sub-menu">'; foreach ( $item[2] as $child ) { echo '<li><a href="' . esc_url( $child[1] ) . '">' . esc_html( $child[0] ) . '</a></li>'; } echo '</ul>'; }
+        echo '</li>';
+    }
+    echo '</ul>';
+}
+function auracast_navigation_items() {
+    $categories = array();
+    foreach ( array( 'Graphic Tees', 'Shirts', 'Sweatpants', 'Hoodies', 'Essentials' ) as $name ) { $categories[] = array( $name, auracast_category_url( sanitize_title( $name ) ) ); }
+    return array(
+        array( 'SHIRTS', auracast_category_url( 'shirts' ) ),
+        array( 'ANIME', auracast_collection_url( 'anime' ) ),
+        array( 'SWEATPANTS', auracast_category_url( 'sweatpants' ) ),
+        array( 'MUSIC & CULTURE', auracast_collection_url( 'music-culture' ) ),
+        array( 'COLLECTION', auracast_shop_url(), array_merge( array( array( 'Anime', auracast_collection_url( 'anime' ) ), array( 'Music & Culture', auracast_collection_url( 'music-culture' ) ) ), $categories ) ),
+        array( 'HOODIE', auracast_category_url( 'hoodies' ), array( array( 'Solid hoodies', auracast_category_url( 'hoodies' ) ), array( 'Shop all', auracast_category_url( 'hoodies' ) ) ) ),
+        array( 'PRODUCTS', auracast_shop_url(), $categories ),
+        array( 'ESSENTIALS', auracast_category_url( 'essentials' ) ),
+    );
 }
 function auracast_product_by_slug( $slug ) {
     $post = get_page_by_path( $slug, OBJECT, 'product' );
@@ -84,7 +109,9 @@ function auracast_product_card( $product ) {
     if ( $product->is_on_sale() ) { echo '<span class="product-badge">' . esc_html__( 'Sale', 'auracast' ) . '</span>'; }
     elseif ( get_post_meta( $id, '_auracast_new', true ) ) { echo '<span class="product-badge new-badge">' . esc_html__( 'New', 'auracast' ) . '</span>'; }
     if ( ! $product->is_in_stock() ) { echo '<span class="product-badge">' . esc_html__( 'Sold out', 'auracast' ) . '</span>'; }
-    echo '<button class="quick-view" data-quick-view="' . esc_attr( $id ) . '">' . esc_html__( 'Quick View', 'auracast' ) . '</button></div><div class="product-category">' . esc_html( $terms && ! is_wp_error( $terms ) ? $terms[0]->name : '' ) . '</div><div class="product-title-row"><h3><a href="' . esc_url( $url ) . '">' . esc_html( $product->get_name() ) . '</a></h3><button class="wishlist-button" data-wishlist="' . esc_attr( $id ) . '" aria-label="' . esc_attr( sprintf( __( 'Save %s to wishlist', 'auracast' ), $product->get_name() ) ) . '" aria-pressed="false">' . auracast_icon( 'heart' ) . '</button></div><span class="price">' . wp_kses_post( $product->get_price_html() ) . '</span>';
+    echo '<button class="quick-view" data-quick-view="' . esc_attr( $id ) . '">' . esc_html__( 'Quick View', 'auracast' ) . '</button></div><div class="product-category">' . esc_html( $terms && ! is_wp_error( $terms ) ? $terms[0]->name : '' ) . '</div><div class="product-title-row"><h3><a href="' . esc_url( $url ) . '">' . esc_html( $product->get_name() ) . '</a></h3><button class="wishlist-button" data-wishlist="' . esc_attr( $id ) . '" aria-label="' . esc_attr( sprintf( __( 'Save %s to wishlist', 'auracast' ), $product->get_name() ) ) . '" aria-pressed="false">' . auracast_icon( 'heart' ) . '</button></div>';
+    if ( $product->get_rating_count() ) { echo wp_kses_post( wc_get_rating_html( $product->get_average_rating(), $product->get_rating_count() ) ); }
+    echo '<span class="price">' . wp_kses_post( $product->get_price_html() ) . ( get_woocommerce_currency() === 'BDT' ? '<span class="currency-code"> BDT</span>' : '' ) . '</span>';
     if ( $product->is_in_stock() ) {
         $classes = 'card-add button';
         if ( $product->is_type( 'simple' ) && $product->is_purchasable() ) { $classes .= ' add_to_cart_button ajax_add_to_cart'; }
@@ -112,3 +139,7 @@ function auracast_size_guide() {
     if ( $page && $page->post_status === 'publish' && trim( $page->post_content ) ) { echo wp_kses_post( apply_filters( 'the_content', $page->post_content ) ); }
     else { echo '<p>Fit varies between pieces. Compare the measurements in the product description with a garment you already wear, or contact us for help choosing your size.</p>'; }
 }
+function auracast_community_strip( $title = 'WORN OUT THERE' ) {
+    auracast_instagram_feed( $title );
+}
+add_action( 'woocommerce_after_single_product_summary', function () { auracast_community_strip(); }, 40 );

@@ -1,0 +1,5 @@
+.auracast-reel-media-field{padding:4px 0 12px;border-bottom:1px solid #ddd}
+.auracast-reel-preview img{display:block;width:auto;max-width:200px;max-height:240px}
+.auracast-reel-preview video{display:block;width:auto;max-width:320px;max-height:280px;background:#111}
+.column-auracast_cover{width:72px}.column-auracast_cover img{max-width:48px;height:64px;object-fit:cover;border-radius:5px}
+.column-auracast_order{width:60px}.column-auracast_source{width:130px}

@@ -1,0 +1,20 @@
+<?php
+/** Cart drawer contents using native cart items and WooCommerce fragments. @version 11.2.0 */
+defined( 'ABSPATH' ) || exit;
+do_action( 'woocommerce_before_mini_cart' );
+if ( WC()->cart && ! WC()->cart->is_empty() ) : ?>
+<div class="mini-cart-columns"><span>Product</span><span>Total</span></div>
+<ul class="woocommerce-mini-cart cart_list product_list_widget">
+<?php do_action( 'woocommerce_before_mini_cart_contents' ); foreach ( WC()->cart->get_cart() as $key => $item ) :
+    $product = apply_filters( 'woocommerce_cart_item_product', $item['data'], $item, $key );
+    if ( ! $product || ! $product->exists() || $item['quantity'] < 1 || ! apply_filters( 'woocommerce_widget_cart_item_visible', true, $item, $key ) ) { continue; }
+    $name = apply_filters( 'woocommerce_cart_item_name', $product->get_name(), $item, $key );
+    $url = apply_filters( 'woocommerce_cart_item_permalink', $product->is_visible() ? $product->get_permalink( $item ) : '', $item, $key );
+    ?>
+    <li class="woocommerce-mini-cart-item mini_cart_item" data-mini-item="<?php echo esc_attr( $key ); ?>"><a class="mini-cart-image" href="<?php echo esc_url( $url ); ?>"><?php echo apply_filters( 'woocommerce_cart_item_thumbnail', $product->get_image( 'woocommerce_thumbnail' ), $item, $key ); ?></a><div class="mini-cart-item-copy"><a href="<?php echo esc_url( $url ); ?>" class="mini-cart-item-title"><?php echo wp_kses_post( $name ); ?></a><span class="mini-cart-unit-price"><?php echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $product ), $item, $key ); ?></span><?php echo wc_get_formatted_cart_item_data( $item ); ?><div class="mini-cart-item-controls"><div class="mini-cart-quantity"><button type="button" data-mini-quantity="-1" aria-label="Decrease quantity">&minus;</button><input type="number" class="mini-cart-quantity-input" min="0" <?php echo $product->get_max_purchase_quantity() > 0 ? 'max="' . (int) $product->get_max_purchase_quantity() . '"' : ''; ?> value="<?php echo (int) $item['quantity']; ?>" aria-label="<?php echo esc_attr( 'Quantity of ' . wp_strip_all_tags( $name ) ); ?>"><button type="button" data-mini-quantity="1" aria-label="Increase quantity">+</button></div><a class="remove_from_cart_button mini-cart-remove" href="<?php echo esc_url( wc_get_cart_remove_url( $key ) ); ?>" data-product_id="<?php echo (int) $item['product_id']; ?>" data-cart_item_key="<?php echo esc_attr( $key ); ?>" data-product_sku="<?php echo esc_attr( $product->get_sku() ); ?>" aria-label="<?php echo esc_attr( 'Remove ' . wp_strip_all_tags( $name ) ); ?>"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M5 7h14M9 7V4h6v3M7 7l1 14h8l1-14M10 10v8m4-8v8"/></svg></a></div></div><span class="mini-cart-line-total"><?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $product, $item['quantity'] ), $item, $key ); ?></span></li>
+<?php endforeach; do_action( 'woocommerce_mini_cart_contents' ); ?>
+</ul><p class="woocommerce-mini-cart__total total"><strong>Estimated total</strong><?php echo WC()->cart->get_cart_subtotal(); ?></p><p class="mini-cart-tax-note">Taxes, discounts and <a href="<?php echo esc_url( home_url( '/shipping-policy/' ) ); ?>">shipping</a> calculated at checkout.</p>
+<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?><p class="woocommerce-mini-cart__buttons buttons"><a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="button checkout wc-forward">Check out</a></p><?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>
+<?php else : ?>
+<p class="woocommerce-mini-cart__empty-message">Your cart is empty</p><div class="empty-cart-actions"><a class="button" href="<?php echo esc_url( auracast_shop_url() ); ?>">Continue shopping</a><p>Have an account?</p><span><a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>">Log in</a> to check out faster.</span></div>
+<?php endif; do_action( 'woocommerce_after_mini_cart' ); ?>

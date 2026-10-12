@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function auracast_shop_columns() {
-    $columns = isset( $_GET['columns'] ) ? absint( $_GET['columns'] ) : absint( auracast_setting( 'shop_columns', 4 ) );
+    $columns = isset( $_GET['columns'] ) ? absint( $_GET['columns'] ) : absint( auracast_setting( 'shop_columns', 6 ) );
     return min( 6, max( 2, $columns ) );
 }
 function auracast_shop_layout() {
@@ -10,7 +10,7 @@ function auracast_shop_layout() {
     return in_array( $layout, array( 'grid', 'alternating-3-4', 'alternating-4-3', 'alternating-4-5', 'alternating-5-6' ), true ) ? $layout : 'grid';
 }
 add_filter( 'loop_shop_columns', 'auracast_shop_columns' );
-add_filter( 'loop_shop_per_page', function () { return 14; }, 20 );
+add_filter( 'loop_shop_per_page', function () { return 20; }, 20 );
 add_filter( 'woocommerce_show_page_title', '__return_false' );
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
@@ -25,17 +25,15 @@ add_action( 'init', function () {
 
 add_action( 'woocommerce_before_main_content', function () {
     echo '<main id="main-content" class="woocommerce-main container">';
-    if ( ! is_product() ) { echo '<div class="shop-heading"><h1>' . esc_html( woocommerce_page_title( false ) ) . '</h1></div>'; }
+    if ( ! is_product() ) { echo '<h1 class="screen-reader-text">' . esc_html( woocommerce_page_title( false ) ) . '</h1><div class="collection-view"><label><input type="checkbox" data-model-view> Model</label></div>'; }
 }, 10 );
 add_action( 'woocommerce_after_main_content', function () { echo '</main>'; }, 10 );
-add_action( 'woocommerce_before_shop_loop', function () {
-    echo '<div class="shop-toolbar"><button class="filter-toggle" data-dialog="filter-dialog">' . auracast_icon( 'filter' ) . ' ' . esc_html__( 'Filter', 'auracast' ) . '</button>';
-    woocommerce_breadcrumb( array( 'delimiter' => ' / ' ) );
-    echo '<div class="shop-toolbar-right">';
-}, 15 );
-add_action( 'woocommerce_before_shop_loop', function () { echo '</div></div>'; }, 35 );
-add_action( 'woocommerce_after_shop_loop', 'auracast_filter_dialog', 30 );
-add_action( 'woocommerce_no_products_found', 'auracast_filter_dialog', 30 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+add_action( 'woocommerce_before_shop_loop', 'auracast_collection_toolbar', 20 );
+add_action( 'woocommerce_after_shop_loop', 'auracast_collection_filter_dialog', 30 );
+add_action( 'woocommerce_no_products_found', 'auracast_collection_filter_dialog', 30 );
+add_action( 'woocommerce_no_products_found', 'auracast_collection_toolbar', 5 );
 
 function auracast_filter_dialog() {
     ?>
@@ -68,6 +66,13 @@ add_filter( 'woocommerce_add_to_cart_fragments', function ( $fragments ) {
     return $fragments;
 } );
 add_filter( 'woocommerce_output_related_products_args', function ( $args ) { $args['posts_per_page'] = 4; $args['columns'] = 4; return $args; } );
+add_filter( 'woocommerce_shipping_free_shipping_is_available', function ( $available ) {
+    return $available || ( WC()->cart && WC()->cart->get_cart_contents_count() >= 4 );
+} );
+add_filter( 'woocommerce_package_rates', function ( $rates ) {
+    $free = array_filter( $rates, function ( $rate ) { return $rate->get_method_id() === 'free_shipping'; } );
+    return $free ?: $rates;
+}, 100 );
 
 function auracast_quick_view() {
     check_ajax_referer( 'auracast_public', 'nonce' );

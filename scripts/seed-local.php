@@ -8,7 +8,7 @@ if ( get_post_field( 'post_name', 1 ) === 'hello-world' ) { wp_trash_post( 1 ); 
 auracast_import_pages( true, true );
 $catalog = json_decode( file_get_contents( get_template_directory() . '/assets/data/catalog.json' ), true );
 foreach ( $catalog as $item ) { auracast_import_product( $item ); echo 'Imported ' . $item['slug'] . PHP_EOL; }
-auracast_import_posts(); auracast_import_menu(); auracast_subscribers_table(); flush_rewrite_rules();
+auracast_import_menu(); auracast_import_instagram_demo(); auracast_subscribers_table(); flush_rewrite_rules();
 // QA store only: native COD permits a checkout test without live money.
 update_option( 'woocommerce_currency', 'BDT' ); update_option( 'woocommerce_default_country', 'BD' );
 update_option( 'woocommerce_cod_settings', array( 'enabled' => 'yes', 'title' => 'Cash on delivery', 'description' => 'Pay with cash on delivery.', 'instructions' => 'Pay with cash on delivery.', 'enable_for_methods' => array(), 'enable_for_virtual' => 'yes' ) );

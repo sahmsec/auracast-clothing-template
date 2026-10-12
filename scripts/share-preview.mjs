@@ -98,7 +98,7 @@ async function share(){
   let pending='';
   const showLink=chunk=>{
    logs.write(chunk);pending=(pending+chunk.toString()).slice(-12000);
-   const match=pending.match(/https:\/\/[a-z\d-]+\.trycloudflare\.com\b/i);
+   const match=pending.match(/https:\/\/(?!api\.)[a-z\d-]+\.trycloudflare\.com\b/i);
    if(match&&!publicOrigin){
     publicOrigin=match[0];
     fs.writeFileSync(path.join(localDirectory,'share-url.txt'),publicOrigin+'\n');

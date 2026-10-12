@@ -14,15 +14,15 @@ function auracast_setup_page() {
     $catalog = json_decode( file_get_contents( get_template_directory() . '/assets/data/catalog.json' ), true );
     $empty_store = class_exists( 'WooCommerce' ) && ! wc_get_products( array( 'limit' => 1, 'status' => 'publish', 'return' => 'ids' ) );
     ?>
-    <div class="wrap" style="max-width:900px"><h1>Auracast Setup</h1><p style="font-size:16px">Your fashion storefront, ready to make your own.</p><div style="background:white;padding:30px;margin:24px 0;border:1px solid #ddd"><h2>Import demo store</h2><p>Add the homepage, <?php echo count( $catalog ); ?> sample products with photos and size variations, collections, journal, about, contact, wishlist, shopping pages, and navigation. Products and pages that already exist are retained. Images and products are editable after import. Shipping, payments, and taxes are configured separately in WooCommerce.</p>
-    <?php if ( ! class_exists( 'WooCommerce' ) ) : ?><p><strong>Install and activate WooCommerce first.</strong></p><a class="button button-primary" href="<?php echo esc_url( admin_url( 'plugin-install.php?s=woocommerce&tab=search&type=term' ) ); ?>">Install WooCommerce</a><?php else : ?><p><label><input id="auracast-use-home" type="checkbox" checked> Use the Auracast demo homepage and journal as the site's front page and posts page.</label></p><p><label><input id="auracast-use-classic" type="checkbox" checked> Use the styled classic WooCommerce cart and checkout. This replaces the content of your existing cart and checkout pages with WooCommerce shortcodes.</label></p><p><label><input id="auracast-use-bd" type="checkbox" <?php checked( $empty_store ); ?>> Set currency to Bangladeshi taka (BDT) and store country to Bangladesh. Demo prices are in BDT.</label></p><button id="auracast-import" class="button button-primary">Import demo store</button><p id="auracast-progress" role="status" aria-live="polite"></p><progress id="auracast-meter" max="<?php echo count( $catalog ) + 3; ?>" value="0" style="width:100%;display:none"></progress><?php endif; ?></div>
+    <div class="wrap" style="max-width:900px"><h1>Auracast Setup</h1><p style="font-size:16px">Your fashion storefront, ready to make your own.</p><div style="background:white;padding:30px;margin:24px 0;border:1px solid #ddd"><h2>Import demo store</h2><p>Add the homepage, <?php echo count( $catalog ); ?> sample products with photos and size variations, collections, about, contact, wishlist, shopping pages, and navigation. Products and pages that already exist are retained. Images and products are editable after import. Shipping, payments, and taxes are configured separately in WooCommerce.</p>
+    <?php if ( ! class_exists( 'WooCommerce' ) ) : ?><p><strong>Install and activate WooCommerce first.</strong></p><a class="button button-primary" href="<?php echo esc_url( admin_url( 'plugin-install.php?s=woocommerce&tab=search&type=term' ) ); ?>">Install WooCommerce</a><?php else : ?><p><label><input id="auracast-use-home" type="checkbox" checked> Use the Auracast demo homepage as the site's front page.</label></p><p><label><input id="auracast-use-classic" type="checkbox" checked> Use the styled classic WooCommerce cart and checkout. This replaces the content of your existing cart and checkout pages with WooCommerce shortcodes.</label></p><p><label><input id="auracast-use-bd" type="checkbox" <?php checked( $empty_store ); ?>> Set currency to Bangladeshi taka (BDT) and store country to Bangladesh. Demo prices are in BDT.</label></p><button id="auracast-import" class="button button-primary">Import demo store</button><p id="auracast-progress" role="status" aria-live="polite"></p><progress id="auracast-meter" max="<?php echo count( $catalog ) + 2; ?>" value="0" style="width:100%;display:none"></progress><?php endif; ?></div>
     <div style="background:white;padding:30px;margin:24px 0;border:1px solid #ddd"><h2>Make it yours</h2><p>Edit every homepage section, upload your own campaign images, set contact details, choose the catalog grid, and enable the optional newsletter popup.</p><a class="button" href="<?php echo esc_url( admin_url( 'customize.php?autofocus[panel]=auracast' ) ); ?>">Customize Auracast</a><a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings' ) ); ?>">WooCommerce settings</a><a class="button" href="<?php echo esc_url( home_url() ); ?>">View storefront</a></div>
     <div style="background:white;padding:30px;margin:24px 0;border:1px solid #ddd"><h2>Newsletter subscribers</h2><p>Signups are saved in WordPress with their consent and date. Export them for your email provider. The form does not automatically send marketing emails.</p><a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=auracast_export_subscribers' ), 'auracast_export_subscribers' ) ); ?>">Export subscribers as CSV</a></div></div>
     <script>
     document.getElementById('auracast-import')?.addEventListener('click', async function(){
         const button=this,status=document.getElementById('auracast-progress'),meter=document.getElementById('auracast-meter');button.disabled=true;meter.style.display='block';
         const count=<?php echo (int) count( $catalog ); ?>;
-        const steps=['pages',...Array.from({length:count},(_,i)=>String(i)),'posts','finish'];
+        const steps=['pages',...Array.from({length:count},(_,i)=>String(i)),'finish'];
         try { for(let i=0;i<steps.length;i++){status.textContent='Importing '+(i+1)+' of '+steps.length+'…';const body=new URLSearchParams({action:'auracast_import_step',nonce:<?php echo wp_json_encode( $nonce ); ?>,step:steps[i],use_classic:document.getElementById('auracast-use-classic').checked?'1':'0',use_bd:document.getElementById('auracast-use-bd').checked?'1':'0',use_home:document.getElementById('auracast-use-home').checked?'1':'0'});const response=await fetch(ajaxurl,{method:'POST',body});const result=await response.json();if(!result.success)throw new Error(result.data?.message||'Import failed');meter.value=i+1;status.textContent=result.data.message;}status.textContent='Your demo storefront is ready. Open Customize Auracast to make it yours.';button.textContent='Import again'; }
         catch(error){status.textContent=error.message+' You can retry safely; completed items are retained.';}finally{button.disabled=false;}
     });
@@ -37,8 +37,8 @@ add_action( 'wp_ajax_auracast_import_step', function () {
     $step = sanitize_text_field( wp_unslash( $_POST['step'] ?? '' ) );
     try {
         if ( $step === 'pages' ) { auracast_import_pages( ! empty( $_POST['use_home'] ), ! empty( $_POST['use_classic'] ) ); if ( ! empty( $_POST['use_bd'] ) ) { update_option( 'woocommerce_currency', 'BDT' ); update_option( 'woocommerce_default_country', 'BD' ); } $message = 'Pages created.'; }
-        elseif ( $step === 'posts' ) { auracast_import_posts(); $message = 'Journal stories created.'; }
-        elseif ( $step === 'finish' ) { auracast_import_menu(); flush_rewrite_rules(); $message = 'Store setup complete.'; }
+        elseif ( $step === 'posts' ) { $message = 'Blog is disabled in this storefront.'; }
+        elseif ( $step === 'finish' ) { auracast_import_menu(); auracast_import_instagram_demo(); flush_rewrite_rules(); $message = 'Store setup complete.'; }
         elseif ( ctype_digit( $step ) ) { $catalog = json_decode( file_get_contents( get_template_directory() . '/assets/data/catalog.json' ), true ); $item = $catalog[ (int) $step ] ?? null; if ( ! $item ) { throw new RuntimeException( 'Unknown product.' ); } auracast_import_product( $item ); $message = 'Imported ' . $item['name'] . '.'; }
         else { throw new RuntimeException( 'Unknown import step.' ); }
         wp_send_json_success( array( 'message' => $message ) );
@@ -62,8 +62,18 @@ function auracast_import_image( $file, $title = '' ) {
     return $id;
 }
 
+function auracast_policy_pages() {
+    return array(
+        'privacy-policy' => array( 'Privacy policy', '<p>We use the details you provide to process your order, arrange delivery and help with customer support. Checkout information is handled by the store and its payment and delivery providers.</p><p>Newsletter updates are optional. Contact us to ask about the information you have shared with the store.</p>' ),
+        'shipping-policy' => array( 'Shipping policy', '<p>Delivery is available across Bangladesh. Inside Dhaka: 2–4 business days. Outside Dhaka: 4–6 business days.</p><p>Your delivery options and final shipping amount appear at checkout before you complete your order.</p>' ),
+        'refund-policy' => array( 'Refund policy', '<p>Need another size? Request an eligible exchange within 72 hours of receiving your order. Keep the garment unworn and retain its original packaging.</p><p>Contact us with your order details for help with an exchange or an order problem.</p>' ),
+        'terms-of-service' => array( 'Terms of service', '<p>Choose your product, size and quantity before ordering. Prices and delivery charges are shown before you complete your order.</p><p>Need another size? Contact us to request an eligible exchange within 72 hours of receiving your order. Keep the garment unworn and retain its original packaging.</p><p>For order and product questions, use our contact page.</p>' ),
+    );
+}
+
 function auracast_import_pages( $use_home = true, $use_classic = false ) {
-    $pages = array( 'size-guide' => array( 'Size Guide', '<h3>Find your fit</h3><p>Fit varies between pieces. Check the measurements in the product description, and compare them with a garment you already wear.</p><h3>How to measure</h3><p>Lay your garment flat. Measure the chest across from armpit to armpit, the length from shoulder to hem, and the sleeve from shoulder seam to cuff.</p><p>For sweatpants, compare the waist and inseam. Contact us before ordering if you need help choosing your size.</p>' ), 'home' => array( 'Home', '' ), 'shop' => array( 'Shop', '' ), 'cart' => array( 'Cart', '[woocommerce_cart]' ), 'checkout' => array( 'Checkout', '[woocommerce_checkout]' ), 'my-account' => array( 'My Account', '[woocommerce_my_account]' ), 'wishlist' => array( 'Wishlist', '' ), 'blog' => array( 'Journal', '' ), 'about-us' => array( 'About Auracast', '' ), 'contact-us' => array( 'Contact Us', '' ) );
+    $pages = array( 'size-guide' => array( 'Size Guide', '<h3>Find your fit</h3><p>Fit varies between pieces. Check the measurements in the product description, and compare them with a garment you already wear.</p><h3>How to measure</h3><p>Lay your garment flat. Measure the chest across from armpit to armpit, the length from shoulder to hem, and the sleeve from shoulder seam to cuff.</p><p>For sweatpants, compare the waist and inseam. Contact us before ordering if you need help choosing your size.</p>' ), 'home' => array( 'Home', '' ), 'shop' => array( 'Shop', '' ), 'cart' => array( 'Cart', '[woocommerce_cart]' ), 'checkout' => array( 'Checkout', '[woocommerce_checkout]' ), 'my-account' => array( 'My Account', '[woocommerce_my_account]' ), 'wishlist' => array( 'Wishlist', '' ), 'about-us' => array( 'About Auracast', '' ), 'contact-us' => array( 'Contact Us', '' ) );
+    $pages = array_merge( $pages, auracast_policy_pages() );
     $ids = array();
     foreach ( $pages as $slug => $info ) {
         $existing = get_page_by_path( $slug );
@@ -72,7 +82,7 @@ function auracast_import_pages( $use_home = true, $use_classic = false ) {
     }
     foreach ( array( 'shop', 'cart', 'checkout', 'my-account' ) as $slug ) { $option = 'woocommerce_' . str_replace( '-', '', $slug ) . '_page_id'; if ( ! get_option( $option ) || ! get_post( get_option( $option ) ) ) { update_option( $option, $ids[ $slug ] ); } }
     if ( $use_classic ) { foreach ( array( 'cart', 'checkout' ) as $slug ) { wp_update_post( array( 'ID' => get_option( 'woocommerce_' . $slug . '_page_id' ), 'post_content' => '[woocommerce_' . $slug . ']' ) ); } }
-    if ( $use_home ) { update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', $ids['home'] ); update_option( 'page_for_posts', $ids['blog'] ); }
+    if ( $use_home ) { update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', $ids['home'] ); update_option( 'page_for_posts', 0 ); }
     if ( ! get_option( 'permalink_structure' ) ) { update_option( 'permalink_structure', '/%postname%/' ); }
     update_option( 'auracast_demo_pages', $ids, false );
 }
@@ -154,52 +164,20 @@ function auracast_import_product( $item ) {
     return $id;
 }
 
-function auracast_import_posts() {
-    $stories = array(
-        array( 'a-graphic-tee-your-own-way', 'A Graphic Tee, Your Own Way', 'streetwear-overtime-graphic-tee-0.jpg', 'A bold graphic, a relaxed fit, and the everyday pieces that make the look yours.', 'Style', '2026-10-03 12:00:00' ),
-        array( 'the-everyday-uniform', 'The Everyday Uniform', 'auracast-model-forest-tee-01.webp', 'Build your rotation around easy fits, clean colors, and pieces you enjoy wearing.', 'Inspiration', '2026-10-02 12:00:00' ),
-        array( 'made-for-your-world', 'Made for Your World', 'auracast-model-grey-hoodie-01.webp', 'Music, art, and the stories we carry with us. Find inspiration for your next look.', 'Journal', '2026-10-01 12:00:00' ),
-    );
-    foreach ( $stories as $story ) {
-        $existing = get_page_by_path( $story[0], OBJECT, 'post' );
-        if ( $existing ) {
-            $file = get_post_meta( get_post_thumbnail_id( $existing->ID ), '_auracast_source_file', true );
-            $replacements = auracast_demo_model_replacements();
-            if ( isset( $replacements[ $file ] ) ) { set_post_thumbnail( $existing->ID, auracast_import_image( $replacements[ $file ], $story[1] ) ); }
-            continue;
-        }
-        $category = get_cat_ID( $story[4] ) ?: wp_insert_term( $story[4], 'category' ); if ( is_array( $category ) ) { $category = $category['term_id']; }
-        $content = '<p>' . esc_html( $story[3] ) . '</p><h2>A fresh perspective on everyday style</h2><p>The pieces we reach for most often have a way of becoming part of our story. A familiar silhouette, a beautiful texture, a detail that feels distinctly our own — the best wardrobes are built from these small discoveries.</p><p>At Auracast, we look for the balance between expression and ease. Start with a thoughtful foundation, add an unexpected accessory, and make room for the pieces that make you feel like yourself.</p><blockquote>Style is personal. Wear the pieces that feel like you.</blockquote><h2>Make it your own</h2><p>Explore our collections for considered essentials and new favorites. Look for shapes that work together, textures you enjoy wearing, and colors that make getting dressed feel effortless.</p>';
-        $id = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_name' => $story[0], 'post_title' => $story[1], 'post_excerpt' => $story[3], 'post_content' => $content, 'post_category' => array( (int) $category ), 'post_date' => $story[5] ) );
-        if ( is_wp_error( $id ) || ! $id ) { throw new RuntimeException( 'Could not create journal story.' ); }
-        set_post_thumbnail( $id, auracast_import_image( $story[2], $story[1] ) );
-    }
-}
-
 function auracast_import_menu() {
-    $pages = get_option( 'auracast_demo_pages', array() );
-    if ( ! $pages ) { return; }
     $locations = get_theme_mod( 'nav_menu_locations', array() );
     if ( empty( $locations['primary'] ) ) {
-        $menu = wp_get_nav_menu_object( 'Auracast Main Menu' ); $menu_id = $menu ? $menu->term_id : wp_create_nav_menu( 'Auracast Main Menu' );
+        $menu = wp_get_nav_menu_object( 'Auracast Main Menu' );
+        $menu_id = $menu ? $menu->term_id : wp_create_nav_menu( 'Auracast Main Menu' );
         if ( is_wp_error( $menu_id ) ) { throw new RuntimeException( $menu_id->get_error_message() ); }
-        $items = wp_get_nav_menu_items( $menu_id );
-        if ( ! $items ) {
+        if ( ! wp_get_nav_menu_items( $menu_id ) ) {
             $add = function ( $label, $url, $parent = 0 ) use ( $menu_id ) { return wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => $label, 'menu-item-url' => $url, 'menu-item-parent-id' => $parent, 'menu-item-status' => 'publish', 'menu-item-type' => 'custom' ) ); };
-            $add( 'Home', home_url() ); $add( 'Blog', get_permalink( $pages['blog'] ) );
-            $shop = $add( 'Shop', auracast_shop_url() );
-            $collections = $add( 'Collections', auracast_shop_url(), $shop ); foreach ( array( 'Graphic Tees', 'Essentials', 'Shirts', 'Sweatpants', 'Hoodies' ) as $category ) { $add( $category, auracast_category_url( sanitize_title( $category ) ), $collections ); } $add( 'Anime', auracast_collection_url( 'anime' ), $collections ); $add( 'Music & Culture', auracast_collection_url( 'music-culture' ), $collections );
-            $grids = $add( 'Listing Layouts', auracast_shop_url(), $shop ); for ( $i = 2; $i <= 6; $i++ ) { $add( $i . ' Products per Row', add_query_arg( array( 'layout' => 'grid', 'columns' => $i ), auracast_shop_url() ), $grids ); } foreach ( array( '3-4', '4-5', '5-6' ) as $layout ) { $add( 'Alternating ' . $layout, add_query_arg( 'layout', 'alternating-' . $layout, auracast_shop_url() ), $grids ); }
-            $shop_pages = $add( 'Shop Pages', auracast_shop_url(), $shop ); foreach ( array( 'cart' => 'Cart', 'checkout' => 'Checkout', 'my-account' => 'My Account', 'wishlist' => 'Wishlist' ) as $slug => $label ) { $add( $label, get_permalink( $pages[ $slug ] ), $shop_pages ); }
-            $products = $add( 'Products', auracast_shop_url() ); foreach ( array( 'essential-tee-black', 'overtime-graphic-tee', 'everyday-sweatpants-black', 'essential-hoodie-grey' ) as $slug ) { $p = auracast_product_by_slug( $slug ); if ( $p ) { $add( $p->get_name(), $p->get_permalink(), $products ); } }
-            $page_parent = $add( 'Pages', get_permalink( $pages['about-us'] ) ); foreach ( array( 'about-us' => 'About Us', 'contact-us' => 'Contact Us', 'wishlist' => 'Wishlist', 'my-account' => 'My Account' ) as $slug => $label ) { $add( $label, get_permalink( $pages[ $slug ] ), $page_parent ); }
+            foreach ( auracast_navigation_items() as $item ) {
+                $parent = $add( $item[0], $item[1] );
+                foreach ( $item[2] ?? array() as $child ) { $add( $child[0], $child[1], $parent ); }
+            }
         }
         $locations['primary'] = $menu_id;
-    }
-    if ( empty( $locations['footer'] ) ) {
-        $menu = wp_get_nav_menu_object( 'Auracast Footer' ); $id = $menu ? $menu->term_id : wp_create_nav_menu( 'Auracast Footer' );
-        if ( ! wp_get_nav_menu_items( $id ) ) { foreach ( array( 'home' => 'Home', 'blog' => 'Blog', 'contact-us' => 'Contact Us' ) as $slug => $label ) { wp_update_nav_menu_item( $id, 0, array( 'menu-item-title' => $label, 'menu-item-url' => $slug === 'home' ? home_url() : get_permalink( $pages[ $slug ] ), 'menu-item-status' => 'publish', 'menu-item-type' => 'custom' ) ); } }
-        $locations['footer'] = $id;
     }
     set_theme_mod( 'nav_menu_locations', $locations );
 }

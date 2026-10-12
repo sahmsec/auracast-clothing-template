@@ -2,10 +2,15 @@
 /** Auracast theme bootstrap. */
 defined( 'ABSPATH' ) || exit;
 
-define( 'AURACAST_VERSION', '1.0.2' );
+define( 'AURACAST_VERSION', '1.1.1' );
 require_once get_template_directory() . '/inc/helpers.php';
+require_once get_template_directory() . '/inc/instagram.php';
 require_once get_template_directory() . '/inc/customizer.php';
 require_once get_template_directory() . '/inc/woocommerce.php';
+require_once get_template_directory() . '/inc/collection.php';
+require_once get_template_directory() . '/inc/mini-cart.php';
+require_once get_template_directory() . '/inc/product.php';
+require_once get_template_directory() . '/inc/checkout.php';
 require_once get_template_directory() . '/inc/forms.php';
 require_once get_template_directory() . '/inc/setup.php';
 
@@ -30,6 +35,7 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'auracast-fonts', auracast_asset( 'fonts/fonts.css' ), array(), AURACAST_VERSION );
     wp_enqueue_style( 'auracast-store', auracast_asset( 'css/store.css' ), array( 'auracast-fonts' ), AURACAST_VERSION );
     wp_enqueue_style( 'auracast-streetwear', auracast_asset( 'css/streetwear.css' ), array( 'auracast-store' ), AURACAST_VERSION );
+    wp_enqueue_style( 'auracast-yokai', auracast_asset( 'css/yokai.css' ), array( 'auracast-streetwear' ), AURACAST_VERSION );
     wp_enqueue_script( 'auracast-store', auracast_asset( 'js/store.js' ), array(), AURACAST_VERSION, true );
     wp_localize_script( 'auracast-store', 'auracast', array(
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -49,6 +55,10 @@ add_action( 'wp_enqueue_scripts', function () {
 add_filter( 'body_class', function ( $classes ) {
     if ( is_front_page() ) { $classes[] = 'auracast-home'; }
     $classes[] = 'auracast-streetwear';
+    if ( is_page( array( 'privacy-policy', 'shipping-policy', 'refund-policy', 'terms-of-service', 'contact-us' ) ) ) {
+        $classes[] = 'auracast-policy-page';
+        if ( is_page( array( 'shipping-policy', 'refund-policy', 'contact-us' ) ) ) { $classes[] = 'auracast-short-policy'; }
+    }
     if ( class_exists( 'WooCommerce' ) && ( is_shop() || is_product_taxonomy() ) ) {
         $classes[] = 'catalog-layout-' . auracast_shop_layout();
         $classes[] = 'catalog-columns-' . auracast_shop_columns();
