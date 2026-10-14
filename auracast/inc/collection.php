@@ -37,7 +37,12 @@ function auracast_facet_fields( $facet, $prefix ) {
         echo '<div class="price-range"><label>From<input type="number" name="min_price" min="0" step="1" placeholder="0" value="' . esc_attr( auracast_facet_value( 'min_price' ) ) . '"></label><label>To<input type="number" name="max_price" min="0" step="1" placeholder="Any" value="' . esc_attr( auracast_facet_value( 'max_price' ) ) . '"></label></div>';
     } else {
         $taxonomy = 'pa_' . $facet;
-        $terms = taxonomy_exists( $taxonomy ) ? get_terms( array( 'taxonomy' => $taxonomy, 'hide_empty' => true ) ) : array();
+        $args = array( 'taxonomy' => $taxonomy, 'hide_empty' => true );
+        if ( $facet === 'color' ) {
+            $spec = auracast_current_category_spec();
+            if ( $spec && $spec['colors'] ) { $args['slug'] = array_map( 'sanitize_title', $spec['colors'] ); $args['hide_empty'] = false; }
+        }
+        $terms = taxonomy_exists( $taxonomy ) ? get_terms( $args ) : array();
         echo '<label class="screen-reader-text" for="' . esc_attr( $prefix . '-' . $facet ) . '">' . esc_html( ucfirst( $facet ) ) . '</label><select id="' . esc_attr( $prefix . '-' . $facet ) . '" name="filter_' . esc_attr( $facet ) . '"><option value="">All ' . esc_html( $facet . 's' ) . '</option>';
         if ( ! is_wp_error( $terms ) ) { foreach ( $terms as $term ) { echo '<option value="' . esc_attr( $term->slug ) . '" ' . selected( auracast_facet_value( 'filter_' . $facet ), $term->slug, false ) . '>' . esc_html( $term->name ) . '</option>'; } }
         echo '</select>';

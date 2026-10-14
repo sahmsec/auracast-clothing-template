@@ -2,7 +2,7 @@
 /** Auracast theme bootstrap. */
 defined( 'ABSPATH' ) || exit;
 
-define( 'AURACAST_VERSION', '1.1.1' );
+define( 'AURACAST_VERSION', '1.2.0' );
 require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/instagram.php';
 require_once get_template_directory() . '/inc/customizer.php';
@@ -13,6 +13,7 @@ require_once get_template_directory() . '/inc/product.php';
 require_once get_template_directory() . '/inc/checkout.php';
 require_once get_template_directory() . '/inc/forms.php';
 require_once get_template_directory() . '/inc/setup.php';
+require_once get_template_directory() . '/inc/store-structure.php';
 
 add_action( 'after_setup_theme', function () {
     load_theme_textdomain( 'auracast', get_template_directory() . '/languages' );

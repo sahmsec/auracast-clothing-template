@@ -1,6 +1,6 @@
 {
   "name": "auracast",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Auracast WordPress and WooCommerce fashion theme",
   "scripts": {
     "check": "node scripts/check.mjs",
@@ -8,7 +8,8 @@
     "preview": "node scripts/preview.mjs",
     "share": "node scripts/share-preview.mjs",
     "test:browser": "node scripts/test-store.mjs",
-    "test:instagram": "node scripts/test-instagram.mjs"
+    "test:instagram": "node scripts/test-instagram.mjs",
+    "test:collections": "node scripts/test-store-collections.mjs"
   },
   "keywords": [],
   "author": "",

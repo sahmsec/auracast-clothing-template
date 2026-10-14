@@ -16,7 +16,9 @@
 .auracast-streetwear .primary-menu{gap:0;align-items:center;justify-content:flex-start;font-size:14px}
 .auracast-streetwear .primary-menu>li>a{padding:30px 12px;white-space:nowrap;text-transform:uppercase}
 .auracast-streetwear .primary-menu>li>.sub-menu{background:var(--brand-dark);color:#fff;top:100%;left:0;min-width:240px;box-shadow:0 8px 24px #0002;border:1px solid #ffffff25}
-.auracast-streetwear .primary-menu>li>.sub-menu:has(ul){display:block;min-width:260px}
+.auracast-streetwear .primary-menu>li>.sub-menu:has(ul){display:grid;grid-template-columns:1fr;gap:12px;min-width:320px;max-height:calc(100svh - 110px);overflow-y:auto}
+.auracast-streetwear .primary-menu>li>.sub-menu:has(>li:nth-child(3)){grid-template-columns:1fr 1fr;min-width:440px;gap:12px 24px}
+.auracast-streetwear .primary-menu>li>.sub-menu:has(ul)>li:first-child{grid-column:1/-1}
 .auracast-streetwear .primary-menu .sub-menu .sub-menu{padding:6px 0 6px 18px}
 .auracast-streetwear .primary-menu .sub-menu a{font-size:14px}
 .auracast-streetwear .header-actions{margin-left:auto;gap:0;flex-shrink:0}
@@ -26,6 +28,27 @@
 .auracast-streetwear .cart-count{position:absolute;right:4px;bottom:3px;min-width:17px;height:17px;background:#fff;color:#121212;font-size:9px}
 .cart-count:empty{display:none}.cart-count[data-empty]{display:none}
 .yokai-home{overflow:hidden}
+.auracast-drop-hero{display:grid;grid-template-columns:42% 58%;min-height:490px;background:#e5e2d8;color:#1d2c24}
+.drop-hero-copy{padding:65px 5vw;align-self:center}
+.drop-hero-copy .eyebrow{display:block;font-size:10px;letter-spacing:2px;margin-bottom:25px}
+.drop-hero-copy h1{font-size:clamp(42px,5.3vw,82px);font-weight:800;line-height:1.02;letter-spacing:-.06em;margin-bottom:25px}
+.drop-hero-copy p{font-size:14px;line-height:1.7;letter-spacing:0;max-width:350px;margin-bottom:28px}
+.drop-hero-copy .button{gap:14px;background:#1d2c24;border-color:#1d2c24;color:#fff;font-size:12px;padding:14px 24px}
+.drop-hero-photos{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:#d6ddd2;overflow:hidden}
+.drop-hero-photos img{width:100%;height:100%;max-height:530px;object-fit:contain;mix-blend-mode:multiply;padding:24px 8px}
+.collection-editorial{display:grid;grid-template-columns:55% 45%;align-items:center;overflow:hidden;min-height:350px;padding-left:8vw;background:#d6ddd2;color:#1d2c24}
+.collection-editorial>div{padding:40px 30px 40px 0}
+.collection-editorial .eyebrow{font-size:10px;letter-spacing:2px}
+.collection-editorial h2{font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-.05em;line-height:1.05;margin:20px 0}
+.collection-editorial p{font-size:14px;letter-spacing:0;max-width:490px;margin-bottom:24px}
+.collection-editorial>img{width:100%;height:380px;object-fit:contain;mix-blend-mode:multiply}
+.editorial-cta{display:inline-flex;align-items:center;gap:15px;font-size:11px;letter-spacing:1px}
+.sweatshirts-editorial{background:#e9e8df}
+.diva-editorial{background:#e6d9d5;color:#382d2a}
+.diva-editorial>img{height:430px;object-fit:cover;object-position:center 15%;mix-blend-mode:normal}
+.collection-coming-soon{font-size:14px;color:#666;margin-bottom:15px}
+.collection-heading{padding:35px 0 18px}.collection-heading h1{font-size:clamp(26px,3vw,42px);font-weight:800;letter-spacing:-.04em;margin-top:8px}.collection-heading p{font-size:14px;color:#666;letter-spacing:0;max-width:650px;margin:14px 0 0}.collection-heading .eyebrow{font-size:11px;letter-spacing:1px}
+@media(max-width:749px){.auracast-drop-hero{grid-template-columns:1fr;min-height:0}.drop-hero-copy{padding:35px 6vw}.drop-hero-copy h1{font-size:clamp(44px,12vw,65px);margin-bottom:20px}.drop-hero-copy .eyebrow{font-size:9px;margin-bottom:18px}.drop-hero-copy p{font-size:13px;margin-bottom:22px}.drop-hero-copy .button{padding:12px 20px;min-height:45px}.drop-hero-photos{height:230px}.drop-hero-photos img{height:230px;padding:8px 12px}.collection-editorial{grid-template-columns:1fr 1fr;padding-left:6vw;min-height:270px}.collection-editorial>div{padding:28px 12px 28px 0}.collection-editorial h2{font-size:clamp(25px,7vw,42px);overflow-wrap:break-word;margin:14px 0}.collection-editorial .eyebrow{font-size:8px;letter-spacing:1px}.collection-editorial p{font-size:11px;line-height:1.7;margin-bottom:18px}.collection-editorial>img{height:280px}.editorial-cta{font-size:9px;letter-spacing:.4px;gap:8px}.diva-editorial>img{height:320px}.collection-coming-soon{font-size:12px}}
 .campaign-banner{display:block;position:relative;overflow:hidden;line-height:0}
 .campaign-banner img{display:block;width:100%;height:auto;max-width:none}
 .hero-campaign>picture>img,.mobile-compact-banner>img,.sweats-campaign>img,.anime-campaign>img,.essentials-campaign>img{filter:hue-rotate(var(--campaign-hue)) saturate(.6)}

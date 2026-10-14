@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Auracast sweatshirt collection preview</title>
+  <desc id="desc">A simple charcoal crewneck sweatshirt illustration.</desc>
+  <rect width="800" height="800" fill="#e9e8df"/>
+  <path d="M300 158 198 195 84 428l101 56 66-128-12 301q162 28 322 0l-12-301 66 128 101-56-114-233-102-37q-100 83-200 0Z" fill="#282e2a" stroke="#151d18" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M300 158q100 95 200 0l-20-14q-80 49-160 0Z" fill="#141e18" stroke="#111a14" stroke-width="6"/>
+  <path d="m239 627 2 38q159 23 318 0l2-38" fill="#19221c"/>
+  <path d="m88 419 97 54-12 30-98-54m540 24 97-54 13 30-98 54" fill="#19221c"/>
+  <path d="m353 365 47-78 47 78h-20l-27-45-27 45Z" fill="#e9e8df"/>
+  <path d="M273 220 253 349m274-129 20 129M276 235q124 34 248 0" fill="none" stroke="#3b443d" stroke-width="4"/>
+</svg>

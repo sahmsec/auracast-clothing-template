@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "name": "Hoodies",
+      "slug": "hoodies",
+      "colors": [
+        "Black",
+        "White",
+        "Maroon",
+        "Brown",
+        "Bottle Green",
+        "Pink"
+      ],
+      "segments": [
+        "Anime",
+        "Music",
+        "Dance & Culture"
+      ],
+      "image": "streetwear-essential-hoodie-black-0.jpg"
+    },
+    {
+      "name": "Joggers",
+      "slug": "joggers",
+      "colors": [
+        "Black",
+        "Off White",
+        "White"
+      ],
+      "segments": [
+        "CN",
+        "Anime",
+        "Cyber Sigilism",
+        "Hollywood"
+      ],
+      "image": "streetwear-everyday-sweatpants-black-0.png"
+    },
+    {
+      "name": "Sweatshirts",
+      "slug": "sweatshirts",
+      "colors": [],
+      "segments": [
+        "Bold Y2K Vector Flames",
+        "Modern Cyber Sigilism",
+        "Owners' Favourites"
+      ],
+      "image": "auracast-sweatshirt-preview.svg"
+    },
+    {
+      "name": "T-Shirts",
+      "slug": "t-shirts",
+      "colors": [],
+      "segments": [],
+      "image": "auracast-model-black-tee-01.webp"
+    }
+  ],
+  "collections": [
+    {
+      "name": "Auracast Essentials",
+      "slug": "essentials",
+      "description": "Best sellers, clean staples and must-have pieces for every wardrobe.",
+      "image": "streetwear-essential-hoodie-brown-0.jpg"
+    },
+    {
+      "name": "Diva Wardrobe",
+      "slug": "diva-wardrobe",
+      "description": "Everyday layers and expressive fits for her. Your wardrobe, your way.",
+      "image": "auracast-model-white-tee-01.webp"
+    }
+  ]
+}

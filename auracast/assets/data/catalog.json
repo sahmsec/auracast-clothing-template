@@ -2,7 +2,7 @@
   {
     "slug": "essential-tee-black",
     "name": "Essential Tee — Black",
-    "category": "Essentials",
+    "category": "T-Shirts",
     "collection": "Essentials",
     "menuOrder": 0,
     "isNew": true,
@@ -22,12 +22,16 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "t-shirts"
+    ],
+    "color": "Black"
   },
   {
     "slug": "essential-tee-white",
     "name": "Essential Tee — White",
-    "category": "Essentials",
+    "category": "T-Shirts",
     "collection": "Essentials",
     "menuOrder": 1,
     "isNew": true,
@@ -47,12 +51,17 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "t-shirts",
+      "diva-wardrobe"
+    ],
+    "color": "White"
   },
   {
     "slug": "essential-tee-forest",
     "name": "Essential Tee — Forest",
-    "category": "Essentials",
+    "category": "T-Shirts",
     "collection": "Essentials",
     "menuOrder": 2,
     "isNew": true,
@@ -72,12 +81,17 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "t-shirts",
+      "diva-wardrobe"
+    ],
+    "color": "Bottle Green"
   },
   {
     "slug": "overtime-graphic-tee",
     "name": "Overtime Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Anime",
     "menuOrder": 3,
     "isNew": true,
@@ -97,12 +111,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "afterhours-graphic-tee",
     "name": "Afterhours Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Music & Culture",
     "menuOrder": 4,
     "isNew": true,
@@ -122,12 +139,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "encore-graphic-tee",
     "name": "Encore Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Music & Culture",
     "menuOrder": 5,
     "isNew": true,
@@ -147,6 +167,9 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
@@ -172,7 +195,12 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "shirts"
+    ],
+    "catalogHidden": true,
+    "color": "Black"
   },
   {
     "slug": "essential-shirt-white",
@@ -197,7 +225,12 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "shirts"
+    ],
+    "catalogHidden": true,
+    "color": "White"
   },
   {
     "slug": "monochrome-graphic-shirt",
@@ -222,12 +255,16 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "shirts"
+    ],
+    "catalogHidden": true
   },
   {
     "slug": "everyday-sweatpants-black",
-    "name": "Everyday Sweatpants — Black",
-    "category": "Sweatpants",
+    "name": "Everyday Joggers — Black",
+    "category": "Joggers",
     "collection": "Sweatpants",
     "menuOrder": 9,
     "isNew": false,
@@ -247,12 +284,18 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "joggers",
+      "essentials"
+    ],
+    "color": "Black",
+    "previousName": "Everyday Sweatpants — Black"
   },
   {
     "slug": "everyday-sweatpants-white",
-    "name": "Everyday Sweatpants — White",
-    "category": "Sweatpants",
+    "name": "Everyday Joggers — White",
+    "category": "Joggers",
     "collection": "Sweatpants",
     "menuOrder": 10,
     "isNew": false,
@@ -272,12 +315,19 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "joggers",
+      "essentials",
+      "diva-wardrobe"
+    ],
+    "color": "White",
+    "previousName": "Everyday Sweatpants — White"
   },
   {
     "slug": "shadow-graphic-sweatpants",
-    "name": "Shadow Graphic Sweatpants",
-    "category": "Sweatpants",
+    "name": "Shadow Graphic Joggers",
+    "category": "Joggers",
     "collection": "Sweatpants",
     "menuOrder": 11,
     "isNew": false,
@@ -295,7 +345,11 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "joggers"
+    ],
+    "previousName": "Shadow Graphic Sweatpants"
   },
   {
     "slug": "essential-hoodie-black",
@@ -319,7 +373,12 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "hoodies",
+      "essentials"
+    ],
+    "color": "Black"
   },
   {
     "slug": "essential-hoodie-white",
@@ -343,7 +402,13 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "hoodies",
+      "essentials",
+      "diva-wardrobe"
+    ],
+    "color": "White"
   },
   {
     "slug": "essential-hoodie-grey",
@@ -367,7 +432,12 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "hoodies",
+      "essentials"
+    ],
+    "color": "Grey"
   },
   {
     "slug": "essential-hoodie-brown",
@@ -391,12 +461,18 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "hoodies",
+      "essentials",
+      "diva-wardrobe"
+    ],
+    "color": "Brown"
   },
   {
     "slug": "jackpot-graphic-tee",
     "name": "Jackpot Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Anime",
     "menuOrder": 16,
     "isNew": false,
@@ -416,12 +492,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "shadow-heir-graphic-tee",
     "name": "Shadow Heir Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Anime",
     "menuOrder": 17,
     "isNew": false,
@@ -441,12 +520,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "cursed-graphic-tee",
     "name": "Cursed Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Anime",
     "menuOrder": 18,
     "isNew": false,
@@ -466,12 +548,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "limitless-graphic-tee",
     "name": "Limitless Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Anime",
     "menuOrder": 19,
     "isNew": false,
@@ -491,12 +576,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "awakened-graphic-tee",
     "name": "Awakened Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Anime",
     "menuOrder": 20,
     "isNew": false,
@@ -516,12 +604,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "headliner-graphic-tee",
     "name": "Headliner Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Music & Culture",
     "menuOrder": 21,
     "isNew": false,
@@ -541,12 +632,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "purpose-graphic-tee",
     "name": "Purpose Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Music & Culture",
     "menuOrder": 22,
     "isNew": false,
@@ -566,12 +660,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "backstage-graphic-tee",
     "name": "Backstage Graphic Tee",
-    "category": "Graphic Tees",
+    "category": "T-Shirts",
     "collection": "Music & Culture",
     "menuOrder": 23,
     "isNew": false,
@@ -591,12 +688,15 @@
       "L",
       "XL",
       "2XL"
+    ],
+    "categories": [
+      "t-shirts"
     ]
   },
   {
     "slug": "doodle-graphic-sweatpants",
-    "name": "Doodle Graphic Sweatpants",
-    "category": "Sweatpants",
+    "name": "Doodle Graphic Joggers",
+    "category": "Joggers",
     "collection": "Sweatpants",
     "menuOrder": 24,
     "isNew": false,
@@ -614,12 +714,16 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "joggers"
+    ],
+    "previousName": "Doodle Graphic Sweatpants"
   },
   {
     "slug": "midnight-graphic-sweatpants",
-    "name": "Midnight Graphic Sweatpants",
-    "category": "Sweatpants",
+    "name": "Midnight Graphic Joggers",
+    "category": "Joggers",
     "collection": "Sweatpants",
     "menuOrder": 25,
     "isNew": false,
@@ -637,12 +741,16 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "joggers"
+    ],
+    "previousName": "Midnight Graphic Sweatpants"
   },
   {
     "slug": "monochrome-graphic-sweatpants",
-    "name": "Monochrome Graphic Sweatpants",
-    "category": "Sweatpants",
+    "name": "Monochrome Graphic Joggers",
+    "category": "Joggers",
     "collection": "Sweatpants",
     "menuOrder": 26,
     "isNew": false,
@@ -660,7 +768,11 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "joggers"
+    ],
+    "previousName": "Monochrome Graphic Sweatpants"
   },
   {
     "slug": "essential-hoodie-red",
@@ -684,7 +796,12 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "hoodies",
+      "essentials"
+    ],
+    "color": "Red"
   },
   {
     "slug": "whitebeard-graphic-shirt",
@@ -709,7 +826,11 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "shirts"
+    ],
+    "catalogHidden": true
   },
   {
     "slug": "blade-graphic-shirt",
@@ -734,6 +855,10 @@
       "L",
       "XL",
       "2XL"
-    ]
+    ],
+    "categories": [
+      "shirts"
+    ],
+    "catalogHidden": true
   }
 ]

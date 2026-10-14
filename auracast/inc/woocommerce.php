@@ -25,7 +25,17 @@ add_action( 'init', function () {
 
 add_action( 'woocommerce_before_main_content', function () {
     echo '<main id="main-content" class="woocommerce-main container">';
-    if ( ! is_product() ) { echo '<h1 class="screen-reader-text">' . esc_html( woocommerce_page_title( false ) ) . '</h1><div class="collection-view"><label><input type="checkbox" data-model-view> Model</label></div>'; }
+    if ( ! is_product() ) {
+        if ( is_tax( 'product_cat' ) ) {
+            $term = get_queried_object();
+            echo '<div class="collection-heading">';
+            if ( $term->parent ) { $parent = get_term( $term->parent, 'product_cat' ); if ( $parent && ! is_wp_error( $parent ) ) { echo '<a class="eyebrow" href="' . esc_url( get_term_link( $parent ) ) . '">' . esc_html( $parent->name ) . '</a>'; } }
+            echo '<h1>' . esc_html( woocommerce_page_title( false ) ) . '</h1>';
+            if ( $term->description ) { echo '<p>' . esc_html( $term->description ) . '</p>'; }
+            echo '</div>';
+        } else { echo '<h1 class="screen-reader-text">' . esc_html( woocommerce_page_title( false ) ) . '</h1>'; }
+        echo '<div class="collection-view"><label><input type="checkbox" data-model-view> Model</label></div>';
+    }
 }, 10 );
 add_action( 'woocommerce_after_main_content', function () { echo '</main>'; }, 10 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );

@@ -21,23 +21,19 @@ add_action( 'customize_register', function ( $wp_customize ) {
     $add( 'branding', 'payment_icons_enabled', 'Show payment logos instead of the footer wordmark', false, 'checkbox' );
     $add( 'branding', 'payment_icons_image', 'Your payment logo image', auracast_asset( 'images/payments.svg' ), 'image' );
     foreach ( auracast_palette() as $key => $color ) { $add( 'branding', 'color_' . $key, ucwords( str_replace( '-', ' ', $key ) ) . ' color', $color, 'color' ); }
-    $add( 'hero', 'hero_layout', 'Image layout', 'banner', 'select', array( 'split' => 'Two product photographs', 'banner' => 'Full campaign image' ) );
-    $add( 'hero', 'hero_image', 'Main image (full banner: 1600 × 700 or larger)', auracast_asset( 'images/yokai-shirts-desktop.webp' ), 'image' );
-    $add( 'hero', 'hero_mobile_image', 'Mobile campaign image', auracast_asset( 'images/yokai-shirts-mobile.webp' ), 'image' );
-    $add( 'hero', 'hero_image_alt', 'Image description', 'A man in a relaxed pose wearing a black oversized tee' );
-    $add( 'hero', 'hero_secondary_enabled', 'Show second photo in split layout', true, 'checkbox' );
-    $add( 'hero', 'hero_secondary_image', 'Second image', auracast_asset( 'images/auracast-model-white-tee-01.webp' ), 'image' );
-    $add( 'hero', 'hero_secondary_alt', 'Second image description', 'A woman in a relaxed pose wearing a white oversized tee' );
-    $add( 'hero', 'hero_eyebrow', 'Small label', 'THE LATEST DROP · AURACAST' );
-    $add( 'hero', 'hero_title', 'Heading (one line per row)', "WEAR YOUR\nWORLD.", 'textarea' );
-    $add( 'hero', 'hero_description', 'Description', 'Graphic culture. Everyday comfort. Made for your world.', 'textarea' );
-    $add( 'hero', 'hero_button', 'Button label', 'SHOP THE DROP' ); $add( 'hero', 'hero_link', 'Button destination', auracast_shop_url(), 'url' );
-    $add( 'hero', 'hero_edition', 'Collection label', 'AURACAST / COLLECTION 01' );
+    $add( 'hero', 'hero_image', 'Custom full campaign image (leave blank for the hoodie layout)', '', 'image' );
+    $add( 'hero', 'hero_mobile_image', 'Optional mobile image for your custom campaign', '', 'image' );
+    $add( 'hero', 'hero_image_alt', 'Custom campaign image description', 'Auracast clothing collection' );
+    $add( 'hero', 'hoodies_banner_image', 'Hoodie layout: first photo', auracast_asset( 'images/streetwear-essential-hoodie-black-0.jpg' ), 'image' );
+    $add( 'hero', 'hoodies_secondary_image', 'Hoodie layout: second photo', auracast_asset( 'images/streetwear-essential-hoodie-white-0.jpg' ), 'image' );
+    $add( 'hero', 'hero_eyebrow', 'Small label', 'YOUR WORLD. YOUR AURACAST.' );
+    $add( 'hero', 'hero_title', 'Heading (one line per row)', "LAYER UP.\nSTAND OUT.", 'textarea' );
+    $add( 'hero', 'hero_description', 'Description', 'Everyday layers. Your favorite worlds. Find the hoodie that feels like you.', 'textarea' );
+    $add( 'hero', 'hero_button', 'Button label', 'SHOP HOODIES' ); $add( 'hero', 'hero_link', 'Button destination', auracast_category_url( 'hoodies' ), 'url' );
     $campaigns = array(
-        'tees' => array( "GRAPHIC\nTEES.", 'EXPRESS YOURSELF', '', 'SHOP NOW', 'yokai-tees.webp', auracast_category_url( 'graphic-tees' ) ),
-        'sweats' => array( "SWEAT\nPANTS.", 'YOUR EVERYDAY UNIFORM', '', 'EXPLORE', 'yokai-sweats.webp', auracast_category_url( 'sweatpants' ) ),
-        'music' => array( "ALL DAY.\nALL NIGHT.", 'THE CULTURE COLLECTION', 'Wear what moves you.', 'MUSIC & CULTURE', 'yokai-music.webp', auracast_collection_url( 'music-culture' ) ),
-        'anime' => array( "GRAPHIC\nCULTURE.", 'ART MEETS EVERYDAY', 'Stories worth wearing.', 'EXPLORE ANIME', 'yokai-anime.webp', auracast_collection_url( 'anime' ) ),
+        'joggers' => array( 'JOGGERS', 'BUILT FOR YOUR EVERYDAY', 'CN · Anime · Cyber Sigilism · Hollywood', 'SHOP JOGGERS', 'streetwear-everyday-sweatpants-black-0.png', auracast_category_url( 'joggers' ) ),
+        'sweatshirts' => array( 'SWEATSHIRTS', 'THE NEXT LAYER', "Bold Y2K Vector Flames · Modern Cyber Sigilism · Owners' Favourites", 'EXPLORE SWEATSHIRTS', 'auracast-sweatshirt-preview.svg', auracast_category_url( 'sweatshirts' ) ),
+        'diva' => array( 'DIVA WARDROBE', 'YOUR WARDROBE. YOUR WAY.', 'Everyday layers and expressive fits for her.', 'EXPLORE DIVA', 'auracast-model-white-tee-01.webp', auracast_category_url( 'diva-wardrobe' ) ),
         'essentials' => array( 'ESSENTIALS', 'AURACAST', 'THE FOUNDATION OF YOUR WARDROBE', 'DISCOVER THE EVERYDAY', 'yokai-essentials.webp', auracast_category_url( 'essentials' ) ),
     );
     foreach ( $campaigns as $key => $c ) {
@@ -47,12 +43,12 @@ add_action( 'customize_register', function ( $wp_customize ) {
         $add( 'campaigns', $key . '_banner_link', $label . 'destination', $c[5], 'url' );
         $add( 'campaigns', $key . '_banner_image', $label . 'image', $c[4] ? auracast_asset( 'images/' . $c[4] ) : '', 'image' );
     }
-    foreach ( array( 'popular' => array( 'POPULAR PICKS', 'A good place to start. Your next everyday favorites.' ), 'music' => array( 'MUSIC & CULTURE', 'For the songs, the scenes, and the moments that stay with you.' ), 'anime' => array( 'ANIME ESSENTIALS', 'Expressive graphics. Familiar stories. A style of your own.' ), 'essentials' => array( 'AURACAST ESSENTIALS', 'Easy fits. Clean colors. Pieces you’ll reach for every day.' ) ) as $key => $v ) {
+    foreach ( array( 'essentials' => array( 'AURACAST ESSENTIALS', 'Best sellers, clean staples and must-have pieces for every wardrobe.' ), 'hoodies' => array( 'HOODIES', 'Anime. Music. Dance & Culture. Everyday comfort with your own point of view.' ), 'joggers' => array( 'JOGGERS', 'Black, off white and white. Easy fits with graphics from your world.' ), 'sweatshirts' => array( 'SWEATSHIRTS', "Bold Y2K Vector Flames, Modern Cyber Sigilism and Owners' Favourites." ), 'diva' => array( 'DIVA WARDROBE', 'Everyday layers and expressive fits for her. Your wardrobe, your way.' ) ) as $key => $v ) {
         $add( 'products', $key . '_enabled', ucfirst( $key ) . ': show section', true, 'checkbox' );
         $add( 'products', $key . '_title', ucfirst( $key ) . ': heading', $v[0] ); $add( 'products', $key . '_description', ucfirst( $key ) . ': description', $v[1], 'textarea' );
         $add( 'products', $key . '_products', ucfirst( $key ) . ': optional product IDs (comma separated, up to 12)', '' );
     }
-    $add( 'worlds', 'worlds_enabled', 'Show collection slider', true, 'checkbox' ); $add( 'worlds', 'worlds_title', 'Heading', 'SHOP YOUR WORLD' ); $add( 'worlds', 'worlds_description', 'Description', 'Find the collection that feels like you.' );
+    $add( 'worlds', 'worlds_enabled', 'Show collection slider', true, 'checkbox' ); $add( 'worlds', 'worlds_title', 'Heading', 'FIND YOUR FIT' );
     foreach ( auracast_worlds() as $i => $w ) {
         $add( 'worlds', 'world_' . $i . '_title', 'Collection ' . ( $i + 1 ) . ' title', $w[0] );
         $add( 'worlds', 'world_' . $i . '_image', 'Collection ' . ( $i + 1 ) . ' image', auracast_asset( 'images/' . $w[2] ), 'image' );

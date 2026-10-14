@@ -12,9 +12,26 @@ An installable **AURACAST** WordPress theme for WooCommerce. Home, category, pro
 4. Open **Appearance → Customize → Auracast** to update imagery, colors, homepage text, collections, service details, contact information, and footer. Use **Site Identity** for a replacement logo and site icon, and **Menus** for navigation.
 5. Configure actual shipping, payments, taxes, policies, and email delivery in WooCommerce/WordPress before opening the store to customers.
 
-The importer adds 30 clothing products with size variations, photographs, five clothing categories, Anime and Music & Culture collections, and the homepage, shop, cart, checkout, account, wishlist, about, contact, privacy, shipping, refund, and terms policies, and editable size guide. Repeat imports retain existing products and menus, and refresh the original demo model photos with the new Auracast set. Merchant-uploaded photos, prices, variations, and inventory are retained. The homepage and cart/checkout changes are controlled by the setup checkboxes. The importer also adds six Yokai reels as temporary content. No payment gateway is enabled by the theme.
+The importer adds 30 sample products with size variations and photographs, the clothing categories and curated collections described below, and the homepage, shop, cart, checkout, account, wishlist, about, contact, privacy, shipping, refund, and terms policies, and editable size guide. The older button-down shirt samples stay hidden from the catalog. Repeat imports retain existing prices, photos, variations, and inventory. The homepage and cart/checkout changes are controlled by the setup checkboxes. The importer also adds six Yokai reels as temporary content. No payment gateway is enabled by the theme.
 
 Requires WordPress 6.6+, PHP 8.0+, and WooCommerce. No paid reference theme, page builder, or wishlist plugin is required.
+
+## Clothing collections (1.2.0)
+
+Auracast Essentials is the first product row, directly after the hero and its Essentials banner. It is a curated collection for best sellers and wardrobe staples. Diva Wardrobe is the women's collection. T-Shirts remains in the menu and catalog without a dedicated homepage promotion.
+
+| Category | Colors | Subcategories |
+| --- | --- | --- |
+| Hoodies | Black, White, Maroon, Brown, Bottle Green, Pink | Anime, Music, Dance & Culture |
+| Joggers | Black, Off White, White | CN, Anime, Cyber Sigilism, Hollywood |
+| Sweatshirts | Set per product | Bold Y2K Vector Flames, Modern Cyber Sigilism, Owners' Favourites |
+| T-Shirts | Set per product | Add as needed |
+
+Manage these through **Products → Categories**. Select both a clothing category and a curated collection when editing a product; each product can belong to Auracast Essentials or Diva Wardrobe as well as its main category. Set its Color attribute through **Products → Attributes / Edit product**. Colors filter the relevant category; each segment has its own category archive. Sweatshirts shows a preview until real products are assigned.
+
+When updating an existing Auracast installation, upload the new ZIP and open the WordPress dashboard once. The theme creates missing categories, subcategories and color terms, updates the original demo menu and reorganizes marked demo products. Merchant products, custom menus, prices, stock, variations and uploaded photos are retained. The default structure is recorded in `auracast/assets/data/store-collections.json`.
+
+For the local preview, sync the theme folder and run `.\.local\php\php.exe -c .local/php/php.ini scripts/apply-store-collections-local.php`. Verify the changes with `npm.cmd run test:collections`.
 
 ## Replace demo images and products
 
@@ -22,9 +39,9 @@ Every campaign image can be changed from the WordPress Media Library without edi
 
 | Area | Where to edit |
 | --- | --- |
-| Main hero | Customize → Auracast → Main hero. Replace both photographs, or select **Full campaign image** and upload one banner. |
-| Graphic tees, sweatpants, music, anime, essentials banners | Customize → Auracast → Category & collection banners. Edit images, headings, labels, buttons, and links. |
-| Collection slider | Customize → Auracast → Shop your world. Six editable images, titles, and destinations. |
+| Main hero | Customize → Auracast → Main hero. Replace the two hoodie photographs, or upload a custom full campaign image and optional mobile version. |
+| Joggers, sweatshirts, Diva Wardrobe, essentials banners | Customize → Auracast → Category & collection banners. Replace images and edit collection text and links. |
+| Collection slider | Customize → Auracast → Shop your world. Five editable images, titles, and destinations. |
 | Style gallery | Customize → Auracast → Worn your way gallery. Five editable photographs. |
 | Homepage product selections | Customize → Auracast → Homepage product sections. Automatic collections, or choose specific WooCommerce product IDs. |
 | Product photos, price, inventory, sizes, colors | Products → Edit product. Use the product image, gallery, attributes, and variations controls. |

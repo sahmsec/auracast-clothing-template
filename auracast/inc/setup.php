@@ -72,6 +72,7 @@ function auracast_policy_pages() {
 }
 
 function auracast_import_pages( $use_home = true, $use_classic = false ) {
+    auracast_provision_store_structure();
     $pages = array( 'size-guide' => array( 'Size Guide', '<h3>Find your fit</h3><p>Fit varies between pieces. Check the measurements in the product description, and compare them with a garment you already wear.</p><h3>How to measure</h3><p>Lay your garment flat. Measure the chest across from armpit to armpit, the length from shoulder to hem, and the sleeve from shoulder seam to cuff.</p><p>For sweatpants, compare the waist and inseam. Contact us before ordering if you need help choosing your size.</p>' ), 'home' => array( 'Home', '' ), 'shop' => array( 'Shop', '' ), 'cart' => array( 'Cart', '[woocommerce_cart]' ), 'checkout' => array( 'Checkout', '[woocommerce_checkout]' ), 'my-account' => array( 'My Account', '[woocommerce_my_account]' ), 'wishlist' => array( 'Wishlist', '' ), 'about-us' => array( 'About Auracast', '' ), 'contact-us' => array( 'Contact Us', '' ) );
     $pages = array_merge( $pages, auracast_policy_pages() );
     $ids = array();
@@ -123,7 +124,7 @@ function auracast_import_product( $item ) {
     $sku = 'AURA-' . strtoupper( substr( md5( $item['slug'] ), 0, 8 ) );
     $existing = wc_get_product_id_by_sku( $sku );
     if ( ! $existing ) { $post = get_page_by_path( $item['slug'], OBJECT, 'product' ); $existing = $post ? $post->ID : 0; }
-    if ( $existing ) { auracast_refresh_demo_product_images( $existing ); return $existing; }
+    if ( $existing ) { auracast_refresh_demo_product_images( $existing ); auracast_assign_demo_collections( $existing, $item ); return $existing; }
     $term = term_exists( $item['category'], 'product_cat' );
     if ( ! $term ) { $term = wp_insert_term( $item['category'], 'product_cat', array( 'slug' => sanitize_title( $item['category'] ) ) ); }
     if ( is_wp_error( $term ) ) { throw new RuntimeException( $term->get_error_message() ); }
@@ -160,6 +161,7 @@ function auracast_import_product( $item ) {
         WC_Product_Variable::sync( $id );
     }
     update_post_meta( $id, '_auracast_demo', '1' );
+    auracast_assign_demo_collections( $id, $item );
     if ( ! empty( $item['isNew'] ) ) { update_post_meta( $id, '_auracast_new', '1' ); }
     return $id;
 }
@@ -174,7 +176,10 @@ function auracast_import_menu() {
             $add = function ( $label, $url, $parent = 0 ) use ( $menu_id ) { return wp_update_nav_menu_item( $menu_id, 0, array( 'menu-item-title' => $label, 'menu-item-url' => $url, 'menu-item-parent-id' => $parent, 'menu-item-status' => 'publish', 'menu-item-type' => 'custom' ) ); };
             foreach ( auracast_navigation_items() as $item ) {
                 $parent = $add( $item[0], $item[1] );
-                foreach ( $item[2] ?? array() as $child ) { $add( $child[0], $child[1], $parent ); }
+                foreach ( $item[2] ?? array() as $child ) {
+                    $child_id = $add( $child[0], $child[1], $parent );
+                    foreach ( $child[2] ?? array() as $grandchild ) { $add( $grandchild[0], $grandchild[1], $child_id ); }
+                }
             }
         }
         $locations['primary'] = $menu_id;
