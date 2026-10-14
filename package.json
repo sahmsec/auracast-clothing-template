@@ -4,14 +4,16 @@
   "description": "Auracast WordPress and WooCommerce fashion theme",
   "scripts": {
     "check": "node scripts/check.mjs",
-    "package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package.ps1",
+    "package": "node scripts/theme-release.mjs --package",
     "preview": "node scripts/preview.mjs",
     "share": "node scripts/share-preview.mjs",
     "test:browser": "node scripts/test-store.mjs",
     "test:instagram": "node scripts/test-instagram.mjs",
     "test:collections": "node scripts/test-store-collections.mjs",
     "test:contrast": "node scripts/audit-contrast.mjs",
-    "test:contrast:states": "node scripts/audit-interaction-contrast.mjs"
+    "test:contrast:states": "node scripts/audit-interaction-contrast.mjs",
+    "deploy:bundle": "node scripts/theme-release.mjs --deploy",
+    "test:deployment": "node scripts/test-deployment.mjs"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "php-parser": "^3.7.0",
-    "playwright": "^1.64.0"
+    "playwright": "^1.64.0",
+    "yazl": "^3.3.1"
   }
 }

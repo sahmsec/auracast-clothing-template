@@ -1,0 +1,10 @@
+<?php
+// Install as config.php beside the PRIVATE SSH receiver, outside every web root.
+return [
+    'wordpress_root' => '/home/CPANEL_USER/auracast.sahmsec.online',
+    'private_root' => '/home/CPANEL_USER/auracast-deployment',
+    'backup_root' => '/home/CPANEL_USER/auracast-deployment/backups',
+    'wp_cli' => '/home/CPANEL_USER/auracast-deployment/wp-cli.phar',
+    'expected_url' => 'https://auracast.sahmsec.online',
+    'settle_seconds' => 3,
+];

@@ -1,0 +1,86 @@
+name: Deploy Auracast to cPanel
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Validate hosting access, or deploy the current main revision
+        type: choice
+        options: [plan, deploy]
+        default: plan
+
+permissions:
+  contents: read
+
+concurrency:
+  group: auracast-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Validate all theme and deployment PHP
+        run: |
+          php -r 'exit(PHP_VERSION_ID >= 80300 && class_exists("ZipArchive") ? 0 : 1);'
+          find auracast scripts -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: npm run test:deployment
+      - name: Build an exact theme release
+        run: npm run deploy:bundle
+        env:
+          AURACAST_RELEASE_COMMIT: ${{ github.sha }}
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: auracast-${{ github.sha }}
+          path: |
+            dist/auracast-deploy.zip
+            dist/deploy-header.json
+          if-no-files-found: error
+          retention-days: 14
+
+  deploy:
+    needs: validate
+    if: github.ref == 'refs/heads/main' && vars.AURACAST_AUTO_DEPLOY == 'true' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: auracast-production
+      url: https://auracast.sahmsec.online
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: auracast-${{ github.sha }}
+          path: dist
+      - name: Verify hosting access or install the release
+        run: node scripts/deploy-ssh.mjs "$RELEASE_MODE"
+        env:
+          RELEASE_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'plan' && 'plan' || 'deploy' }}
+          GITHUB_TOKEN: ${{ github.token }}
+          AURACAST_SSH_HOST: ${{ secrets.SSH_HOST }}
+          AURACAST_SSH_USER: ${{ secrets.SSH_USER }}
+          AURACAST_SSH_KEY: ${{ secrets.SSH_KEY }}
+          AURACAST_SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+      - name: Verify the public storefront
+        if: github.event_name == 'push' || inputs.mode == 'deploy'
+        run: node scripts/verify-live-release.mjs

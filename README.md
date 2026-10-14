@@ -16,6 +16,22 @@ The importer adds 30 sample products with size variations and photographs, the c
 
 Requires WordPress 6.6+, PHP 8.0+, and WooCommerce. No paid reference theme, page builder, or wishlist plugin is required.
 
+## Automatic GitHub deployment
+
+Push changes to `main` in `sahmsec/auracast-clothing-template`. The **Deploy Auracast to cPanel** workflow validates the theme, runs deployment/rollback tests, builds a ZIP and file checksum manifest, and sends that exact release to the private hosting receiver. GitHub records the deployment under **auracast-production**. Pull requests run validation without hosting credentials.
+
+The configured destination is **https://auracast.sahmsec.online**, with WordPress at `/home/treigxvw/auracast.sahmsec.online`. Releases replace only `wp-content/themes/auracast`. Products, customers, orders, uploaded media, plugins and WordPress configuration stay in the hosted store. The previous theme is retained outside the web root; native verification failures restore it. The workflow also checks the public storefront and exact CSS/JS bytes after installation. An HTTP verification failure is reported in Actions; its retained theme backup remains available for operator recovery.
+
+Hosting uses a separate forced-command SSH identity, a pinned host key and four encrypted **auracast-production** environment secrets: `SSH_HOST`, `SSH_USER`, `SSH_KEY`, and `SSH_KNOWN_HOSTS`. This environment accepts deployments from `main` only. Repository variable `AURACAST_AUTO_DEPLOY=true` enables automatic updates; set it to `false` to stop deployment while keeping validation. Never add credentials or hosting configuration to Git.
+
+For a manual check, open **Actions → Deploy Auracast to cPanel → Run workflow**, select `main`, and choose `plan`. Choose `deploy` to install the current revision. Older queued revisions are rejected when a newer `main` commit exists.
+
+Private hosting tooling and release state live at `/home/treigxvw/auracast-deployment`; previous themes are under its `backups` folder. This is a theme backup, not a database or uploads backup. Retain the accepted backups needed for recovery and manage old backups through cPanel. Receiver upgrades require the operator to update the private PHP scripts separately; ordinary theme pushes do not overwrite this tooling. [deployment/config.php.example](deployment/config.php.example) documents the path configuration.
+
+The installation procedure uses a dedicated cPanel login window once to install the receiver and its restricted public key. `scripts/open-hosting-login.ps1` opens that window on Windows. The deployment key and operator records are private files under ignored `.local/deployment/`; GitHub Actions runs independently of that browser and the development PC afterward.
+
+Run `npm.cmd run test:deployment` locally to check the release allowlist, path/archive refusals, maintenance ownership, actual installation and native-check rollback in disposable fixtures. `npm.cmd run deploy:bundle` produces the ignored deployment ZIP and manifest. `npm.cmd run package` builds the normal installable theme ZIP on Windows or Linux. To move hosts, verify the document root and host key, install the private receiver/config and WP-CLI, authorize a new restricted SSH key, update the environment secrets, and run `plan` before enabling updates. See [GitHub deployment environments](https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments).
+
 ## Clothing collections (1.2.0)
 
 Auracast Essentials is the first product row, directly after the dark forest-green hero and its Essentials banner. It is a curated collection for best sellers and wardrobe staples. Diva Wardrobe is the women's collection. T-Shirts remains in the menu and catalog without a dedicated homepage promotion. Navbar dropdowns contain product subcategories; color selection is available through the collection-page filters.
