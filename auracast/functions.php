@@ -2,7 +2,7 @@
 /** Auracast theme bootstrap. */
 defined( 'ABSPATH' ) || exit;
 
-define( 'AURACAST_VERSION', '1.2.1' );
+define( 'AURACAST_VERSION', '1.2.2' );
 require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/instagram.php';
 require_once get_template_directory() . '/inc/customizer.php';

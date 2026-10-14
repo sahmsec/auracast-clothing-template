@@ -9,7 +9,17 @@
         <?php endif; ?>
     </section>
 
-    <?php if ( auracast_setting( 'essentials_banner_enabled', true ) ) : ?><a class="campaign-banner wide-campaign essentials-campaign" href="<?php echo esc_url( auracast_setting( 'essentials_banner_link', auracast_category_url( 'essentials' ) ) ); ?>"><img src="<?php echo esc_url( auracast_image( 'essentials_banner_image', 'yokai-essentials.webp' ) ); ?>" alt="Auracast Essentials. The foundation of your wardrobe." width="1730" height="584" loading="lazy"></a><?php endif; ?>
+    <?php if ( auracast_setting( 'essentials_banner_enabled', true ) ) : ?>
+    <?php $essentials_image = auracast_setting( 'essentials_banner_image', '' ); $custom_essentials = $essentials_image && basename( wp_parse_url( $essentials_image, PHP_URL_PATH ) ?: '' ) !== 'yokai-essentials.webp'; ?>
+    <a class="campaign-banner essentials-campaign <?php echo $custom_essentials ? 'essentials-custom-image' : 'essentials-editorial'; ?>" href="<?php echo esc_url( auracast_setting( 'essentials_banner_link', auracast_category_url( 'essentials' ) ) ); ?>">
+        <?php if ( $custom_essentials ) : ?><img src="<?php echo esc_url( $essentials_image ); ?>" alt="Auracast Essentials. The foundation of your wardrobe." width="1730" height="584" loading="lazy"><?php else : ?>
+        <span class="eyebrow"><?php echo esc_html( auracast_setting( 'essentials_banner_label', 'AURACAST / THE EVERYDAY EDIT' ) ); ?></span>
+        <h2><?php echo esc_html( auracast_setting( 'essentials_banner_title', 'ESSENTIALS' ) ); ?></h2>
+        <p><?php echo esc_html( auracast_setting( 'essentials_banner_description', 'THE FOUNDATION OF YOUR WARDROBE' ) ); ?></p>
+        <span class="editorial-cta"><?php echo esc_html( auracast_setting( 'essentials_banner_button', 'DISCOVER THE EVERYDAY' ) ); ?> <?php echo auracast_icon( 'arrow' ); ?></span>
+        <?php endif; ?>
+    </a>
+    <?php endif; ?>
     <?php auracast_home_product_section( 'essentials', 'AURACAST ESSENTIALS', 'Best sellers, clean staples and must-have pieces for every wardrobe.', array( 'category' => array( 'essentials' ), 'limit' => 12, 'orderby' => 'menu_order', 'order' => 'ASC' ) ); ?>
 
     <?php if ( auracast_setting( 'worlds_enabled', true ) ) : ?>

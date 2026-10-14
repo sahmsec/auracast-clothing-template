@@ -1,7 +1,7 @@
 /* Yokai page geometry and interactions, with Auracast's forest/charcoal colors. */
 :root{--brand-accent:var(--a-accent,#305640);--brand-dark:var(--a-header,#181c19);--campaign-hue:115deg;--gutter:3vw;--ink:#121212}
 .auracast-streetwear{font-size:16px;letter-spacing:.6px;line-height:1.8}
-.auracast-streetwear a:hover{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.auracast-streetwear a:hover{text-decoration:none}
 .auracast-streetwear .container{max-width:none;padding-inline:3vw}
 .auracast-streetwear .yokai-announcement{height:42px;background:var(--brand-accent);padding:0;overflow:hidden;position:relative;font-size:13px;font-weight:500;letter-spacing:0;white-space:nowrap}
 .announcement-track{display:flex;width:max-content;animation:announcement-scroll 38s linear infinite}
@@ -39,24 +39,62 @@
 .drop-hero-copy .button:hover{background:#d8e7d4;border-color:#d8e7d4;color:#102516}
 .drop-hero-photos{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:transparent;overflow:hidden;padding:34px 30px 34px 10px}
 .drop-hero-photos img{width:100%;height:auto;max-width:352px;max-height:none;object-fit:contain;mix-blend-mode:normal;padding:0;justify-self:center}
-.drop-hero-photos img[src$='/streetwear-essential-hoodie-black-0.jpg']{mix-blend-mode:multiply;filter:brightness(2.8);clip-path:polygon(48% 12%,50% 12.2%,52% 13%,53.3% 14.5%,54.5% 16.4%,55.5% 20%,57% 27%,58.5% 32.5%,60.5% 34.8%,64% 38%,68% 41.5%,73% 46%,76% 48%,83% 57%,90% 68%,94.7% 75%,97.5% 79%,98% 81.4%,99.7% 85%,94% 87.6%,92.5% 88%,88% 85.2%,84% 83%,78% 79%,74% 75.8%,72% 74.5%,71.2% 78.5%,69.5% 79%,55% 79.5%,43% 79.5%,32% 79.3%,28.5% 79.6%,27% 77%,25.6% 74.5%,24.3% 76.4%,21% 79%,17% 82.2%,11% 84.7%,7% 88.1%,2.5% 86.2%,.2% 85.4%,1.5% 82.2%,2.5% 77%,5% 70.4%,8.5% 64.3%,11% 61%,17% 53.5%,20.5% 49%,22% 47.8%,24.5% 44.9%,28% 41.3%,32% 38.3%,36.3% 34.7%,37.5% 33%,39% 29%,41% 23%,42% 19.4%,43% 16.4%,44% 14.2%,46% 12.7%)}
+.drop-hero-photos img[src$='/streetwear-essential-hoodie-black-0.jpg']{mix-blend-mode:normal;filter:brightness(1.1);clip-path:polygon(48.020% 12.330%,50.000% 12.528%,51.980% 13.320%,53.267% 14.805%,54.455% 16.686%,55.445% 20.250%,56.930% 27.180%,58.415% 32.625%,60.395% 34.902%,63.860% 38.070%,67.820% 41.535%,72.770% 45.990%,75.740% 47.970%,82.670% 56.880%,89.600% 67.770%,94.253% 74.700%,97.025% 78.660%,97.520% 81.036%,99.203% 84.600%,93.560% 87.174%,92.075% 87.570%,87.620% 84.798%,83.660% 82.620%,77.720% 78.660%,73.760% 75.492%,71.780% 74.205%,70.988% 78.165%,69.305% 78.660%,54.950% 79.155%,43.070% 79.155%,32.180% 78.957%,28.715% 79.254%,27.230% 76.680%,25.844% 74.205%,24.557% 76.086%,21.290% 78.660%,17.330% 81.828%,11.390% 84.303%,7.430% 87.669%,2.975% 85.788%,0.698% 84.996%,1.985% 81.828%,2.975% 76.680%,5.450% 70.146%,8.915% 64.107%,11.390% 60.840%,17.330% 53.415%,20.795% 48.960%,22.280% 47.772%,24.755% 44.901%,28.220% 41.337%,32.180% 38.367%,36.437% 34.803%,37.625% 33.120%,39.110% 29.160%,41.090% 23.220%,42.080% 19.656%,43.070% 16.686%,44.060% 14.508%,46.040% 13.023%)}
 .drop-hero-photos img[src$='/streetwear-essential-hoodie-white-0.jpg']{clip-path:polygon(50% 12.3%,54% 13.2%,56% 15%,57.5% 17.5%,58.5% 20%,59% 24.2%,60% 28%,61% 33%,63% 35%,67% 38%,72% 41%,77% 45%,80% 48%,86% 57%,93% 67%,97% 74%,98% 78%,98% 81.8%,99.7% 85.5%,93% 88.1%,89% 87%,85% 83.7%,79% 79.6%,74% 76.8%,73% 75%,72% 78%,70% 78.6%,57% 78.7%,41% 78.7%,28% 78.6%,26% 77.8%,25% 75.5%,23% 78%,19% 80.8%,14% 84%,10% 85.5%,8% 88.5%,3% 86.8%,.5% 85.9%,1.8% 82.4%,1.8% 79%,3% 75.7%,6% 69%,10% 63%,15% 57%,19% 52%,22% 48%,24% 45.5%,29% 41%,34% 37%,38% 34.5%,39% 33%,40% 28%,41% 22%,43% 17%,45% 14%,47% 12.7%)}
-.collection-editorial{display:grid;grid-template-columns:55% 45%;align-items:center;overflow:hidden;min-height:350px;padding-left:8vw;background:#d6ddd2;color:#1d2c24}
+.collection-editorial{display:grid;grid-template-columns:55% 45%;align-items:center;overflow:hidden;min-height:350px;padding-left:8vw;background:#173723;color:#fff}
 .collection-editorial>div{padding:40px 30px 40px 0}
 .collection-editorial .eyebrow{font-size:10px;letter-spacing:2px}
 .collection-editorial h2{font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-.05em;line-height:1.05;margin:20px 0}
 .collection-editorial p{font-size:14px;letter-spacing:0;max-width:490px;margin-bottom:24px}
 .collection-editorial>img{width:100%;height:380px;object-fit:contain;mix-blend-mode:multiply}
 .editorial-cta{display:inline-flex;align-items:center;gap:15px;font-size:11px;letter-spacing:1px}
-.sweatshirts-editorial{background:#e9e8df}
-.diva-editorial{background:#e6d9d5;color:#382d2a}
+.sweatshirts-editorial{background:#1d3e29}
+.sweatshirts-editorial>img{mix-blend-mode:normal}
+.diva-editorial{background:#173723}
 .diva-editorial>img{height:430px;object-fit:cover;object-position:center 15%;mix-blend-mode:normal}
 .collection-coming-soon{font-size:14px;color:#666;margin-bottom:15px}
 .collection-heading{padding:35px 0 18px}.collection-heading h1{font-size:clamp(26px,3vw,42px);font-weight:800;letter-spacing:-.04em;margin-top:8px}.collection-heading p{font-size:14px;color:#666;letter-spacing:0;max-width:650px;margin:14px 0 0}.collection-heading .eyebrow{font-size:11px;letter-spacing:1px}
+.yokai-home .essentials-campaign{margin:12px 3vw 0}
+.yokai-home .essentials-editorial{background:linear-gradient(110deg,#101c15,#214c31 52%,#101c15);color:#fff;padding:44px 3vw;text-align:center;min-height:310px;line-height:1.4}
+.essentials-editorial .eyebrow{color:#dbe9df;font-size:10px;letter-spacing:2px}
+.essentials-editorial h2{font-size:clamp(52px,8.5vw,126px);font-weight:800;font-style:italic;line-height:1.05;letter-spacing:-.04em;margin:12px 0 20px}
+.essentials-editorial p{color:#dbe9df;font-size:13px;letter-spacing:1.5px;margin:0 0 24px}
+.essentials-editorial .editorial-cta{font-size:11px;line-height:1.5;color:#fff}
+.yokai-home .essentials-custom-image{padding:0;background:#173723}
+.essentials-custom-image>img{filter:none;aspect-ratio:1730/584;object-fit:cover}
+.joggers-editorial{background:linear-gradient(100deg,#173723 0%,#305640 55%,#c7d4cc 55%)}
+.yokai-worlds,.yokai-benefits{background:#fff}
+.yokai-product-section h2,.yokai-worlds h2,.yokai-community h2,.instagram-feed h2{color:#173723}
+.auracast-streetwear .yokai-view-all{border-color:#305640;color:#305640}
+.yokai-worlds .slider-controls button{color:#305640}
+.yokai-worlds .slider-controls button:hover{background:#eff4ef}
+.collection-editorial .editorial-cta .icon,.essentials-editorial .editorial-cta .icon{transition:transform .18s}
+.collection-editorial:hover .editorial-cta .icon,.essentials-editorial:hover .editorial-cta .icon{transform:translateX(4px)}
+.auracast-streetwear .primary-menu>li>a:hover,.auracast-streetwear .primary-menu .sub-menu a:hover{color:#fff;background:#ffffff14}
+.auracast-streetwear .primary-menu .sub-menu .sub-menu{background:transparent;color:inherit}
+.auracast-streetwear .yokai-view-all:hover{background:#305640;color:#fff}
+.auracast-streetwear .collection-editorial:hover,.auracast-streetwear .essentials-editorial:hover{color:#fff}
+.auracast-streetwear .product-card a:hover{color:#305640}
+.auracast-streetwear .world-card:hover{color:#202724}
+.auracast-streetwear .mobile-nav a:hover,.auracast-streetwear .mobile-secondary a:hover{color:#fff;background:#ffffff14}
+.auracast-streetwear .header-actions a:hover,.auracast-streetwear .search-dialog a:hover{color:#fff;background:#ffffff14}
+.auracast-streetwear .text-link:hover{border-bottom-color:transparent}
+.auracast-streetwear .about-promos>a{background:#173723}
+.auracast-streetwear .about-promos>a:nth-child(2){background:#c7d4cc;color:#173723}
+.auracast-streetwear .about-promos>a:hover{color:#fff}
+.auracast-streetwear .about-promos>a:nth-child(2):hover{color:#173723}
+.auracast-streetwear input:not([type=checkbox]):not([type=radio]):not([type=submit]),.auracast-streetwear select,.auracast-streetwear textarea{border-color:#7b817e}
+.auracast-streetwear :focus-visible{outline:3px solid #526b58;outline-offset:4px}
+.auracast-streetwear .site-header :focus-visible,.auracast-streetwear .mobile-menu :focus-visible,.auracast-streetwear .search-dialog :focus-visible,.auracast-streetwear .yokai-footer :focus-visible,.drop-hero-copy :focus-visible{outline-color:#fff}
+.account-auth-main input.input-text{border-color:#7b817e}
+.account-auth-main :focus-visible{outline:3px solid #526b58;outline-offset:3px}
+.auracast-streetwear .collection-view input{border-color:#727b75;background:linear-gradient(90deg,#fff 50%,#727b75 50%)}
+.auracast-streetwear .collection-view input:checked{background:linear-gradient(90deg,#305640 50%,#fff 50%)}
+@media(max-width:749px){.yokai-home .essentials-editorial{padding:38px 6vw;min-height:260px}.essentials-editorial h2{font-size:clamp(42px,12vw,68px);letter-spacing:-.04em}.essentials-editorial p{font-size:10px;letter-spacing:.8px}.essentials-editorial .editorial-cta{font-size:10px}}
 @media(max-width:749px){.auracast-drop-hero{grid-template-columns:1fr;min-height:0}.drop-hero-copy{padding:35px 6vw}.drop-hero-copy h1{font-size:clamp(44px,12vw,65px);margin-bottom:20px}.drop-hero-copy .eyebrow{font-size:9px;margin-bottom:18px}.drop-hero-copy p{font-size:13px;margin-bottom:22px}.drop-hero-copy .button{padding:12px 20px;min-height:45px}.drop-hero-photos{height:auto;padding:0 4vw 28px;gap:12px}.drop-hero-photos img{height:auto;padding:0;max-width:175px}.collection-editorial{grid-template-columns:1fr 1fr;padding-left:6vw;min-height:270px}.collection-editorial>div{padding:28px 12px 28px 0}.collection-editorial h2{font-size:clamp(25px,7vw,42px);overflow-wrap:break-word;margin:14px 0}.collection-editorial .eyebrow{font-size:8px;letter-spacing:1px}.collection-editorial p{font-size:11px;line-height:1.7;margin-bottom:18px}.collection-editorial>img{height:280px}.editorial-cta{font-size:9px;letter-spacing:.4px;gap:8px}.diva-editorial>img{height:320px}.collection-coming-soon{font-size:12px}}
 .campaign-banner{display:block;position:relative;overflow:hidden;line-height:0}
 .campaign-banner img{display:block;width:100%;height:auto;max-width:none}
-.hero-campaign>picture>img,.mobile-compact-banner>img,.sweats-campaign>img,.anime-campaign>img,.essentials-campaign>img{filter:hue-rotate(var(--campaign-hue)) saturate(.6)}
+.mobile-compact-banner>img,.sweats-campaign>img,.anime-campaign>img{filter:hue-rotate(var(--campaign-hue)) saturate(.6)}
 .yokai-hero{width:100%;background:#12231b}
 .hero-campaign>picture>img{width:100%;aspect-ratio:1920/900;object-fit:cover}
 .yokai-hero .campaign-image{position:static;inset:auto;width:100%;height:auto;object-position:center;mix-blend-mode:normal;z-index:auto}
@@ -83,7 +121,7 @@
 .yokai-home .product-title-row h3,.woocommerce-main .product-title-row h3{font-size:13px;font-weight:700;line-height:1.3;text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
 .yokai-home .product-category,.woocommerce-main .product-category,.yokai-home .product-title-row .wishlist-button,.woocommerce-main .product-title-row .wishlist-button,.yokai-home .quick-view,.woocommerce-main .quick-view,.yokai-home .card-add,.woocommerce-main .card-add{display:none}
 .yokai-home .product-card .price{font-size:16px;font-weight:400;letter-spacing:1px;line-height:1.5}
-.woocommerce-main .product-card .price{font-size:13px;color:#777;letter-spacing:1px;line-height:1.5}
+.woocommerce-main .product-card .price{font-size:13px;color:#595959;letter-spacing:1px;line-height:1.5}
 .yokai-home .product-badge,.woocommerce-main .product-badge{top:4px;left:4px;font-size:12px;font-weight:400;border-radius:40px;padding:3px 11px;background:#000;color:#fff;letter-spacing:0}
 .yokai-view-all{display:inline-flex;align-items:center;justify-content:center;min-width:150px;min-height:47px;border:1px solid #121212;font-size:16px;padding:10px 20px;background:#fff;letter-spacing:1px}
 .yokai-product-section .section-cta{padding-top:16px;padding-bottom:0}
@@ -132,7 +170,7 @@
 .collection-sort>label{white-space:nowrap}
 .collection-sort .woocommerce-ordering{margin:0}
 .collection-sort select{font-size:14px;padding:6px 22px 6px 0;min-width:150px}
-.collection-count{color:#777;white-space:nowrap;font-size:14px}
+.collection-count{color:#595959;white-space:nowrap;font-size:14px}
 .mobile-filter-toggle{display:none}
 .active-filters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;font-size:13px}
 .active-filters a{display:inline-flex;align-items:center;gap:10px;border:1px solid #ddd;border-radius:30px;padding:5px 12px}
@@ -173,13 +211,13 @@
 .empty-cart-actions .button{margin-block:20px}
 .empty-cart-actions p{margin:0 0 8px;font-size:22px}
 .empty-cart-actions a:not(.button){text-decoration:underline}
-.cart-dialog .mini-cart-columns{display:flex;justify-content:space-between;padding:8px 0 12px;border-bottom:1px solid #ddd;text-transform:uppercase;font-size:10px;color:#777;letter-spacing:1px}
+.cart-dialog .mini-cart-columns{display:flex;justify-content:space-between;padding:8px 0 12px;border-bottom:1px solid #ddd;text-transform:uppercase;font-size:10px;color:#595959;letter-spacing:1px}
 .cart-dialog .woocommerce-mini-cart-item{position:relative;display:grid;grid-template-columns:95px minmax(0,1fr) auto;gap:16px;border:0;padding:20px 0;align-items:start}
 .cart-dialog .mini-cart-image{display:block}.cart-dialog .mini-cart-image img{float:none;margin:0;width:95px;height:105px;object-fit:contain}
 .mini-cart-item-copy{min-width:0}.mini-cart-item-title{display:block;line-height:1.3;font-size:14px;text-transform:uppercase;font-weight:400;margin-bottom:6px}
 .mini-cart-unit-price{display:block;font-size:13px;margin-bottom:7px}.mini-cart-item-copy dl.variation{margin:0 0 10px;font-size:12px;line-height:1.5;display:flow-root}
 .mini-cart-item-copy dl.variation dt{float:left;clear:left;margin:0 5px 0 0}.mini-cart-item-copy dl.variation dd{margin:0}.mini-cart-item-copy dl.variation p{margin:0}
-.mini-cart-item-controls{display:flex;align-items:center;gap:10px}.mini-cart-quantity{display:flex;align-items:center;border:1px solid #aaa;height:36px;width:105px}
+.mini-cart-item-controls{display:flex;align-items:center;gap:10px}.mini-cart-quantity{display:flex;align-items:center;border:1px solid #7b817e;height:36px;width:105px}
 .mini-cart-quantity button{padding:0;width:32px;height:34px;flex-shrink:0;font-size:17px}
 .mini-cart-quantity input[type=number]{border:0;outline:0;padding:0;width:39px;height:34px;min-height:0;text-align:center;font-size:12px;appearance:textfield}
 .mini-cart-quantity input::-webkit-inner-spin-button,.mini-cart-quantity input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
@@ -215,7 +253,7 @@
 .yokai-benefits .service-icon{width:48px;height:48px;object-fit:contain;margin:0 auto 24px}.yokai-hero .hero-banner-brand{background:linear-gradient(105deg,#07170e,#123423)}.yokai-product-section .price .woocommerce-Price-currencySymbol,.woocommerce-main .product-card .woocommerce-Price-currencySymbol{margin-right:4px}
 
 .yokai-social-gallery{grid-column:1/-1;padding:30px 3vw 50px;margin:0;width:100%}.yokai-social-gallery h2{font-size:24px;font-weight:600;line-height:1.3;text-align:center;margin:0 0 28px}.social-gallery-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.social-gallery-grid>a{overflow:hidden;display:block}.social-gallery-grid img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:top}.social-gallery-grid>a:hover img{filter:brightness(.85)}.community-image-dialog{padding:0;width:min(600px,95vw);height:90svh;max-height:90svh;max-width:95vw}.community-image-dialog img{width:100%;height:100%;object-fit:contain}.community-image-dialog .dialog-close{background:#fff;border-radius:50%}
-.auracast-account-auth{font-family:Arial,sans-serif;letter-spacing:0;font-size:14px;line-height:1.4;min-height:100svh;display:flex;flex-direction:column;color:#000}.account-auth-header{height:150px;flex-shrink:0;display:flex;justify-content:center;padding-top:60px}.account-auth-header img{width:60px;height:60px}.account-auth-main{flex:1;display:flex;align-items:center;justify-content:center;width:100%;padding:25px 20px}.account-auth-main>.woocommerce{width:379px;max-width:100%}.account-auth-main h2{font-size:20px;font-weight:600;line-height:24px;margin-bottom:24px}.account-auth-main .woocommerce-form-login,.account-auth-main .woocommerce-form-register{padding:0;border:0;margin:0}.account-auth-main .woocommerce-form-row{margin:0 0 14px}.account-auth-main input.input-text{height:49px;border-radius:10px;min-height:49px;border:1px solid #aaa;font-size:14px;padding:12px}.account-auth-main label{font-size:13px;font-weight:400}.account-auth-main .woocommerce-form-row>label{margin-bottom:8px;display:block}.account-auth-main .woocommerce-form-login__rememberme{display:inline-flex;align-items:center;gap:7px;font-size:13px;margin-bottom:14px}.account-auth-main .woocommerce-form-login__submit{display:block;width:100%;height:50px;border-radius:12px;background:var(--brand-accent);border-color:var(--brand-accent);font-family:Arial,sans-serif;font-size:16px;font-weight:600;margin:0 0 14px}.account-auth-main .lost_password{font-size:12px;text-align:center;margin:0;color:#666}.account-auth-main .lost_password a{text-decoration:underline}.account-auth-footer{text-align:center;font-size:14px;padding:20px 20px 22px}.account-auth-main .woocommerce-error{font-size:13px;line-height:1.6}.account-auth-main #customer_login{display:block}.account-auth-main #customer_login>.col-2{margin-top:40px}.account-auth-main .woocommerce-ResetPassword p{font-size:14px}.account-auth-main .woocommerce-ResetPassword .button{border-radius:12px;width:100%;background:var(--brand-accent)}
+.auracast-account-auth{font-family:Arial,sans-serif;letter-spacing:0;font-size:14px;line-height:1.4;min-height:100svh;display:flex;flex-direction:column;color:#000}.account-auth-header{height:150px;flex-shrink:0;display:flex;justify-content:center;padding-top:60px}.account-auth-header img{width:60px;height:60px}.account-auth-main{flex:1;display:flex;align-items:center;justify-content:center;width:100%;padding:25px 20px}.account-auth-main>.woocommerce{width:379px;max-width:100%}.account-auth-main h2{font-size:20px;font-weight:600;line-height:24px;margin-bottom:24px}.account-auth-main .woocommerce-form-login,.account-auth-main .woocommerce-form-register{padding:0;border:0;margin:0}.account-auth-main .woocommerce-form-row{margin:0 0 14px}.account-auth-main input.input-text{height:49px;border-radius:10px;min-height:49px;border:1px solid #7b817e;font-size:14px;padding:12px}.account-auth-main label{font-size:13px;font-weight:400}.account-auth-main .woocommerce-form-row>label{margin-bottom:8px;display:block}.account-auth-main .woocommerce-form-login__rememberme{display:inline-flex;align-items:center;gap:7px;font-size:13px;margin-bottom:14px}.account-auth-main .woocommerce-form-login__submit{display:block;width:100%;height:50px;border-radius:12px;background:var(--brand-accent);border-color:var(--brand-accent);font-family:Arial,sans-serif;font-size:16px;font-weight:600;margin:0 0 14px}.account-auth-main .lost_password{font-size:12px;text-align:center;margin:0;color:#666}.account-auth-main .lost_password a{text-decoration:underline}.account-auth-footer{text-align:center;font-size:14px;padding:20px 20px 22px}.account-auth-main .woocommerce-error{font-size:13px;line-height:1.6}.account-auth-main #customer_login{display:block}.account-auth-main #customer_login>.col-2{margin-top:40px}.account-auth-main .woocommerce-ResetPassword p{font-size:14px}.account-auth-main .woocommerce-ResetPassword .button{border-radius:12px;width:100%;background:var(--brand-accent)}
 @media(max-width:749px){.yokai-social-gallery{padding:25px 15px 35px}.social-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.social-gallery-grid>a:last-child{display:none}.yokai-social-gallery h2{font-size:23px;line-height:1.1}.account-auth-header{height:130px;padding-top:45px}.account-auth-main{padding:25px 20px}.account-auth-main>.woocommerce{width:379px}}
 
 .auracast-streetwear .search-dialog{position:fixed;left:0;right:0;bottom:auto;top:42px;width:100%;max-width:100%;height:85px;max-height:none;margin:0;padding:17px 80px;background:var(--brand-dark);color:#fff;overflow:visible;border:0}.search-dialog::backdrop{background:#0006;backdrop-filter:none}.search-dialog h2,.search-dialog>p{display:none}.search-dialog .dialog-close{top:22px;right:28px}.search-dialog .search-form{max-width:742px;margin:0 auto;position:relative;height:50px}.search-dialog .search-form input{border:1px solid #ffffffbf!important;min-height:50px;height:50px;padding:13px 55px 13px 16px;background:transparent;color:#fff;font-size:16px!important;border-radius:0;outline-offset:2px}.search-dialog .search-form button{width:44px;height:44px;top:3px;right:5px;padding:10px}.search-dialog .search-form input::placeholder{color:#fff9}.predictive-search-results{position:absolute;left:0;right:0;top:50px;background:var(--brand-dark);color:#fff;border:1px solid #ffffff50;max-height:70svh;overflow:auto;text-align:left;padding:18px 20px;z-index:1;box-shadow:0 6px 16px #0003}.predictive-search-results[hidden]{display:none}.predictive-search-results h3{font-size:11px;text-transform:uppercase;font-weight:400;letter-spacing:1px;color:#fff9;border-bottom:1px solid #fff3;padding-bottom:10px;margin-bottom:15px}.predictive-search-results ul{list-style:none;padding:0;margin:0}.predictive-search-results li>a{display:flex;align-items:center;gap:16px;padding:10px 0}.predictive-search-results img{width:60px;height:75px;object-fit:contain;background:#fff}.predictive-search-results strong{display:block;font-size:14px;font-weight:400;line-height:1.4;margin-bottom:7px}.predictive-search-results span span{font-size:13px}.predictive-search-all{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;border-top:1px solid #fff3;font-size:14px}.predictive-search-results .woocommerce-Price-currencySymbol{margin-right:4px}

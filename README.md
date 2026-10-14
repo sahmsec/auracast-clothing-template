@@ -1,6 +1,6 @@
 # auracast-clothing-template
 
-An installable **AURACAST** WordPress theme for WooCommerce. Home, category, product, cart, checkout, service benefits, and footer layouts follow [Yokai](https://www.yokaiclothingbd.com/), including mobile product rails, filters, size chips, bundles, cart drawers, and checkout summaries. Auracast changes the branding and colors to forest and charcoal.
+An installable **AURACAST** WordPress theme for WooCommerce. Home, category, product, cart, checkout, service benefits, and footer layouts follow [Yokai](https://www.yokaiclothingbd.com/), including mobile product rails, filters, size chips, bundles, cart drawers, and checkout summaries. Auracast uses forest green, black and white throughout, with green campaign banners separated by white product grids.
 
 ![Auracast storefront](auracast/screenshot.png)
 
@@ -51,6 +51,8 @@ Every campaign image can be changed from the WordPress Media Library without edi
 
 Use approximately **1600 × 700** or larger for a full hero banner, **1200 × 1500** for portrait product/style photos, and **800 × 800** for collection tiles. Landscape and portrait crops adapt to mobile. All demo photos are bundled locally; no reference site connection is required when the storefront runs.
 
+The default Essentials banner uses editable text on a green background. Upload a banner image to replace it, or clear the image to restore the text layout. Uploaded hero and Essentials banners retain their own colors. Banner titles and descriptions stay free of hover underlines; arrows provide hover feedback.
+
 Published Instagram cards appear automatically in the moving feed. Uploaded videos autoplay muted and open with sound and playback controls when clicked. Link-only cards open the official Instagram embed; adding a video and cover lets the card play directly in the marquee. Edit, draft, trash, or reorder the cards from WordPress. This is an editable feed; new Instagram uploads are added by the store owner.
 
 Wishlist favorites persist in the shopper's browser. Product sizes, inventory, cart, checkout, accounts, and orders use native WooCommerce. Newsletter subscriptions are saved with consent and can be exported as CSV from Auracast Setup. Newsletter campaigns require your chosen email provider. The contact form uses WordPress mail; configure your host's mail service or SMTP.
@@ -74,12 +76,17 @@ npm.cmd run check
 npx.cmd playwright install chromium
 npm.cmd run test:browser
 npm.cmd run test:instagram
+npm.cmd run test:collections
+npm.cmd run test:contrast
+npm.cmd run test:contrast:states
 & .local/php/php.exe -c .local/php/php.ini scripts/verify-store.php
 node scripts/capture-store.mjs
 npm.cmd run package
 ```
 
 `BROWSER_EXECUTABLE` can point to an existing Chromium installation. Instagram checks cover moving cards, desktop/mobile proportions, playback, reduced motion, native Media Library uploads, publishing, updates, ordering, draft visibility, and feed settings. Browser checks cover homepage assets, collections, quick view, wishlist persistence, search, filters, size selection, cart quantity updates, guest COD orders, native shipping/tip totals, separate billing, policy disclosures, and viewport widths from 320 to 1440 pixels. Test output remains under `test-results/`.
+
+Contrast checks cover 51 desktop/mobile page and dialog states, hover states, visible form boundaries and keyboard focus indicators. The interaction check also samples rendered banner backgrounds, including gradients. Text is checked against 4.5:1 and control boundaries/focus against 3:1. Results are scoped to the demo content and tested states; run these checks again after replacing campaign images or brand colors. This is a contrast audit, not a full accessibility certification.
 
 ## Share a temporary preview
 

@@ -1,5 +1,7 @@
 /* Checkout follows the reference's standalone, single-page layout. */
-body.auracast-checkout-page{--checkout-ink:#181c19;--checkout-accent:#305640;--checkout-border:#dedede;--checkout-muted:#737373;background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.35;letter-spacing:0;min-width:0}
+body.auracast-checkout-page{--checkout-ink:#181c19;--checkout-accent:#305640;--checkout-border:#dedede;--checkout-muted:#595959;background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.35;letter-spacing:0;min-width:0}
+
+
 .auracast-checkout-page *, .auracast-checkout-page *::before,.auracast-checkout-page *::after{box-sizing:border-box}
 .auracast-checkout-page h1,.auracast-checkout-page h2,.auracast-checkout-page h3,.auracast-checkout-page p{font-family:inherit;letter-spacing:0;text-transform:none}
 .auracast-checkout-page button,.auracast-checkout-page input,.auracast-checkout-page select,.auracast-checkout-page textarea{font:inherit;letter-spacing:0}
@@ -36,7 +38,7 @@ body.auracast-checkout-page .auracast-checkout-form input.input-text,.auracast-c
 body.auracast-checkout-page .auracast-checkout-form input.input-text:focus,.auracast-checkout-page select:focus,.auracast-checkout-page textarea:focus{border:1px solid var(--checkout-accent);box-shadow:0 0 0 1px var(--checkout-accent)}
 body.auracast-checkout-page .woocommerce-invalid input.input-text,.auracast-checkout-page .woocommerce-invalid select{border-color:#b42318}
 .auracast-checkout-page #billing_email,.auracast-checkout-page #billing_phone{padding-right:40px}
-body.auracast-checkout-page .checkout-field-help{position:absolute;right:12px;top:17px;border:2px solid #888;border-radius:50%;background:transparent;color:#888;width:15px;height:15px;padding:0;line-height:11px;font-size:10px!important;font-weight:700;cursor:pointer}
+body.auracast-checkout-page .checkout-field-help{position:absolute;right:12px;top:17px;border:2px solid #888;border-radius:50%;background:transparent;color:#626262;width:15px;height:15px;padding:0;line-height:11px;font-size:10px!important;font-weight:700;cursor:pointer}
 .checkout-help-popup{position:absolute;right:0;bottom:calc(100% + 8px);width:240px;padding:10px;border-radius:6px;background:#333;color:#fff;z-index:5;font-size:12px}
 .checkout-help-popup[hidden]{display:none}
 .woocommerce-billing-fields__field-wrapper,.checkout-different-billing{display:grid;grid-template-columns:1fr 1fr;column-gap:10px}
@@ -92,7 +94,7 @@ body.auracast-checkout-page #payment{padding:0;background:transparent}
 .checkout-tip-input{flex:1;position:relative;min-width:0}
 body.auracast-checkout-page .auracast-checkout-form .checkout-tip-custom input[type=number]{width:100%;min-width:0;height:49px;padding:13px 70px 13px 10px;border:1px solid var(--checkout-border);border-radius:12px;background:#fff;outline:none;appearance:textfield}
 .checkout-tip-input input::-webkit-inner-spin-button,.checkout-tip-input input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-body.auracast-checkout-page .checkout-tip-input button{position:absolute;top:0;right:6px;width:30px;height:49px;padding:0;border:0;background:none;color:#888;font-size:21px;font-weight:300;line-height:49px}
+body.auracast-checkout-page .checkout-tip-input button{position:absolute;top:0;right:6px;width:30px;height:49px;padding:0;border:0;background:none;color:#626262;font-size:21px;font-weight:300;line-height:49px}
 .checkout-tip-input button[data-tip-step="-1"]{right:36px!important}
 body.auracast-checkout-page .checkout-add-tip{white-space:nowrap;min-height:49px;padding:10px 14px;border:1px solid var(--checkout-border);border-radius:12px;background:#f7f7f7;color:var(--checkout-muted);cursor:pointer}
 .checkout-tip-content>p{font-size:14px;margin:14px 0 0}
@@ -110,7 +112,7 @@ body.auracast-checkout-page .checkout-add-tip{white-space:nowrap;min-height:49px
 .checkout-policy-modal::backdrop{background:#0009;backdrop-filter:blur(3px)}
 .checkout-policy-modal-heading{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px}
 .checkout-policy-modal-heading h2{font-size:20px;line-height:24px;font-weight:600;margin:0}
-body.auracast-checkout-page .checkout-policy-modal-heading button{display:flex;width:24px;height:24px;background:transparent;border:0;padding:0;color:#888}
+body.auracast-checkout-page .checkout-policy-modal-heading button{display:flex;width:24px;height:24px;background:transparent;border:0;padding:0;color:#626262}
 .checkout-policy-content{font:inherit!important;text-align:left!important}
 .checkout-policy-content p{margin:0 0 14px;font-size:14px;line-height:19px}
 .checkout-policy-content h2,.checkout-policy-content h3{font-size:14px;line-height:19px;font-weight:600;margin:16px 0}
@@ -173,3 +175,7 @@ body.auracast-checkout-page .checkout-discount button{height:35px;padding:6px 10
  .checkout-mobile-review-order-table .checkout-discount{margin:20px 0 14px}.checkout-mobile-review-order-table .checkout-cost-summary .order-total th,.checkout-mobile-review-order-table .checkout-cost-summary .order-total td{font-size:18px;padding-top:12px}.checkout-mobile-review-order-table{margin-bottom:14px}
  .checkout-submit{margin-top:0!important}.checkout-policy-links{margin-top:34px;gap:6px 14px}.auracast-checkout-page .woocommerce-notices-wrapper{margin:16px 15px}.auracast-checkout-page .woocommerce-order{margin:28px 0;padding:0 15px 30px}.auracast-checkout-page .woocommerce-order .col2-set{grid-template-columns:1fr}
 }
+
+/* Visible input boundaries and keyboard focus. */
+body.auracast-checkout-page .auracast-checkout-form input.input-text,.auracast-checkout-page select,.auracast-checkout-page textarea,.auracast-checkout-page input[type=checkbox],.auracast-checkout-page input[type=radio]{border-color:#7b817e}
+body.auracast-checkout-page .auracast-checkout-form input.input-text:focus-visible,.auracast-checkout-page select:focus-visible,.auracast-checkout-page textarea:focus-visible{outline:3px solid #526b58;outline-offset:2px}

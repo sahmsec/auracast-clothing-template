@@ -1,6 +1,6 @@
 <?php
 defined( 'ABSPATH' ) || exit;
-function auracast_palette() { return array( 'hero' => '#dce4dc', 'hero-ink' => '#19291f', 'tees' => '#e3dccd', 'sweats' => '#c7d4cc', 'music' => '#dce5e8', 'anime' => '#253b32', 'essentials' => '#1d2c24', 'newsletter' => '#ecece5', 'accent' => '#305640', 'header' => '#181c19' ); }
+function auracast_palette() { return array( 'hero' => '#dce4dc', 'hero-ink' => '#19291f', 'tees' => '#dce4dc', 'sweats' => '#c7d4cc', 'music' => '#dce4dc', 'anime' => '#173723', 'essentials' => '#1d2c24', 'newsletter' => '#eff4ef', 'accent' => '#305640', 'header' => '#181c19' ); }
 add_action( 'customize_register', function ( $wp_customize ) {
     $wp_customize->add_panel( 'auracast', array( 'title' => 'Auracast', 'priority' => 30 ) );
     foreach ( array( 'branding' => 'Brand, colors & announcement', 'hero' => 'Main hero', 'campaigns' => 'Category & collection banners', 'products' => 'Homepage product sections', 'worlds' => 'Shop your world', 'community' => 'Worn your way gallery', 'benefits' => 'Service benefits', 'newsletter' => 'Newsletter & popup', 'shop' => 'Shop layout', 'contact' => 'Contact & store details' ) as $key => $title ) { $wp_customize->add_section( 'auracast_' . $key, array( 'title' => $title, 'panel' => 'auracast' ) ); }
@@ -34,7 +34,7 @@ add_action( 'customize_register', function ( $wp_customize ) {
         'joggers' => array( 'JOGGERS', 'BUILT FOR YOUR EVERYDAY', 'CN · Anime · Cyber Sigilism · Hollywood', 'SHOP JOGGERS', 'streetwear-everyday-sweatpants-black-0.png', auracast_category_url( 'joggers' ) ),
         'sweatshirts' => array( 'SWEATSHIRTS', 'THE NEXT LAYER', "Bold Y2K Vector Flames · Modern Cyber Sigilism · Owners' Favourites", 'EXPLORE SWEATSHIRTS', 'auracast-sweatshirt-preview.svg', auracast_category_url( 'sweatshirts' ) ),
         'diva' => array( 'DIVA WARDROBE', 'YOUR WARDROBE. YOUR WAY.', 'Everyday layers and expressive fits for her.', 'EXPLORE DIVA', 'auracast-model-white-tee-01.webp', auracast_category_url( 'diva-wardrobe' ) ),
-        'essentials' => array( 'ESSENTIALS', 'AURACAST', 'THE FOUNDATION OF YOUR WARDROBE', 'DISCOVER THE EVERYDAY', 'yokai-essentials.webp', auracast_category_url( 'essentials' ) ),
+        'essentials' => array( 'ESSENTIALS', 'AURACAST / THE EVERYDAY EDIT', 'THE FOUNDATION OF YOUR WARDROBE', 'DISCOVER THE EVERYDAY', '', auracast_category_url( 'essentials' ) ),
     );
     foreach ( $campaigns as $key => $c ) {
         $label = ucfirst( $key ) . ' banner: ';
