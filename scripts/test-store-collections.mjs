@@ -42,19 +42,15 @@ try {
     await page.screenshot({ path: `${output}/home-top.png` });
   });
 
-  await check('Navbar exposes the requested categories, colors and subcategories', async () => {
+  await check('Navbar exposes clothing subcategories; color filtering stays on collection pages', async () => {
     const links = await page.locator('.primary-menu > li > a').allTextContents();
     assert.deepEqual(links, ['AURACAST ESSENTIALS', 'HOODIES', 'JOGGERS', 'SWEATSHIRTS', 'DIVA WARDROBE', 'T-SHIRTS']);
     for (const category of structure.categories.filter(category => category.segments.length)) {
       const top = page.locator('.primary-menu > li > a').filter({ hasText: new RegExp(`^${category.name.toUpperCase()}$`) });
       await top.hover(); await settle();
       const menu = top.locator('..').locator(':scope > .sub-menu');
-      for (const color of category.colors) {
-        const link = menu.getByRole('link', { name: color, exact: true });
-        assert.equal(await link.isVisible(), true);
-        const url = new URL(await link.getAttribute('href'));
-        assert.equal(url.searchParams.get('filter_color'), color.toLowerCase().replaceAll(' ', '-'));
-      }
+      assert.equal(await menu.locator('a[href*="filter_color"]').count(), 0);
+      assert.equal(await menu.getByRole('link', { name: 'Colors', exact: true }).count(), 0);
       for (const segment of category.segments) assert.equal(await menu.getByRole('link', { name: segmentName(segment) }).isVisible(), true, segment);
       await page.mouse.move(1000, 600); await settle();
       await page.mouse.move(400, 300); await settle();
@@ -96,14 +92,13 @@ try {
     assert.ok(await page.locator('main .product-card').count());
   });
 
-  await check('Mobile nested color and segment menus work; layout fits all checked widths', async () => {
+  await check('Mobile subcategory navigation works; layout fits all checked widths', async () => {
     await page.setViewportSize({ width: 390, height: 844 }); await go();
     await page.getByRole('button', { name: 'Open menu', exact: true }).click();
     const hoodie = page.locator('.mobile-nav > li > a').filter({ hasText: /^HOODIES$/ });
     await hoodie.click(); assert.equal(await hoodie.getAttribute('aria-expanded'), 'true');
-    const segments = hoodie.locator('..').getByRole('link', { name: 'Segments', exact: true });
-    await segments.click();
-    const dance = segments.locator('..').getByRole('link', { name: 'Dance & Culture', exact: true });
+    assert.equal(await page.locator('.mobile-nav a[href*="filter_color"]').count(), 0);
+    const dance = hoodie.locator('..').getByRole('link', { name: 'Dance & Culture', exact: true });
     assert.equal(await dance.isVisible(), true);
     await dance.click(); await page.waitForLoadState('networkidle');
     assert.match(page.url(), /hoodies-dance-culture/);

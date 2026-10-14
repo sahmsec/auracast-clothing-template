@@ -75,7 +75,15 @@ function auracast_refresh_store_navigation() {
     $legacy = array( 'SHIRTS', 'ANIME', 'SWEATPANTS', 'MUSIC & CULTURE', 'COLLECTION', 'HOODIE', 'PRODUCTS', 'ESSENTIALS' );
     // A renamed or rearranged merchant menu is left editable in Appearance > Menus.
     $current = array( 'AURACAST ESSENTIALS', 'HOODIES', 'JOGGERS', 'SWEATSHIRTS', 'DIVA WARDROBE', 'T-SHIRTS' );
-    if ( $titles !== $legacy && ( $titles !== $current || ! get_term_meta( $menu->term_id, '_auracast_structure_menu', true ) ) ) { return; }
+    $expected_v1 = count( $current );
+    foreach ( auracast_store_structure()['categories'] as $category ) {
+        if ( $category['colors'] || $category['segments'] ) { $expected_v1++; }
+        if ( $category['colors'] ) { $expected_v1 += 1 + count( $category['colors'] ); }
+        if ( $category['segments'] ) { $expected_v1 += 1 + count( $category['segments'] ); }
+    }
+    $groups = array_count_values( array_map( function ( $item ) { return $item->title; }, $items ) );
+    $default_v1 = $titles === $current && count( $items ) === $expected_v1 && ( $groups['Colors'] ?? 0 ) === 2 && ( $groups['Segments'] ?? 0 ) === 3;
+    if ( $titles !== $legacy && ( $titles !== $current || ( ! $default_v1 && ! get_term_meta( $menu->term_id, '_auracast_structure_menu', true ) ) ) ) { return; }
     foreach ( $items as $item ) { wp_delete_post( $item->ID, true ); }
     unset( $locations['primary'] );
     set_theme_mod( 'nav_menu_locations', $locations );
@@ -85,10 +93,13 @@ function auracast_refresh_store_navigation() {
 
 function auracast_upgrade_store_structure() {
     $structure = auracast_store_structure();
-    if ( ! class_exists( 'WooCommerce' ) || (int) get_option( 'auracast_store_structure_version', 0 ) >= $structure['version'] ) { return; }
-    auracast_provision_store_structure();
-    $catalog = json_decode( file_get_contents( get_template_directory() . '/assets/data/catalog.json' ), true );
-    foreach ( $catalog as $item ) { $product = auracast_product_by_slug( $item['slug'] ); if ( $product ) { auracast_assign_demo_collections( $product->get_id(), $item ); } }
+    $installed = (int) get_option( 'auracast_store_structure_version', 0 );
+    if ( ! class_exists( 'WooCommerce' ) || $installed >= $structure['version'] ) { return; }
+    if ( $installed < 1 ) {
+        auracast_provision_store_structure();
+        $catalog = json_decode( file_get_contents( get_template_directory() . '/assets/data/catalog.json' ), true );
+        foreach ( $catalog as $item ) { $product = auracast_product_by_slug( $item['slug'] ); if ( $product ) { auracast_assign_demo_collections( $product->get_id(), $item ); } }
+    }
     auracast_refresh_store_navigation();
     update_option( 'auracast_store_structure_version', $structure['version'], false );
 }

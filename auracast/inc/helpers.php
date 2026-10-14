@@ -96,16 +96,9 @@ function auracast_navigation_items() {
     foreach ( auracast_store_structure()['categories'] as $category ) {
         $url = auracast_category_url( $category['slug'] );
         $children = array();
-        if ( $category['colors'] || $category['segments'] ) { $children[] = array( 'Shop all ' . $category['name'], $url ); }
-        if ( $category['colors'] ) {
-            $colors = array();
-            foreach ( $category['colors'] as $color ) { $colors[] = array( $color, add_query_arg( 'filter_color', sanitize_title( $color ), $url ) ); }
-            $children[] = array( 'Colors', $url, $colors );
-        }
+        if ( $category['segments'] ) { $children[] = array( 'Shop all ' . $category['name'], $url ); }
         if ( $category['segments'] ) {
-            $segments = array();
-            foreach ( $category['segments'] as $segment ) { $segments[] = array( $segment, auracast_category_url( auracast_segment_slug( $category['slug'], $segment ) ) ); }
-            $children[] = array( 'Segments', $url, $segments );
+            foreach ( $category['segments'] as $segment ) { $children[] = array( $segment, auracast_category_url( auracast_segment_slug( $category['slug'], $segment ) ) ); }
         }
         $item = array( strtoupper( $category['name'] ), $url, $children );
         if ( $category['slug'] === 't-shirts' ) { $tees = $item; } else { $items[] = $item; }

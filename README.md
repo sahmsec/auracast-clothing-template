@@ -18,7 +18,7 @@ Requires WordPress 6.6+, PHP 8.0+, and WooCommerce. No paid reference theme, pag
 
 ## Clothing collections (1.2.0)
 
-Auracast Essentials is the first product row, directly after the hero and its Essentials banner. It is a curated collection for best sellers and wardrobe staples. Diva Wardrobe is the women's collection. T-Shirts remains in the menu and catalog without a dedicated homepage promotion.
+Auracast Essentials is the first product row, directly after the dark forest-green hero and its Essentials banner. It is a curated collection for best sellers and wardrobe staples. Diva Wardrobe is the women's collection. T-Shirts remains in the menu and catalog without a dedicated homepage promotion. Navbar dropdowns contain product subcategories; color selection is available through the collection-page filters.
 
 | Category | Colors | Subcategories |
 | --- | --- | --- |

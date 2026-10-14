@@ -17,7 +17,7 @@
 .auracast-streetwear .primary-menu>li>a{padding:30px 12px;white-space:nowrap;text-transform:uppercase}
 .auracast-streetwear .primary-menu>li>.sub-menu{background:var(--brand-dark);color:#fff;top:100%;left:0;min-width:240px;box-shadow:0 8px 24px #0002;border:1px solid #ffffff25}
 .auracast-streetwear .primary-menu>li>.sub-menu:has(ul){display:grid;grid-template-columns:1fr;gap:12px;min-width:320px;max-height:calc(100svh - 110px);overflow-y:auto}
-.auracast-streetwear .primary-menu>li>.sub-menu:has(>li:nth-child(3)){grid-template-columns:1fr 1fr;min-width:440px;gap:12px 24px}
+.auracast-streetwear .primary-menu>li>.sub-menu:has(ul):has(>li:nth-child(3)){grid-template-columns:1fr 1fr;min-width:440px;gap:12px 24px}
 .auracast-streetwear .primary-menu>li>.sub-menu:has(ul)>li:first-child{grid-column:1/-1}
 .auracast-streetwear .primary-menu .sub-menu .sub-menu{padding:6px 0 6px 18px}
 .auracast-streetwear .primary-menu .sub-menu a{font-size:14px}
@@ -28,14 +28,19 @@
 .auracast-streetwear .cart-count{position:absolute;right:4px;bottom:3px;min-width:17px;height:17px;background:#fff;color:#121212;font-size:9px}
 .cart-count:empty{display:none}.cart-count[data-empty]{display:none}
 .yokai-home{overflow:hidden}
-.auracast-drop-hero{display:grid;grid-template-columns:42% 58%;min-height:490px;background:#e5e2d8;color:#1d2c24}
+.auracast-drop-hero{position:relative;isolation:isolate;display:grid;grid-template-columns:42% 58%;min-height:490px;background:radial-gradient(ellipse at 62% 55%,#164c23 0%,#08200e 48%,#020a04 90%);color:#fff}
+.auracast-drop-hero::before{content:'';position:absolute;inset:0;z-index:-1;background:url('../images/yokai-shirts-desktop.webp') center top/100% 440% no-repeat;filter:hue-rotate(var(--campaign-hue)) saturate(.6);opacity:.4;pointer-events:none}
 .drop-hero-copy{padding:65px 5vw;align-self:center}
 .drop-hero-copy .eyebrow{display:block;font-size:10px;letter-spacing:2px;margin-bottom:25px}
 .drop-hero-copy h1{font-size:clamp(42px,5.3vw,82px);font-weight:800;line-height:1.02;letter-spacing:-.06em;margin-bottom:25px}
-.drop-hero-copy p{font-size:14px;line-height:1.7;letter-spacing:0;max-width:350px;margin-bottom:28px}
-.drop-hero-copy .button{gap:14px;background:#1d2c24;border-color:#1d2c24;color:#fff;font-size:12px;padding:14px 24px}
-.drop-hero-photos{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:#d6ddd2;overflow:hidden}
-.drop-hero-photos img{width:100%;height:100%;max-height:530px;object-fit:contain;mix-blend-mode:multiply;padding:24px 8px}
+.drop-hero-copy p{font-size:14px;line-height:1.7;letter-spacing:0;max-width:350px;margin-bottom:28px;color:#d3dfd2}
+.drop-hero-copy .eyebrow{color:#c8dac6}
+.drop-hero-copy .button{gap:14px;background:#fff;border-color:#fff;color:#102516;font-size:12px;padding:14px 24px}
+.drop-hero-copy .button:hover{background:#d8e7d4;border-color:#d8e7d4;color:#102516}
+.drop-hero-photos{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:transparent;overflow:hidden;padding:34px 30px 34px 10px}
+.drop-hero-photos img{width:100%;height:auto;max-width:352px;max-height:none;object-fit:contain;mix-blend-mode:normal;padding:0;justify-self:center}
+.drop-hero-photos img[src$='/streetwear-essential-hoodie-black-0.jpg']{mix-blend-mode:multiply;filter:brightness(2.8);clip-path:polygon(48% 12%,50% 12.2%,52% 13%,53.3% 14.5%,54.5% 16.4%,55.5% 20%,57% 27%,58.5% 32.5%,60.5% 34.8%,64% 38%,68% 41.5%,73% 46%,76% 48%,83% 57%,90% 68%,94.7% 75%,97.5% 79%,98% 81.4%,99.7% 85%,94% 87.6%,92.5% 88%,88% 85.2%,84% 83%,78% 79%,74% 75.8%,72% 74.5%,71.2% 78.5%,69.5% 79%,55% 79.5%,43% 79.5%,32% 79.3%,28.5% 79.6%,27% 77%,25.6% 74.5%,24.3% 76.4%,21% 79%,17% 82.2%,11% 84.7%,7% 88.1%,2.5% 86.2%,.2% 85.4%,1.5% 82.2%,2.5% 77%,5% 70.4%,8.5% 64.3%,11% 61%,17% 53.5%,20.5% 49%,22% 47.8%,24.5% 44.9%,28% 41.3%,32% 38.3%,36.3% 34.7%,37.5% 33%,39% 29%,41% 23%,42% 19.4%,43% 16.4%,44% 14.2%,46% 12.7%)}
+.drop-hero-photos img[src$='/streetwear-essential-hoodie-white-0.jpg']{clip-path:polygon(50% 12.3%,54% 13.2%,56% 15%,57.5% 17.5%,58.5% 20%,59% 24.2%,60% 28%,61% 33%,63% 35%,67% 38%,72% 41%,77% 45%,80% 48%,86% 57%,93% 67%,97% 74%,98% 78%,98% 81.8%,99.7% 85.5%,93% 88.1%,89% 87%,85% 83.7%,79% 79.6%,74% 76.8%,73% 75%,72% 78%,70% 78.6%,57% 78.7%,41% 78.7%,28% 78.6%,26% 77.8%,25% 75.5%,23% 78%,19% 80.8%,14% 84%,10% 85.5%,8% 88.5%,3% 86.8%,.5% 85.9%,1.8% 82.4%,1.8% 79%,3% 75.7%,6% 69%,10% 63%,15% 57%,19% 52%,22% 48%,24% 45.5%,29% 41%,34% 37%,38% 34.5%,39% 33%,40% 28%,41% 22%,43% 17%,45% 14%,47% 12.7%)}
 .collection-editorial{display:grid;grid-template-columns:55% 45%;align-items:center;overflow:hidden;min-height:350px;padding-left:8vw;background:#d6ddd2;color:#1d2c24}
 .collection-editorial>div{padding:40px 30px 40px 0}
 .collection-editorial .eyebrow{font-size:10px;letter-spacing:2px}
@@ -48,7 +53,7 @@
 .diva-editorial>img{height:430px;object-fit:cover;object-position:center 15%;mix-blend-mode:normal}
 .collection-coming-soon{font-size:14px;color:#666;margin-bottom:15px}
 .collection-heading{padding:35px 0 18px}.collection-heading h1{font-size:clamp(26px,3vw,42px);font-weight:800;letter-spacing:-.04em;margin-top:8px}.collection-heading p{font-size:14px;color:#666;letter-spacing:0;max-width:650px;margin:14px 0 0}.collection-heading .eyebrow{font-size:11px;letter-spacing:1px}
-@media(max-width:749px){.auracast-drop-hero{grid-template-columns:1fr;min-height:0}.drop-hero-copy{padding:35px 6vw}.drop-hero-copy h1{font-size:clamp(44px,12vw,65px);margin-bottom:20px}.drop-hero-copy .eyebrow{font-size:9px;margin-bottom:18px}.drop-hero-copy p{font-size:13px;margin-bottom:22px}.drop-hero-copy .button{padding:12px 20px;min-height:45px}.drop-hero-photos{height:230px}.drop-hero-photos img{height:230px;padding:8px 12px}.collection-editorial{grid-template-columns:1fr 1fr;padding-left:6vw;min-height:270px}.collection-editorial>div{padding:28px 12px 28px 0}.collection-editorial h2{font-size:clamp(25px,7vw,42px);overflow-wrap:break-word;margin:14px 0}.collection-editorial .eyebrow{font-size:8px;letter-spacing:1px}.collection-editorial p{font-size:11px;line-height:1.7;margin-bottom:18px}.collection-editorial>img{height:280px}.editorial-cta{font-size:9px;letter-spacing:.4px;gap:8px}.diva-editorial>img{height:320px}.collection-coming-soon{font-size:12px}}
+@media(max-width:749px){.auracast-drop-hero{grid-template-columns:1fr;min-height:0}.drop-hero-copy{padding:35px 6vw}.drop-hero-copy h1{font-size:clamp(44px,12vw,65px);margin-bottom:20px}.drop-hero-copy .eyebrow{font-size:9px;margin-bottom:18px}.drop-hero-copy p{font-size:13px;margin-bottom:22px}.drop-hero-copy .button{padding:12px 20px;min-height:45px}.drop-hero-photos{height:auto;padding:0 4vw 28px;gap:12px}.drop-hero-photos img{height:auto;padding:0;max-width:175px}.collection-editorial{grid-template-columns:1fr 1fr;padding-left:6vw;min-height:270px}.collection-editorial>div{padding:28px 12px 28px 0}.collection-editorial h2{font-size:clamp(25px,7vw,42px);overflow-wrap:break-word;margin:14px 0}.collection-editorial .eyebrow{font-size:8px;letter-spacing:1px}.collection-editorial p{font-size:11px;line-height:1.7;margin-bottom:18px}.collection-editorial>img{height:280px}.editorial-cta{font-size:9px;letter-spacing:.4px;gap:8px}.diva-editorial>img{height:320px}.collection-coming-soon{font-size:12px}}
 .campaign-banner{display:block;position:relative;overflow:hidden;line-height:0}
 .campaign-banner img{display:block;width:100%;height:auto;max-width:none}
 .hero-campaign>picture>img,.mobile-compact-banner>img,.sweats-campaign>img,.anime-campaign>img,.essentials-campaign>img{filter:hue-rotate(var(--campaign-hue)) saturate(.6)}
